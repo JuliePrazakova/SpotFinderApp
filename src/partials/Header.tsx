@@ -3,11 +3,12 @@ import { HashRouter as Router, Link } from 'react-router-dom'
 import Logo from "./logo.png";
 import { Wrapper } from './Header.styles';
 
-const Header = () => {
+export interface IHeaderProps {}
+
+const Header: React.FunctionComponent<IHeaderProps> = (props) => {
 
         return (
             <Wrapper>
-                <Router>
                     <div className="topNav">
                         <a className="active"  href="/">
                             <img className="img" src={Logo} alt="Logo" />
@@ -27,7 +28,6 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-                </Router>
             </Wrapper>
         );
     }

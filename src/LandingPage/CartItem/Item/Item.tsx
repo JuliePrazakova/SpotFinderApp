@@ -3,12 +3,13 @@ import { CartItemType } from '../../LandingSection';
 // Styles
 import { Wrapper } from './Item.styles';
 import {Link} from "react-router-dom";
+import React from "react";
 
-type Props = {
-  item: CartItemType;
-};
+export interface IItemProps {
+    item: CartItemType;
+}
 
-const Item: React.FC<Props> = ({ item }) => (
+const Item: React.FunctionComponent<IItemProps> = ({ item }) => (
   <Wrapper>
       <Link to={`/tours/${item.id}`}>
       <div >

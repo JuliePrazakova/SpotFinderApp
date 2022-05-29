@@ -2,7 +2,10 @@ import * as React from "react"
 import { Wrapper } from './Question-box.styles';
 
 
-const QuestionBox = () => {
+export interface IQuestionBoxProps {}
+
+
+const QuestionBox: React.FunctionComponent<IQuestionBoxProps> = (props) => {
     return (
         <Wrapper>
             <div className='title'>

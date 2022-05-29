@@ -1,0 +1,54 @@
+{
+    "reindeers": [
+      {
+        "id": 1,
+        "title": "Long Sledge",
+        "smallDes1": "60 minutes sledge",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet libero quis elit sodales aliquet. In volutpat magna ut urna hendrerit, vel fermentum turpis aliquet.",
+        "included1": "Hot juice",
+        "included2": "Cookies",
+        "included3": "Farm guide",
+        "category": "reindeers",
+        "image": "/images/sieriporo.jpeg",
+        "price": 130
+      },
+      {
+        "id": 2,
+        "title": "Short Sledge",
+        "smallDes1": "30 minutes sledge",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet libero quis elit sodales aliquet. In volutpat magna ut urna hendrerit, vel fermentum turpis aliquet.",
+        "included1": "Hot juice",
+        "included2": "Cookies",
+        "included3": "Farm guide",
+        "category": "reindeers",
+        "image": "/images/sieriporo.jpeg",
+        "price": 70
+      }
+    ],
+    "huskies": [
+      {
+        "id": 1,
+        "title": "Long Sledge",
+        "smallDes1": "60 minutes sledge - 10km",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet libero quis elit sodales aliquet. In volutpat magna ut urna hendrerit, vel fermentum turpis aliquet.",
+        "included1": "Hot juice",
+        "included2": "Cookies",
+        "included3": "Farm guide",
+        "category": "reindeers",
+        "image": "/images/sieriporo.jpeg",
+        "price": 130
+      },
+      {
+        "id": 2,
+        "title": "Short Sledge",
+        "smallDes1": "30 minutes sledge - 5km",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas sit amet libero quis elit sodales aliquet. In volutpat magna ut urna hendrerit, vel fermentum turpis aliquet.",
+        "included1": "Hot juice",
+        "included2": "Cookies",
+        "included3": "Farm guide",
+        "category": "reindeers",
+        "image": "/images/sieriporo.jpeg",
+        "price": 70
+      }
+    ]
+}

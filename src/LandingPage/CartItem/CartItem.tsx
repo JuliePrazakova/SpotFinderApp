@@ -2,12 +2,14 @@
 import { CartItemType } from '../LandingSection';
 // Styles
 import { Wrapper } from './CartItem.styles';
+import React from "react";
 
-type Props = {
+export interface ICartItemProps {
     item: CartItemType;
-};
+}
 
-const CartItem: React.FC<Props> = ({ item }) => (
+
+const CartItem: React.FunctionComponent<ICartItemProps> = ({ item }) => (
     <Wrapper>
         <div>
             <h3>{item.title}</h3>

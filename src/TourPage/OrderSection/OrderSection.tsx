@@ -1,13 +1,13 @@
 // Types
 // Styles
-import { Wrapper, Buttons } from './Search.styles';
+import { Wrapper, Buttons } from './OrderSection.styles';
 import * as React from "react";
 
 
 
-export interface ISearchProps {}
+export interface IOrderSectionProps {}
 
-const Search: React.FunctionComponent<ISearchProps> = (props) => {
+const OrderSection: React.FunctionComponent<IOrderSectionProps> = (props) => {
 
     return (
         <div>
@@ -57,4 +57,4 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
 
 }
 
-export default Search;
+export default OrderSection;

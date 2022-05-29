@@ -39,12 +39,6 @@ export const Wrapper = styled.div`
     font-size: 17px;
   }
 
-  /* Change the color of links on hover */
-  .header-right  a:hover {
-    border-bottom: 2px solid #545454;
-    color: black;
-  }
-
   .header-right{
     float:right;
     margin: 15px 5% 0 0;

@@ -11,19 +11,18 @@ export const Wrapper = styled.div`
   font-family: Open Sans,serif ;
   
   .background-cover {
-    background: url("/images/background2.jpg");
+    background: url("/images/background-item1.png");
     background-size: cover;
-    padding: 350px 0 15% 0;
+    padding: 100px 0 120px 0;
     margin: 0;
     color: white;
   }
-  .title > p {
-    font-size: 63px;
-    font-weight: 800;
-  }
+  
   .title {
-    width: fit-content;
-    margin-left: 15%;
+    display: flex;
+    margin: auto;
+    width: 80%;
+    padding-top: 30px;
   }
   .lower-section {
     margin: auto;
@@ -32,21 +31,17 @@ export const Wrapper = styled.div`
     width: 80%;
     justify-content: space-between;
   }
-  
+
   //styles for leaflet map
+  .leaflet-container {
+    height: 60vh;
+    width: 40vw;
+    border-radius: 30px;
+  }
   #map {
-    height: 180px;
-  }
-  .map {
-    width: 50%;
-  }
-  .map > img{
-    width: 100%;
-  
     position: -webkit-sticky;
     position: sticky;
     top:20px;
-    border-radius: 30px;
   }
 `;
 export const Grid = styled.div`

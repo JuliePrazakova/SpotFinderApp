@@ -1,8 +1,10 @@
 import * as React from "react"
 import { Wrapper } from './Footer.styles';
 
+export interface IFooterProps {}
 
-const Footer = () => {
+const Footer: React.FunctionComponent<IFooterProps> = (props) => {
+
         return (
         <Wrapper>
             <div className="footer">

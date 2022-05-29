@@ -2,16 +2,17 @@
 import Search from './Search/Search';
 import QuestionBox from "./Question-part/Question-box";
 import Item from "./CartItem/Item/Item";
-
+import Map from "../partials/Map";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 // Types
 // Styles
 import { Wrapper, Grid } from './LandingSection.styles';
 import * as React from "react";
-import {useQuery} from "react-query";
 import Data from "../Data/products.json";
-import Map from "./map.png";
+
+export interface ITestPageProps {}
+
 
 export type CartItemType = {
     id: number;
@@ -23,17 +24,17 @@ export type CartItemType = {
     price: number;
     title: string;
     amount: number;
+    city: string;
+    street: string;
+    streetNumber: number;
+    zip: number;
+    country: string;
 };
 
 let products = Data.products;
-const getProducts = async (): Promise<CartItemType[]> => products;
 
 
-const LandingSection = () => {
-    const { data } = useQuery<CartItemType[]>(
-        'products',
-        getProducts
-    );
+const LandingSection: React.FunctionComponent<ITestPageProps> = (props) => {
 
         return (
             <>  <Header />
@@ -47,15 +48,13 @@ const LandingSection = () => {
 
                     <div className='lower-section'>
                         <Grid >
-                            {data?.map(item => (
+                            {products?.map(item => (
                                 <Grid key={item.id} >
                                     <Item item={item} />
                                 </Grid>
                             ))}
                         </Grid>
-                        <div className='map'>
-                            <img className="img" src={Map} alt="Map" />
-                        </div>
+                        <Map />
                     </div>
                     <QuestionBox />
 

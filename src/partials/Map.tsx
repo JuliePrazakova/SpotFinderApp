@@ -1,15 +1,23 @@
 import * as React from "react"
-import map from "./map.png";
-import { Wrapper } from './Header.styles';
+import  './Header.styles';
+import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
 
 
 const Map = () => {
         return (
-            <Wrapper>
-                <div className='map'>
-                    <img className="img" src={map} alt="Map" />
-                </div>
-            </Wrapper>
+            <div id='map'>
+                <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
+                    <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                    />
+                    <Marker position={[51.505, -0.09]}>
+                        <Popup>
+                            A pretty CSS3 popup. <br /> Easily customizable.
+                        </Popup>
+                    </Marker>
+                </MapContainer>
+            </div>
         );
     }
 
