@@ -1,57 +1,50 @@
 import styled from 'styled-components';
 
-export const Buttons = styled.div`
-  display: flex;
-  margin-left: 20%;
-  
-  .type-button {
-    font-size: 14px;
-    border-radius: 13px 13px 0 0;
-    background: rgba(16,16,16,0.4);
-    margin: 0 3px 0 3px;
-    padding: 10px 20px 6px 20px;
-  }
-  .active {
-    background: rgba(16,16,16,0.7);
-  }
-
-`
-
 export const Wrapper = styled.div`
-  display: flex;
+  display: block;
   justify-content: center;
-  width: fit-content;
-  margin-left: 15%;
+  width: 80%;
+  margin: auto;
+  padding-bottom: 10px;
   color: black;
   background: white;
   font-family: Open Sans, sans-serif;
   border-radius: 30px;
-  box-shadow: 0 2px 10px #333333;
+  border: 1px solid gray;
   
-  .dropdown:hover, input:hover, .button:hover {
+  span {
+    display: flex;
+    margin: auto auto 20px auto;
+    border-radius: 30px 30px 0 0;
+    border-bottom: 1px solid gray;
+  }
+  span > div {
+    width: 50%;
+    margin: 0;
+    padding: 10px;
+  }
+  
+  .dropdown:hover, input:hover {
     cursor: pointer;
   }
   .dropdown:focus, input:focus{
   outline: 0;
   }
-  .dropdown , input, .button {
+  .dropdown , input {
+    width: 100%;
     padding: 2px 0 0 10px;
-    font-size: 12px;
+    font-size: 15px;
     font-weight: normal;
     border: none;
     color: gray;
+    border-bottom: 1px solid lightgrey;
   }
-  .button {
-    background: gray;
-    font-size: 18px;
-    font-weight: 200;
-    color: white;
-    padding: 15px 30px 0 30px;
-    border-radius: 0 30px 30px 0;
-  }
+  
   .left {
     border-radius: 30px 0 0 30px;
-    margin-left: 15px;
+  }
+  .right {
+    border-radius:  0 30px 30px 0;
   }
   .label {
     padding: 14px;
@@ -60,23 +53,58 @@ export const Wrapper = styled.div`
     color: black;
     background: white;
     display: flex;
+    margin: 10px;
+  }
+  .label > div {
+    padding-right: 20px;
   }
   .vl {
-    border-left: 1px solid gray;
-    height: 30px;
-    margin: auto;
+    border-right: 1px solid gray;
   }
-  
+  .firstname {
+    margin-right: 10px;
+    width: 77%;
+  }
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
   @media screen and (max-width: 600px) {
-    .dropdown:hover, input:hover, .button:hover {
+    .dropdown:hover, input:hover {
       cursor: pointer;
     }
-    .dropdown , input, .button {
+    .dropdown , input {
       padding: 8px;
       font-size: 16px;
     }
     
   }
   
+`;
+
+export const Summary = styled.div`
+  display: block;
+  justify-content: center;
+  width: 80%;
+  margin: 30px auto 50px auto;
+  color: black;
+  font-family: Open Sans, sans-serif;
+
+  .button {
+    background: #E4CDBE;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 200;
+    color: white;
+    padding: 12px 30px 8px 30px;
+    border-radius:  30px;
+    width: 70%;
+    margin: auto;
+  }
+  .button:hover {
+    cursor: pointer;
+  }
+  .summary-part {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    margin: auto;
+  }
 `;

@@ -6,6 +6,7 @@ import {useParams} from "react-router";
 import InfoSection from "./InfoSection/InfoSection";
 import MiddleSection from "./MiddleSection/MiddleSection";
 import PhotoSection from "./PhotoSection/PhotoSection";
+import OrderSection from "./OrderSection/OrderSection";
 
 // Types
 // Styles
@@ -34,7 +35,7 @@ const TourSection: React.FunctionComponent<ITourProps> = () => {
     const params = useParams();
     let id: number;
     if(params.id) {
-        id = +params.id;
+        id = +params.id - 1;
     }else {
         id = 1;
     }
@@ -44,12 +45,15 @@ const TourSection: React.FunctionComponent<ITourProps> = () => {
                 <Header />
                 <div className="background-cover"></div>
 
-                    <div className="title">
+                    <div className="first-part">
                         <InfoSection item={products[id]} />
                         <Map />
                     </div>
                 <MiddleSection />
                 <PhotoSection item={products[id]} />
+
+                <OrderSection price={products[id].price} />
+
                 <Footer />
             </Wrapper>
         );

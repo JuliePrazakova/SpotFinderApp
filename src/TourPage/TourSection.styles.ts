@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  @font-face {
-    font-family: Open Sans;
-    src: local(Open Sans), url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap') format('woff');
-  }
   display: flex;
   flex-direction: column;
   margin: auto;
@@ -18,11 +14,12 @@ export const Wrapper = styled.div`
     color: white;
   }
   
-  .title {
+  .first-part {
     display: flex;
     margin: auto;
     width: 80%;
-    padding-top: 30px;
+    padding: 80px 0 80px 0;
+    
   }
   .lower-section {
     margin: auto;
