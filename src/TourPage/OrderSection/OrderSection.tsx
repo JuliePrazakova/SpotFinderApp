@@ -1,37 +1,50 @@
 // Types
 // Styles
-import { Wrapper, Summary } from './OrderSection.styles';
+import { Wrapper, Summary, Button } from './OrderSection.styles';
 import * as React from "react";
 import {useState} from "react";
 
-export interface IOrderSectionProps {
-    price: number
-}
+export interface IOrderSectionProps {}
 
+export interface Itour {
+    tour: string,
+    price: string
+}
 
 const OrderSection: React.FunctionComponent<IOrderSectionProps> = (props) => {
     const [selectedOption, setSelectedOption] = useState<String>();
-    const [selectedTour, setSelectedTour] = useState<String>();
+    const [selectedTour, setSelectedTour] = useState<Itour>({tour: '', price: ''});
+    const [totalPrice, setTotalPrice] = useState<number>();
 
     // This function is triggered when the select changes
     const optionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
         setSelectedOption(value);
     };
+
     const tourChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const value = event.target.value;
-        setSelectedTour(value);
-    };
-    var totalPrice
-    if(selectedOption){
-         totalPrice = props.price* (+selectedOption);
-    }
+        if(value==='Long sledge'){
+            setSelectedTour({tour: value, price: '130'});
+            setTotalPrice((+selectedTour.price));
+            console.log(totalPrice);
+        }else if(value==='Short sledge'){
+            setSelectedTour({tour: value, price: '79'});
+        }else{
+            console.log('mistake')
+        }
 
+    };
+    var total;
+    if(selectedOption && selectedTour){
+       total= (+selectedTour.price) * (+selectedOption)
+            document.getElementById('totalPrice')!.innerText = "$" + total.toString();
+    }
 
     return (
         <>
         <Wrapper>
-            <span>
+            <span className='box'>
                 <div className='vl'>
                     <div className='label left' >
                         <div>Date</div>
@@ -43,7 +56,7 @@ const OrderSection: React.FunctionComponent<IOrderSectionProps> = (props) => {
                     <div className='label' >
                         <div>Guests</div>
                         <select onChange={optionChange}  className="dropdown"  >
-                            <option value="0" >Add guests </option>
+                            <option value='0'>Add guests </option>
                             <option value="1" >1 </option>
                             <option value="2">2</option>
                             <option value="3" >3</option>
@@ -55,23 +68,27 @@ const OrderSection: React.FunctionComponent<IOrderSectionProps> = (props) => {
                     <div className='label right' >
                         <div>Time</div>
                         <select className="dropdown">
-                          <option value="date">11:00 </option>
-                          <option value="date">14:30</option>
+                            <option value='0'> Time </option>
+                            <option value="date">11:00 </option>
+                            <option value="date">14:30</option>
                         </select>
                     </div>
 
                     <div className='label' >
                         <div>Tour</div>
                         <select className="dropdown" onChange={tourChange}>
+                            <option value="0">Tours </option>
                             <option value="Long sledge">Long sledge </option>
                             <option value="Short sledge">Short sledge</option>
                         </select>
                    </div>
                 </div>
             </span>
+            <span className='second-part'>
             <div className='label' >
-                <div>Name</div>
-                <input type="text" placeholder="Firstname" className="firstname" />
+                    <div>Name</div>
+                    <input type="text" placeholder="Firstname" className="firstname" />
+
                 <input type="text" placeholder="Lastname" className="name" />
             </div>
             <div className='label' >
@@ -82,19 +99,31 @@ const OrderSection: React.FunctionComponent<IOrderSectionProps> = (props) => {
                 <div>Mobile</div>
                 <input type="text" placeholder="1 541 252 3827" className="search-left" />
             </div>
-
+            </span>
         </Wrapper>
             <Summary>
-                <div>
-                    <div>{selectedOption} x {selectedTour}</div>
-                    <div>{props.price}</div>
+                <div id='summary'>
+                    <span className='title'>Summary:</span>
+
+                    <div className='label'>People</div>
+                    <span className='variable'>{selectedOption}</span>
+
+                    <div className='vl'></div>
+
+                    <div className='label'>Tour</div>
+                    <span className='variable'>{selectedTour.tour}</span>
+
+                    <div className='vl'></div>
+
+                    <div className='label'>Price in $ per 1</div>
+                    <span className='variable'>{selectedTour.price}</span>
                 </div>
                 <div className='summary-part'>
-                    <div>Total:</div>
-                    <div> {totalPrice}</div>
+                    <div className='title'>Total:</div>
+                    <div id='totalPrice' className='variable'> </div>
                 </div>
-                <div className="button">RESERVE</div>
             </Summary>
+            <Button >RESERVE</Button>
         </>
     );
 

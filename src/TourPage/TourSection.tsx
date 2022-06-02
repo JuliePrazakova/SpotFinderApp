@@ -52,7 +52,7 @@ const TourSection: React.FunctionComponent<ITourProps> = () => {
                 <MiddleSection />
                 <PhotoSection item={products[id]} />
 
-                <OrderSection price={products[id].price} />
+                <OrderSection />
 
                 <Footer />
             </Wrapper>
