@@ -1,12 +1,11 @@
 // Types
-import { TourType } from '../../TourSection';
+import { TourType } from '../../TourSection'
 
 // Styles
-import { Wrapper } from './ItemTour.styles';
-import {Link} from "react-router-dom";
-import React from "react";
+import { Wrapper } from './ItemTour.styles'
+import React from 'react'
 
-export interface IItemProps {
+export type IItemProps = {
     item: TourType;
 }
 
@@ -23,6 +22,6 @@ const ItemTour: React.FunctionComponent<IItemProps> = ({ item }) => (
 
       <div className='tag'>From <b>${item.price}</b> per person</div>
   </Wrapper>
-);
+)
 
-export default ItemTour;
+export default ItemTour

@@ -1,22 +1,22 @@
 //components
-import Map from "../partials/Map";
-import Header from "../partials/Header";
-import Footer from "../partials/Footer";
-import {useParams} from "react-router";
-import InfoSection from "./InfoSection/InfoSection";
-import MiddleSection from "./MiddleSection/MiddleSection";
-import PhotoSection from "./PhotoSection/PhotoSection";
-import OrderSection from "./OrderSection/OrderSection";
+import Map from '../partials/Map'
+import Header from '../partials/Header'
+import Footer from '../partials/Footer'
+import {useParams} from 'react-router'
+import InfoSection from './InfoSection/InfoSection'
+import MiddleSection from './MiddleSection/MiddleSection'
+import PhotoSection from './PhotoSection/PhotoSection'
+import OrderSection from './OrderSection/OrderSection'
 
 // Types
 // Styles
-import {Wrapper} from './TourSection.styles';
-import * as React from "react";
-import Data from "../Data/products.json";
+import {Wrapper} from './TourSection.styles'
+import * as React from 'react'
+import Data from '../Data/products.json'
 
-let products = Data.products;
+const products = Data.products
 
-export interface ITourProps {}
+export type ITourProps = Record<string, unknown>
 
 export type TourType = {
     id: number;
@@ -32,12 +32,12 @@ export type TourType = {
 };
 
 const TourSection: React.FunctionComponent<ITourProps> = () => {
-    const params = useParams();
-    let id: number;
+    const params = useParams()
+    let id: number
     if(params.id) {
-        id = +params.id - 1;
+        id = +params.id - 1
     }else {
-        id = 1;
+        id = 1
     }
 
         return (
@@ -56,7 +56,7 @@ const TourSection: React.FunctionComponent<ITourProps> = () => {
 
                 <Footer />
             </Wrapper>
-        );
+        )
 }
 
-export default TourSection;
+export default TourSection

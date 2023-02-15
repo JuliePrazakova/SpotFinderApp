@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   margin-right: 0;
@@ -38,22 +38,22 @@ export const Wrapper = styled.div`
     margin-left: 0;
   }
   
-`;
+`
 export const PriceTag = styled.div`
   padding: 20px 0 40px 0;
   font-size: 25px;
   font-weight: 300;
   border-bottom: 1px solid gray;
   margin: 0 40px 20px 20px;
-`;
+`
 export const Description = styled.div`
   padding: 0 0 50px 0;
   font-size: 17px;
   font-weight: 200;
   margin: 0 40px 50px 20px;
-`;
+`
 export const Box = styled.div`
   display: block;
   width: 50%;
-`;
+`
 

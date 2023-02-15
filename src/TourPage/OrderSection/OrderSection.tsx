@@ -1,44 +1,46 @@
 // Types
 // Styles
 import { Wrapper, Summary, Button } from './OrderSection.styles';
-import * as React from "react";
-import {useState} from "react";
+`
+`
+import * as React from 'react'
+import {useState} from 'react'
 
-export interface IOrderSectionProps {}
+export type IOrderSectionProps = Record<string, unknown>
 
-export interface Itour {
+export type Itour = {
     tour: string,
     price: string
 }
 
-const OrderSection: React.FunctionComponent<IOrderSectionProps> = (props) => {
-    const [selectedOption, setSelectedOption] = useState<String>();
-    const [selectedTour, setSelectedTour] = useState<Itour>({tour: '', price: ''});
-    const [totalPrice, setTotalPrice] = useState<number>();
+const OrderSection: React.FunctionComponent<IOrderSectionProps> = () => {
+    const [selectedOption, setSelectedOption] = useState<string>()
+    const [selectedTour, setSelectedTour] = useState<Itour>({tour: '', price: ''})
+    const [totalPrice, setTotalPrice] = useState<number>()
 
     // This function is triggered when the select changes
     const optionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = event.target.value;
-        setSelectedOption(value);
-    };
+        const value = event.target.value
+        setSelectedOption(value)
+    }
 
     const tourChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const value = event.target.value;
+        const value = event.target.value
         if(value==='Long sledge'){
-            setSelectedTour({tour: value, price: '130'});
-            setTotalPrice((+selectedTour.price));
-            console.log(totalPrice);
+            setSelectedTour({tour: value, price: '130'})
+            setTotalPrice((+selectedTour.price))
+            console.log(totalPrice)
         }else if(value==='Short sledge'){
-            setSelectedTour({tour: value, price: '79'});
+            setSelectedTour({tour: value, price: '79'})
         }else{
             console.log('mistake')
         }
 
-    };
-    var total;
+    }
+    let total
     if(selectedOption && selectedTour){
        total= (+selectedTour.price) * (+selectedOption)
-            document.getElementById('totalPrice')!.innerText = "$" + total.toString();
+            document.getElementById('totalPrice')!.innerText = '$' + total.toString()
     }
 
     return (
@@ -125,8 +127,8 @@ const OrderSection: React.FunctionComponent<IOrderSectionProps> = (props) => {
             </Summary>
             <Button >RESERVE</Button>
         </>
-    );
+    )
 
 }
 
-export default OrderSection;
+export default OrderSection

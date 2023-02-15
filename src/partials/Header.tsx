@@ -1,11 +1,11 @@
-import * as React from "react"
-import { HashRouter as Router, Link } from 'react-router-dom'
-import Logo from "./logo.png";
-import { Wrapper } from './Header.styles';
+import * as React from 'react'
+import { Link } from 'react-router-dom'
+import Logo from './logo.png'
+import { Wrapper } from './Header.styles'
 
-export interface IHeaderProps {}
+export type IHeaderProps = Record<string, unknown>
 
-const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+const Header: React.FunctionComponent<IHeaderProps> = () => {
 
         return (
             <Wrapper>
@@ -16,16 +16,16 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
                         <div className="header-right">
                         
                                 <div>
-                                    <Link to={`/`}>Home</Link>  
+                                    <Link to={'/'}>Home</Link>  
                                 </div>
                                 <div>
-                                    <Link to={`/adventures`}>Adventures</Link>
+                                    <Link to={'/adventures'}>Adventures</Link>
                                 </div>
                                 <div>
-                                    <Link to={`/contact`}>Contact US</Link>
+                                    <Link to={'/contact'}>Contact US</Link>
                                 </div>
                                 <div>
-                                    <Link to={`/signin`}>Sign in</Link>
+                                    <Link to={'/signin'}>Sign in</Link>
                                 </div>
                                 <i className="cart plus large icon"></i>
                                 <i className="facebook f large icon"></i>
@@ -33,7 +33,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
                         </div>
                     </div>
             </Wrapper>
-        );
+        )
     }
 
-export default Header;
+export default Header

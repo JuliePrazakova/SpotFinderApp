@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   margin: 100px auto 100px auto;
@@ -8,6 +8,6 @@ export const Wrapper = styled.div`
     width: fit-content;
     margin: auto;
   }
-`;
+`
 
 

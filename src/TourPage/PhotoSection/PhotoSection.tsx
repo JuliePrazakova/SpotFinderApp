@@ -1,10 +1,10 @@
 // Types
-import { CartItemType } from '../../LandingPage/LandingSection';
+import { CartItemType } from '../../LandingPage/LandingSection'
 // Styles
-import { Wrapper } from './PhotoSection.styles';
-import React from "react";
+import { Wrapper } from './PhotoSection.styles'
+import React from 'react'
 
-export interface IPhotoSectionProps {
+export type IPhotoSectionProps = {
     item: CartItemType;
 }
 
@@ -14,6 +14,6 @@ const PhotoSection: React.FunctionComponent<IPhotoSectionProps> = ({ item }) => 
             <img src={item.image} alt={item.title} />
         </div>
     </Wrapper>
-);
+)
 
-export default PhotoSection;
+export default PhotoSection

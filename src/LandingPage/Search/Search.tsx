@@ -1,13 +1,13 @@
 // Types
 // Styles
-import { Wrapper, Buttons } from './Search.styles';
-import * as React from "react";
+import { Wrapper, Buttons } from './Search.styles'
+import * as React from 'react'
 
 
 
-export interface ISearchProps {}
+export type ISearchProps = Record<string, unknown>
 
-const Search: React.FunctionComponent<ISearchProps> = (props) => {
+const Search: React.FunctionComponent<ISearchProps> = () => {
 
     return (
         <div>
@@ -53,8 +53,7 @@ const Search: React.FunctionComponent<ISearchProps> = (props) => {
               <div className="button">SEARCH</div>
         </Wrapper>
         </div>
-    );
-
+    )
 }
 
-export default Search;
+export default Search

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   display: flex;
@@ -40,9 +40,9 @@ export const Wrapper = styled.div`
     position: sticky;
     top:20px;
   }
-`;
+`
 export const Grid = styled.div`
   width: 50%;
   display: flex;
   flex-wrap: wrap;
-`;
+`

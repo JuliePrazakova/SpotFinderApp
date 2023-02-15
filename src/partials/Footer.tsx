@@ -1,9 +1,9 @@
-import * as React from "react"
-import { Wrapper } from './Footer.styles';
+import * as React from 'react'
+import { Wrapper } from './Footer.styles'
 
-export interface IFooterProps {}
+export type IFooterProps = Record<string, unknown>
 
-const Footer: React.FunctionComponent<IFooterProps> = (props) => {
+const Footer: React.FunctionComponent<IFooterProps> = () => {
 
         return (
         <Wrapper>
@@ -31,7 +31,7 @@ const Footer: React.FunctionComponent<IFooterProps> = (props) => {
                 </div>
             </div>
         </Wrapper>
-        );
+        )
 }
 
-export default Footer;
+export default Footer

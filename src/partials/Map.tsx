@@ -1,6 +1,6 @@
-import * as React from "react"
-import  './Header.styles';
-import {MapContainer, Marker, Popup, TileLayer} from "react-leaflet";
+import * as React from 'react'
+import  './Header.styles'
+import {MapContainer, Marker, Popup, TileLayer} from 'react-leaflet'
 
 
 const Map = () => {
@@ -18,7 +18,7 @@ const Map = () => {
                     </Marker>
                 </MapContainer>
             </div>
-        );
+        )
     }
 
-export default Map;
+export default Map

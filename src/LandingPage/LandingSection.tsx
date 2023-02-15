@@ -1,17 +1,17 @@
 //components
-import Search from './Search/Search';
-import QuestionBox from "./Question-part/Question-box";
-import Item from "./CartItem/Item/Item";
-import Map from "../partials/Map";
-import Header from "../partials/Header";
-import Footer from "../partials/Footer";
+import Search from './Search/Search'
+import QuestionBox from './Question-part/Question-box'
+import Item from './CartItem/Item/Item'
+import Map from '../partials/Map'
+import Header from '../partials/Header'
+import Footer from '../partials/Footer'
 // Types
 // Styles
-import { Wrapper, Grid } from './LandingSection.styles';
-import * as React from "react";
-import Data from "../Data/products.json";
+import { Wrapper, Grid } from './LandingSection.styles'
+import * as React from 'react'
+import Data from '../Data/products.json'
 
-export interface ITestPageProps {}
+export type ITestPageProps = Record<string, unknown>
 
 
 export type CartItemType = {
@@ -31,10 +31,10 @@ export type CartItemType = {
     country: string;
 };
 
-let products = Data.products;
+const products = Data.products
 
 
-const LandingSection: React.FunctionComponent<ITestPageProps> = (props) => {
+const LandingSection: React.FunctionComponent<ITestPageProps> = () => {
 
         return (
             <>  <Header />
@@ -58,11 +58,18 @@ const LandingSection: React.FunctionComponent<ITestPageProps> = (props) => {
                     </div>
                     <QuestionBox />
 
+                    <div className='help-section'>
+        
+                            <div>Need help with planning your trip? Let us know!</div>
+                        
+                        <div className='btn'><a href='/contact'>Contact us</a></div>
+                    </div>
+
                 </Wrapper>
                 <Footer/>
             </>
 
-        );
+        )
 }
 
-export default LandingSection;
+export default LandingSection
