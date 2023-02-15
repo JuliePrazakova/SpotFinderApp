@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
-  background: #404040;
+  background: black;
   margin-bottom: 0;
 
   .footer {
@@ -10,13 +10,12 @@ export const Wrapper = styled.div`
     justify-content: space-around;
     position: relative;
     font-family: "Open Sans", serif;
-    width: 40%;
+    width: 80%;
     margin: auto;
     color: white;
-    text-align: center;
+    
   }
   .footer > div {
-    display: flex;
     padding: 23px 0 23px 0;
   }
   .vl {
@@ -24,13 +23,35 @@ export const Wrapper = styled.div`
     height: 35px;
     margin: auto;
   }
+  .information {
+    text-align: center;
+  }
   .information > div {
     font-weight: 100;
     margin: auto 20px auto 20px;
     color: lightgray;
+    display: flex;
+  }
+  .left-part {
+    display: block;
+    float: left;
+  }
+  .left-part > span {
+    font-weight: 700;
+  }
+  .left-part > div {
+    font-weight: 100;
+    color: lightgray;
   }
   .contact {
     margin: auto 20px auto 20px;
-    font-weight: 600;
+    font-weight: 700;
+  }
+  .icons {
+    margin-top: 20px;
+    width: 120px;
+  }
+  .icons > i {
+    margin-left: 20%;
   }
 `;

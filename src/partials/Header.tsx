@@ -14,18 +14,22 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
                             <img className="img" src={Logo} alt="Logo" />
                         </a>
                         <div className="header-right">
-                            <div>
-                                <i className="map outline icon"></i>
+                        
                                 <div>
-                                    <a href='#tours'>TOURS</a>
+                                    <Link to={`/`}>Home</Link>  
                                 </div>
-                            </div>
-                            <div>
-                                <i className="question large circle outline icon"></i>
                                 <div>
-                                    <Link to={`/help`}>HELP</Link>
+                                    <Link to={`/adventures`}>Adventures</Link>
                                 </div>
-                            </div>
+                                <div>
+                                    <Link to={`/contact`}>Contact US</Link>
+                                </div>
+                                <div>
+                                    <Link to={`/signin`}>Sign in</Link>
+                                </div>
+                                <i className="cart plus large icon"></i>
+                                <i className="facebook f large icon"></i>
+                                <i className="instagram large icon"></i>
                         </div>
                     </div>
             </Wrapper>

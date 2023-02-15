@@ -41,7 +41,7 @@ const LandingSection: React.FunctionComponent<ITestPageProps> = (props) => {
                 <Wrapper>
                     <div className="background-cover">
                         <div className="title">
-                            <p>Planning a trip?</p>
+                            <p>Where are you going?</p>
                         </div>
                         <Search />
                     </div>

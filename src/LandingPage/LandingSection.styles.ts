@@ -4,17 +4,17 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  font-family: Open Sans,serif ;
+  font-family: Montserrat,serif ;
   
   .background-cover {
-    background: url("/images/background2.jpg");
+    background: url("/images/mainBackground.png");
     background-size: cover;
     padding: 350px 0 15% 0;
     margin: 0;
     color: white;
   }
   .title > p {
-    font-size: 63px;
+    font-size: 60px;
     font-weight: 800;
   }
   .title {
