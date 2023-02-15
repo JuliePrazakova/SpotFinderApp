@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Buttons = styled.div`
   display: flex;
@@ -79,4 +79,4 @@ export const Wrapper = styled.div`
     
   }
   
-`;
+`

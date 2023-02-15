@@ -1,10 +1,10 @@
 // Types
-import { CartItemType } from '../LandingSection';
+import { CartItemType } from '../LandingSection'
 // Styles
-import { Wrapper } from './CartItem.styles';
-import React from "react";
+import { Wrapper } from './CartItem.styles'
+import React from 'react'
 
-export interface ICartItemProps {
+export type ICartItemProps = {
     item: CartItemType;
 }
 
@@ -20,6 +20,6 @@ const CartItem: React.FunctionComponent<ICartItemProps> = ({ item }) => (
         </div>
         <img src={item.image} alt={item.title} />
     </Wrapper>
-);
+)
 
-export default CartItem;
+export default CartItem

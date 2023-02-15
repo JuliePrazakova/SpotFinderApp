@@ -1,12 +1,12 @@
 // Types
-import ItemTour from './Item/ItemTour';
+import ItemTour from './Item/ItemTour'
 
 // Styles
-import { Wrapper, Grid } from './MiddleSection.styles';
-import * as React from "react";
-import Tours from "../../Data/typesOfTours.json";
+import { Wrapper, Grid } from './MiddleSection.styles'
+import * as React from 'react'
+import Tours from '../../Data/typesOfTours.json'
 
-const tours = Tours.reindeers;
+const tours = Tours.reindeers
 
 
 export interface IItemProps {}
@@ -23,6 +23,6 @@ const Item: React.FunctionComponent<IItemProps> = (props) => (
         </span>
     </Wrapper>
 
-);
+)
 
-export default Item;
+export default Item

@@ -1,20 +1,20 @@
-import * as React from "react"
-import { Wrapper } from './Question-box.styles';
+import * as React from 'react'
+import { Wrapper } from './Question-box.styles'
 
 
-export interface IQuestionBoxProps {}
+export type IQuestionBoxProps = Record<string, unknown>
 
 
-const QuestionBox: React.FunctionComponent<IQuestionBoxProps> = (props) => {
+const QuestionBox: React.FunctionComponent<IQuestionBoxProps> = () => {
     return (
         <Wrapper>
             <div className='title'>
                 Any question? Ask here!
             </div>
             <form>
-                <div className='form-box'>
+                                <div className='form-box'>
                     <div className='left-part'>
-                        <div className='label'>Name
+                                <div className='label'>Name
                             <input type="text" placeholder="firstname" className="input" />
                             <div className='vl'></div>
                             <input type="text" placeholder="lastname" className="input lastname" />
@@ -31,7 +31,7 @@ const QuestionBox: React.FunctionComponent<IQuestionBoxProps> = (props) => {
 
             </form>
         </Wrapper>
-    );
+    )
 }
 
-export default QuestionBox;
+export default QuestionBox

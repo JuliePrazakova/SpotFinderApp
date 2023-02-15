@@ -1,8 +1,8 @@
 // Types
-import { CartItemType } from '../../LandingPage/LandingSection';
+import { CartItemType } from '../../LandingPage/LandingSection'
 // Styles
-import { Wrapper, PriceTag, Description, Box } from './InfoSection.styles';
-import React from "react";
+import { Wrapper, PriceTag, Description, Box } from './InfoSection.styles'
+import React from 'react'
 
 export interface IInfoSectionProps {
     item: CartItemType;
@@ -41,6 +41,6 @@ const InfoSection: React.FunctionComponent<IInfoSectionProps> = ({ item }) => (
             Cras ut ligula ac nisl cursus tincidunt. Mauris convallis interdum augue, eu ullamcorper tortor luctus a. Fusce a augue condimentum, ullamcorper elit at.Cras ut ligula ac nisl cursus tincidunt. Mauris convallis interdum augue, eu ullamcorper tortor luctus a. Fusce a augue condimentum, ullamcorper elit at.
         </Description>
 </Box>
-);
+)
 
-export default InfoSection;
+export default InfoSection

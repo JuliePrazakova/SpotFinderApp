@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Wrapper = styled.div`
   display: block;
@@ -78,7 +78,7 @@ export const Wrapper = styled.div`
     
   }
   
-`;
+`
 
 export const Summary = styled.div`
   display: block;
@@ -130,7 +130,7 @@ export const Summary = styled.div`
     font-size: 19px;
     font-weight: 600;
   }
-`;
+`
 
 export const Button = styled.div`
 
