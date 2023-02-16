@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
     width: 80%;
     margin: auto;
     color: white;
-    
   }
   .footer > div {
     padding: 23px 0 23px 0;
@@ -54,4 +53,4 @@ export const Wrapper = styled.div`
   .icons > i {
     margin-left: 20%;
   }
-`
+`;

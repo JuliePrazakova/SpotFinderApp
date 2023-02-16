@@ -1,12 +1,12 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 80%;
   background: url("/images/background-question-box.jpg");
   margin: 50px auto 50px auto;
-  font-family: Open Sans,serif ;
+  font-family: Open Sans, serif;
   padding-bottom: 30px;
-  
+
   .title {
     width: fit-content;
     margin-left: 10%;
@@ -39,7 +39,7 @@ export const Wrapper = styled.div`
     height: 15px;
     margin: auto;
   }
- 
+
   //all iputs
   .input {
     padding: 1px 0 0 10px;
@@ -48,10 +48,12 @@ export const Wrapper = styled.div`
     border: none;
     color: gray;
   }
-  .input:hover, .submit-btn:hover {
+  .input:hover,
+  .submit-btn:hover {
     cursor: pointer;
   }
-  .submit-btn:focus, .input:focus{
+  .submit-btn:focus,
+  .input:focus {
     outline: 0;
   }
   //message box
@@ -81,5 +83,4 @@ export const Wrapper = styled.div`
   .left-part {
     width: 50%;
   }
-  
-`
+`;

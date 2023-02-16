@@ -1,15 +1,15 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   width: 80%;
-  margin: auto;  
+  margin: auto;
 
   .topNav {
     overflow: hidden;
     background-color: white;
     font-family: Open Sans, serif;
     vertical-align: middle;
-    }
+  }
 
   .active {
     margin-left: 5%;
@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
     display: block;
     text-align: center;
     font-weight: 100;
-    color: #98475B;
+    color: #98475b;
     text-decoration: none;
   }
 
@@ -35,15 +35,15 @@ export const Wrapper = styled.div`
     height: 65px;
     display: flex;
   }
-  
-  .header-right > div, i {
+
+  .header-right > div,
+  i {
     display: flex;
     height: 20px;
     margin: 23px 10px 0 10px;
-    color: #98475B;
+    color: #98475b;
   }
-  
-  
+
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
   @media screen and (max-width: 600px) {
     .header-right a {
@@ -55,4 +55,4 @@ export const Wrapper = styled.div`
       padding: 14px;
     }
   }
-`
+`;
