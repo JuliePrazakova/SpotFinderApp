@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -29,4 +29,4 @@ export const Wrapper = styled.div`
   .text-box > h3 {
     margin: 8px 0 8px 0;
   }
-`
+`;

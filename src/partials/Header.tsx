@@ -1,7 +1,7 @@
-import * as React from 'react'
-import { Link } from 'react-router-dom'
-import Logo from './logo.png'
-import { Wrapper } from './Header.styles'
+import * as React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from './logo.png';
+import { Wrapper } from './Header.styles';
 
 export type IHeaderProps = Record<string, unknown>
 
@@ -14,7 +14,6 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
                             <img className="img" src={Logo} alt="Logo" />
                         </a>
                         <div className="header-right">
-                        
                                 <div>
                                     <Link to={'/'}>Home</Link>  
                                 </div>
@@ -33,7 +32,7 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
                         </div>
                     </div>
             </Wrapper>
-        )
-    }
+        );
+    };
 
-export default Header
+export default Header;

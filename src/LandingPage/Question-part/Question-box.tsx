@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { Wrapper } from './Question-box.styles'
+import * as React from 'react';
+import { Wrapper } from './Question-box.styles';
 
 
 export type IQuestionBoxProps = Record<string, unknown>
@@ -31,7 +31,7 @@ const QuestionBox: React.FunctionComponent<IQuestionBoxProps> = () => {
 
             </form>
         </Wrapper>
-    )
-}
+    );
+};
 
-export default QuestionBox
+export default QuestionBox;

@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
 export const Buttons = styled.div`
   display: flex;
@@ -15,7 +15,7 @@ export const Buttons = styled.div`
     background: rgba(16,16,16,0.7);
   }
 
-`
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export const Wrapper = styled.div`
     border: none;
     color: gray;
   }
-  .button {
+  .search-button {
     background: gray;
     font-size: 18px;
     font-weight: 200;
@@ -79,4 +79,4 @@ export const Wrapper = styled.div`
     
   }
   
-`
+`;

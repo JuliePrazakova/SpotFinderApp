@@ -1,6 +1,6 @@
-import React from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import LandingSection from './LandingPage/LandingSection'
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import LandingSection from './LandingPage/LandingSection';
 
 export type IApplicationProps = Record<string, unknown>
 
@@ -14,7 +14,7 @@ const Application: React.FunctionComponent<IApplicationProps> = () => {
                 </Route>
             </Routes>
         </BrowserRouter>
-    )
-}
+    );
+};
 
-export default Application
+export default Application;

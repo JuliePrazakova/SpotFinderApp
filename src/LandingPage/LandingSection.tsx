@@ -1,15 +1,15 @@
 //components
-import Search from './Search/Search'
-import QuestionBox from './Question-part/Question-box'
-import Item from './CartItem/Item/Item'
-import Map from '../partials/Map'
-import Header from '../partials/Header'
-import Footer from '../partials/Footer'
+import Search from './Search/Search';
+import QuestionBox from './Question-part/Question-box';
+import Item from './CartItem/Item/Item';
+import Map from '../partials/Map';
+import Header from '../partials/Header';
+import Footer from '../partials/Footer';
 // Types
 // Styles
-import { Wrapper, Grid } from './LandingSection.styles'
-import * as React from 'react'
-import Data from '../Data/products.json'
+import { Wrapper, Grid } from './LandingSection.styles';
+import * as React from 'react';
+import Data from '../Data/products.json';
 
 export type ITestPageProps = Record<string, unknown>
 
@@ -31,7 +31,7 @@ export type CartItemType = {
     country: string;
 };
 
-const products = Data.products
+const products = Data.products;
 
 
 const LandingSection: React.FunctionComponent<ITestPageProps> = () => {
@@ -69,7 +69,7 @@ const LandingSection: React.FunctionComponent<ITestPageProps> = () => {
                 <Footer/>
             </>
 
-        )
-}
+        );
+};
 
-export default LandingSection
+export default LandingSection;

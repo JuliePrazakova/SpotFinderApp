@@ -1,9 +1,9 @@
 // Types
-import { CartItemType } from '../../LandingSection'
+import { CartItemType } from '../../LandingSection';
 // Styles
-import { Wrapper } from './Item.styles'
-import {Link} from 'react-router-dom'
-import React from 'react'
+import { Wrapper } from './Item.styles';
+import {Link} from 'react-router-dom';
+import React from 'react';
 
 export type IItemProps = {
     item: CartItemType;
@@ -22,6 +22,6 @@ const Item: React.FunctionComponent<IItemProps> = ({ item }) => (
       </div>
       </Link>
   </Wrapper>
-)
+);
 
-export default Item
+export default Item;
