@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   .background-cover {
     background: url("/images/mainBackground.png");
     background-size: cover;
-    padding: 350px 0 15% 0;
+    padding: 320px 0 16% 0;
     margin: 0;
     color: white;
   }
@@ -19,7 +19,7 @@ export const Wrapper = styled.div`
   }
   .title {
     width: fit-content;
-    margin-left: 15%;
+    margin: 0 0 30px 15%;
   }
   .lower-section {
     margin: auto;

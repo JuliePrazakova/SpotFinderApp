@@ -14,18 +14,23 @@ export const Buttons = styled.div`
   .active {
     background: rgba(16, 16, 16, 0.7);
   }
+  button {
+    background: none;
+    border: none;
+    text-decoration: none;
+  }
 `;
 
 export const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: fit-content;
+  width: 50%;
   margin-left: 15%;
   color: black;
   background: white;
   font-family: Open Sans, sans-serif;
-  border-radius: 30px;
-  box-shadow: 0 2px 10px #333333;
+  border-radius: 80px;
+  box-shadow: 0 2px 8px #333333;
 
   .dropdown:hover,
   input:hover,
@@ -39,35 +44,39 @@ export const Wrapper = styled.div`
   .dropdown,
   input,
   .button {
-    padding: 2px 0 0 10px;
+    padding: 0 0 0 10px;
     font-size: 12px;
     font-weight: normal;
     border: none;
     color: gray;
   }
   .search-button {
-    background: gray;
+    background: #98475b;
+    width: 150px;
     font-size: 18px;
-    font-weight: 200;
+    font-weight: 300;
     color: white;
-    padding: 15px 30px 0 30px;
-    border-radius: 0 30px 30px 0;
+    padding: 24px;
+    border-radius: 0 80px 80px 0;
+  }
+  .search-button > div {
+    margin: auto;
+    width: fit-content;
   }
   .left {
-    border-radius: 30px 0 0 30px;
+    border-radius: 80px 0 0 80px;
     margin-left: 15px;
   }
   .label {
-    padding: 14px;
-    font-size: 18px;
-    font-weight: 600;
+    padding: 24px;
+    font-size: 12px;
     color: black;
     background: white;
     display: flex;
   }
   .vl {
     border-left: 1px solid gray;
-    height: 30px;
+    height: 40px;
     margin: auto;
   }
 
