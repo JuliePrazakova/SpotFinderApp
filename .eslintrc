@@ -4,15 +4,18 @@
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
-  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended"],
+  "plugins": [ 
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
 
   "rules": {
     "@typescript-eslint/no-unused-vars": "error",
     // to enforce using type for object type definitions, can be type or interface 
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "semi": [1, "always"],
-    "quotes": [2, "single"]
+    "prettier/prettier": 2
   },
 
   "env": {

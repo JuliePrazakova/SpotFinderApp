@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
   img {
     width: 300px;
-    height: 200px ;
+    height: 200px;
     object-fit: cover;
     border-radius: 20px 20px 0 0;
   }
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
   .text-box > p {
     font-size: 15px;
     font-weight: 200;
-    margin:0;
+    margin: 0;
   }
   .text-box > h3 {
     margin: 8px 0 8px 0;

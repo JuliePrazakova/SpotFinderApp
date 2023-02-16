@@ -1,20 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Buttons = styled.div`
   display: flex;
   margin-left: 20%;
-  
+
   .type-button {
     font-size: 14px;
     border-radius: 13px 13px 0 0;
-    background: rgba(16,16,16,0.4);
+    background: rgba(16, 16, 16, 0.4);
     margin: 0 3px 0 3px;
     padding: 10px 20px 6px 20px;
   }
   .active {
-    background: rgba(16,16,16,0.7);
+    background: rgba(16, 16, 16, 0.7);
   }
-
 `;
 
 export const Wrapper = styled.div`
@@ -27,14 +26,19 @@ export const Wrapper = styled.div`
   font-family: Open Sans, sans-serif;
   border-radius: 30px;
   box-shadow: 0 2px 10px #333333;
-  
-  .dropdown:hover, input:hover, .button:hover {
+
+  .dropdown:hover,
+  input:hover,
+  .button:hover {
     cursor: pointer;
   }
-  .dropdown:focus, input:focus{
-  outline: 0;
+  .dropdown:focus,
+  input:focus {
+    outline: 0;
   }
-  .dropdown , input, .button {
+  .dropdown,
+  input,
+  .button {
     padding: 2px 0 0 10px;
     font-size: 12px;
     font-weight: normal;
@@ -66,17 +70,19 @@ export const Wrapper = styled.div`
     height: 30px;
     margin: auto;
   }
-  
+
   /* When the screen is less than 600px wide, stack the links and the search field vertically instead of horizontally */
   @media screen and (max-width: 600px) {
-    .dropdown:hover, input:hover, .button:hover {
+    .dropdown:hover,
+    input:hover,
+    .button:hover {
       cursor: pointer;
     }
-    .dropdown , input, .button {
+    .dropdown,
+    input,
+    .button {
       padding: 8px;
       font-size: 16px;
     }
-    
   }
-  
 `;

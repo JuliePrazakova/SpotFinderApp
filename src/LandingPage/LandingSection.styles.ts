@@ -1,12 +1,11 @@
-import styled from 'styled-components';
-
+import styled from "styled-components";
 
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: auto;
-  font-family: Montserrat,serif ;
-  
+  font-family: Montserrat, serif;
+
   .background-cover {
     background: url("/images/mainBackground.png");
     background-size: cover;
@@ -29,7 +28,7 @@ export const Wrapper = styled.div`
     width: 80%;
     justify-content: space-between;
   }
-  
+
   //styles for leaflet map
   .leaflet-container {
     height: 40vh;
@@ -39,7 +38,7 @@ export const Wrapper = styled.div`
   #map {
     position: -webkit-sticky;
     position: sticky;
-    top:20px;
+    top: 20px;
   }
 `;
 export const Grid = styled.div`
