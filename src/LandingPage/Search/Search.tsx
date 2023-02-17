@@ -8,7 +8,7 @@ export type ISearchProps = Record<string, unknown>;
 const Search: React.FunctionComponent<ISearchProps> = () => {
   const [oneWay, setOneWay] = useState(true);
   const [roadTrip, setRoadTrip] = useState(false);
-  const [toggleClass, setToggleClass] = useState(false);
+  const [toggleClass, setToggleClass] = useState(true);
 
   function changeOneWay() {
     setOneWay(true);
@@ -31,30 +31,32 @@ const Search: React.FunctionComponent<ISearchProps> = () => {
           <button onClick={changeRoadTrip}>Road trip</button>
         </div>
       </Buttons>
-
-      {oneWay && <OneWayBar />}
-      {roadTrip && <RoadTripBar />}
+      <Wrapper>
+        {oneWay && <OneWayBar />}
+        {roadTrip && <RoadTripBar />}
+        <div className="search-button">
+          <div>Search</div>
+        </div>
+      </Wrapper>
     </div>
   );
 };
 const OneWayBar = () => (
-  <Wrapper>
+  <>
     <div className="label left">
       Where:
-      <input type="text" placeholder="Location" className="search-left" />
+      <input type="text" className="search-left" />
     </div>
     <div className="vl"></div>
-
     <div className="label">
       Radius:
-      <input type="text" placeholder="30km" className="search-left" />
+      <input type="text" className="search-left" />
     </div>
-    <div className="search-button">SEARCH</div>
-  </Wrapper>
+  </>
 );
 
 const RoadTripBar = () => (
-  <Wrapper>
+  <>
     <div className="label left">
       From:
       <input type="text" className="search-left" />
@@ -68,10 +70,9 @@ const RoadTripBar = () => (
     <div className="vl"></div>
     <div className="label">
       Radius:
-      <input type="text" placeholder="Radius" className="search-left" />
+      <input type="text" className="search-left" />
     </div>
-    <div className="search-button">SEARCH</div>
-  </Wrapper>
+  </>
 );
 
 export default Search;

@@ -1,0 +1,25 @@
+{
+    "categories": [
+        {
+            "id": 1,
+            "name": "Reindeer Safari",
+            "description": "A reindeer farm in the middle of Lapland just 20 minutes from Rovaniemi by a car. The best reindeer experience possible in the beautiful surrounding of one of the last family farms in this area."
+        },
+        {
+            "id": 2,
+            "name": "Husky Safari",
+            "description": "Husky farm located hour and a half from Lapish city Rovaniemi providing husky tours in a home like conditions. This farm is not like any other because of the family spirit of the whole place."
+        },
+        {
+            "id": 3,
+            "name": "Snowmobiles",
+            "description": "Typical vehicle in Finland that should everybody try! The snowmobiles tours are the coolest adrenaline experience you could imagine. Don’t hesitate and join the tour with experienced guide that will explain tou everything."
+        },
+        {
+            "id": 4,
+            "name": "Northern Lights",
+            "description": "Always wanted to experience a real life aurora hunt? This tour is exactly for you then! Join the best guide – aurora hunter for the whole night. Drive with him anywhere and prepare yourself for beautiful night pictures."
+        }
+      ]
+    }
+    

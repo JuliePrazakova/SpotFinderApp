@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
   .background-cover {
     background: url("/images/mainBackground.png");
     background-size: cover;
-    padding: 350px 0 15% 0;
+    padding: 320px 0 16% 0;
     margin: 0;
     color: white;
   }
@@ -19,30 +19,64 @@ export const Wrapper = styled.div`
   }
   .title {
     width: fit-content;
-    margin-left: 15%;
+    margin: 0 0 30px 15%;
   }
-  .lower-section {
+  .middle-section {
     margin: auto;
-    padding-top: 50px;
-    display: flex;
+    display: block;
     width: 80%;
-    justify-content: space-between;
   }
-
-  //styles for leaflet map
-  .leaflet-container {
-    height: 40vh;
-    width: 40vw;
-    border-radius: 30px;
+  .middle-section > div:first-of-type {
+    width: fit-content;
+    margin: auto;
+    color: #98475b;
+    font-size: 35px;
+    padding: 80px;
+    font-weight: 600;
   }
-  #map {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 20px;
+  .btn {
+    border: 1px solid #98475b;
+    border-radius: 50px;
+    padding: 15px 30px 15px 30px;
+    background: white;
+  }
+  .btn > a {
+    color: #98475b;
   }
 `;
 export const Grid = styled.div`
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
+  padding-bottom: 140px;
+
+  div {
+    margin: auto;
+    padding-top: 50px;
+  }
+`;
+
+export const ContactSection = styled.div`
+  width: 100%;
+  background: #f5f5f5;
+  padding: 90px 90px;
+  vertical-align: center;
+
+  .help-section {
+    width: 70%;
+    margin: auto;
+    justify-content: space-between;
+    display: flex;
+  }
+  .help-section > div:first-of-type {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 29px;
+    font-weight: 300;
+  }
+  .btn {
+    padding: 20px 50px 20px 50px;
+    font-size: 20px;
+  }
 `;

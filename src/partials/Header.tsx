@@ -20,7 +20,7 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
             <Link to={"/adventures"}>Adventures</Link>
           </div>
           <div>
-            <Link to={"/contact"}>Contact US</Link>
+            <Link to={"/contact"}>Contact us</Link>
           </div>
           <div>
             <Link to={"/signin"}>Sign in</Link>
