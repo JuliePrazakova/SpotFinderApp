@@ -48,7 +48,6 @@ const OneWayBar = () => (
       <input type="text" className="search-left" />
     </div>
     <div className="vl"></div>
-
     <div className="label">
       Radius:
       <input type="text" className="search-left" />

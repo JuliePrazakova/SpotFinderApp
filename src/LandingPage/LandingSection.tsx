@@ -1,13 +1,11 @@
 //components
 import Search from "./Search/Search";
-import QuestionBox from "./Question-part/Question-box";
 import Item from "./CartItem/Item/Item";
-import Map from "../partials/Map";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 // Types
 // Styles
-import { Wrapper, Grid } from "./LandingSection.styles";
+import { Wrapper, Grid, ContactSection } from "./LandingSection.styles";
 import * as React from "react";
 import Data from "../Data/products.json";
 
@@ -32,6 +30,17 @@ export type CartItemType = {
 
 const products = Data.products;
 
+const Contact = () => (
+  <ContactSection>
+    <div className="help-section">
+      <div>Need help with planning your trip? Let us know!</div>
+      <div className="btn">
+        <a href="/contact">Contact us</a>
+      </div>
+    </div>
+  </ContactSection>
+);
+
 const LandingSection: React.FunctionComponent<ITestPageProps> = () => {
   return (
     <>
@@ -53,17 +62,9 @@ const LandingSection: React.FunctionComponent<ITestPageProps> = () => {
               </Grid>
             ))}
           </Grid>
-          <Map />
         </div>
-        <QuestionBox />
 
-        <div className="help-section">
-          <div>Need help with planning your trip? Let us know!</div>
-
-          <div className="btn">
-            <a href="/contact">Contact us</a>
-          </div>
-        </div>
+        <Contact />
       </Wrapper>
       <Footer />
     </>

@@ -23,7 +23,6 @@ export const Buttons = styled.div`
 
 export const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
   width: 50%;
   margin-left: 15%;
   color: black;

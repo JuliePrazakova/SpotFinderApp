@@ -28,21 +28,42 @@ export const Wrapper = styled.div`
     width: 80%;
     justify-content: space-between;
   }
-
-  //styles for leaflet map
-  .leaflet-container {
-    height: 40vh;
-    width: 40vw;
-    border-radius: 30px;
+  .btn {
+    border: 1px solid #98475b;
+    border-radius: 50px;
+    padding: 15px 30px 15px 30px;
+    background: white;
   }
-  #map {
-    position: -webkit-sticky;
-    position: sticky;
-    top: 20px;
+  .btn > a {
+    color: #98475b;
   }
 `;
 export const Grid = styled.div`
   width: 50%;
   display: flex;
   flex-wrap: wrap;
+`;
+
+export const ContactSection = styled.div`
+  width: 100%;
+  background: #f5f5f5;
+  padding: 90px 90px;
+  vertical-align: center;
+
+  .help-section {
+    width: 70%;
+    margin: auto;
+    justify-content: space-between;
+    display: flex;
+  }
+  .help-section > div:first-of-type {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 29px;
+    font-weight: 300;
+  }
+  .btn {
+    padding: 20px 50px 20px 50px;
+    font-size: 20px;
+  }
 `;
