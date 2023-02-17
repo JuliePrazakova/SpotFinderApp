@@ -21,12 +21,18 @@ export const Wrapper = styled.div`
     width: fit-content;
     margin: 0 0 30px 15%;
   }
-  .lower-section {
+  .middle-section {
     margin: auto;
-    padding-top: 50px;
-    display: flex;
+    display: block;
     width: 80%;
-    justify-content: space-between;
+  }
+  .middle-section > div:first-of-type {
+    width: fit-content;
+    margin: auto;
+    color: #98475b;
+    font-size: 35px;
+    padding: 80px;
+    font-weight: 600;
   }
   .btn {
     border: 1px solid #98475b;
@@ -39,9 +45,16 @@ export const Wrapper = styled.div`
   }
 `;
 export const Grid = styled.div`
-  width: 50%;
+  width: 70%;
   display: flex;
   flex-wrap: wrap;
+  margin: auto;
+  padding-bottom: 140px;
+
+  div {
+    margin: auto;
+    padding-top: 50px;
+  }
 `;
 
 export const ContactSection = styled.div`
