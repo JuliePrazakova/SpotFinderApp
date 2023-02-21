@@ -10,13 +10,9 @@ export const CategorySection = styled.div`
   color: #98475b;
   font-size: 15px;
   font-weight: 300;
+  padding-top: 50px;
 
   div:first-of-type {
     padding-top: 30px;
-  }
-  .btn {
-    width: fit-content;
-    margin-left: 0px;
-    margin-top: 70px;
   }
 `;

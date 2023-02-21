@@ -9,18 +9,25 @@ export const Wrapper = styled.div`
   .background-cover {
     background: url("/images/adventures-background.png");
     background-size: cover;
-    padding: 180px 0 13% 0;
+    background-position: center center;
+    padding: 170px 0 20px 0;
     margin: 0;
     color: white;
   }
-  .title > p {
-    font-size: 60px;
-    font-weight: 800;
-  }
   .title {
-    width: fit-content;
-    margin: 0 0 30px 15%;
+    width: 30%;
+    margin: 0 0 50px 14%;
   }
+  .title > p {
+    font-size: 57px;
+    font-weight: 700;
+    margin-bottom: 5px;
+  }
+  .title > div {
+    font-size: 20px;
+    font-weight: 200;
+  }
+
   .middle-section {
     margin: auto;
     display: block;
@@ -34,15 +41,6 @@ export const Wrapper = styled.div`
     padding: 80px;
     font-weight: 600;
   }
-  .btn {
-    border: 1px solid #98475b;
-    border-radius: 50px;
-    padding: 15px 30px 15px 30px;
-    background: white;
-  }
-  .btn > a {
-    color: #98475b;
-  }
 `;
 export const Grid = styled.div`
   width: 70%;
@@ -53,18 +51,17 @@ export const Grid = styled.div`
 
   div {
     margin: auto;
-    padding-top: 50px;
   }
 `;
 
 export const InstructionSection = styled.div`
   width: 100%;
   background: #f5f5f5;
-  padding: 90px 90px;
+  padding: 80px 0 20px 0;
   vertical-align: center;
 
   .info-section {
-    width: 60%;
+    width: 50%;
     margin: auto;
     justify-content: space-between;
     display: block;
@@ -73,29 +70,29 @@ export const InstructionSection = styled.div`
   .info-section > div:first-of-type {
     font-weight: 600;
     font-size: 45px;
-    padding: 20px 0 40px 0;
+    padding: 20px 0 60px 0;
   }
   .info-section > section {
     display: flex;
-    padding: 20px 0 20px 0;
+    padding: 20px 0 60px 0;
+  }
+  .info-section > section > div {
+    display: flex;
+    width: 50%;
     font-size: 18px;
     font-weight: 300;
+    margin-right: 50px;
   }
-
   .number {
     border: 1px solid #98475b;
     width: 50px;
-    padding: 14px 5 14px 0;
+    padding: 14px 0 14px 0;
+    margin-top: -16px;
     vertical-align: middle;
     text-align: center;
     border-radius: 50%;
     font-size: 22px;
     font-weight: 400;
     margin-right: 10px;
-  }
-
-  .btn {
-    padding: 20px 50px 20px 50px;
-    font-size: 20px;
   }
 `;

@@ -34,15 +34,6 @@ export const Wrapper = styled.div`
     padding: 80px;
     font-weight: 600;
   }
-  .btn {
-    border: 1px solid #98475b;
-    border-radius: 50px;
-    padding: 15px 30px 15px 30px;
-    background: white;
-  }
-  .btn > a {
-    color: #98475b;
-  }
 `;
 export const Grid = styled.div`
   width: 70%;
@@ -53,7 +44,6 @@ export const Grid = styled.div`
 
   div {
     margin: auto;
-    padding-top: 50px;
   }
 `;
 

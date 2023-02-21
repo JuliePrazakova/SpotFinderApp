@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingSection from "./LandingPage/LandingSection";
 import AdventuresPage from "./AdventuresPage/AdventuresPage";
+import "semantic-ui-css/semantic.min.css";
 
 export type IApplicationProps = Record<string, unknown>;
 

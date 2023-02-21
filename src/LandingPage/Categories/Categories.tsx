@@ -2,6 +2,7 @@
 import { CategoryItemType } from "../LandingSection";
 // Styles
 import { CategorySection } from "./Categories.styles";
+import { Button } from "../../App.styles";
 import React from "react";
 
 export type ICategoryItemProps = {
@@ -16,9 +17,9 @@ const CartItem: React.FunctionComponent<ICategoryItemProps> = ({
     <div>
       <p>{category.description}</p>
     </div>
-    <div className="btn">
+    <Button>
       <a href="/adventures">Learn more</a>
-    </div>
+    </Button>
   </CategorySection>
 );
 
