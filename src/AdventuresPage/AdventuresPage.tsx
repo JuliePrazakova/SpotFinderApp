@@ -7,12 +7,13 @@ import { Wrapper, InstructionSection, Grid } from "./AdventuresPage.styles";
 import * as React from "react";
 import Tour from "./Tour/Tour";
 import Data from "../Data/products.json";
-import { Input } from "semantic-ui-react";
+import { Search, Divider } from "semantic-ui-react";
 
 export type ITestPageProps = Record<string, unknown>;
 
 export type TourItem = {
   id: number;
+  company: string;
   name: string;
   country: string;
   city: string;
@@ -22,6 +23,7 @@ export type TourItem = {
   desc_long: string;
   ticket_price: number;
   image: string;
+  duration: string;
 };
 // "phone": 358408253756,
 // "category": "reindeers",
@@ -75,13 +77,16 @@ const AdventuresPage: React.FunctionComponent<ITestPageProps> = () => {
         <Instruction />
 
         <div className="middle-section">
-          <div>Our Tours</div>
-          <Input icon="search" placeholder="Search..." />
+          <div>
+            <p>Our Tours</p>
+            <Search placeholder="Search..." />
+          </div>
 
           <Grid>
             {products?.map((products) => (
               <div key={products.id}>
                 <Tour tour={products} />
+                <Divider section />
               </div>
             ))}
           </Grid>

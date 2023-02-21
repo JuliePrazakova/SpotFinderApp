@@ -2,27 +2,45 @@
 "products": [
     {
       "id": 1,
-      "name": "Sieri Poro Farm",
+      "company": "Sieri Poro Farm",
+      "name": "Long sledge",
       "country": "Finland",
       "city": "Rovaniemi",
       "street": "Kurivaarantie 203",
       "zip": "96600",
-      "desc_short": "Long $ Short sledge",
+      "desc_short": "English guide",
       "desc_long": "Rovaniemi's best choice",
       "ticket_price": 79,
-      "image": "/images/sieriporo.jpeg"
+      "image": "/images/sieriporo.jpeg",
+      "duration": "2 - 3 hours"
     },
     {
       "id": 2,
-      "name": "SoulMate Huskies",
+      "company": "SoulMate Huskies",
+      "name": "Short sledge",
       "country": "Finland",
       "city": "Pello",
       "street": "Rovaniementie",
       "zip": "95700",
-      "desc_short": "Reindeer farm",
+      "desc_short": "English guide",
       "desc_long": "Rovaniemi Kokyno",      
       "ticket_price": 120,
-      "image": "/images/soulmatehuskies.jpeg"
+      "image": "/images/soulmatehuskies.jpeg",
+      "duration": "1 - 2 hours"
+    },
+    {
+      "id": 3,
+      "company": "SoulMate Huskies",
+      "name": "Short sledge",
+      "country": "Finland",
+      "city": "Pello",
+      "street": "Rovaniementie",
+      "zip": "95700",
+      "desc_short": "English guide",
+      "desc_long": "Rovaniemi Kokyno",      
+      "ticket_price": 120,
+      "image": "/images/soulmatehuskies.jpeg",
+      "duration": "1 - 2 hours"
     }
   ]
 }

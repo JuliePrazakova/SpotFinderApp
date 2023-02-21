@@ -42,7 +42,7 @@ export const Grid = styled.div`
   margin: auto;
   padding-bottom: 140px;
 
-  div {
+  > div {
     margin: auto;
   }
 `;

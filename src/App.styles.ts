@@ -12,7 +12,7 @@ export const Button = styled.div`
   border: none;
   vertical-align: baseline;
   font-family: Lato, "Helvetica Neue", Arial, Helvetica, sans-serif;
-  margin: 0 0.25em 0 0;
+  margin: auto 0.25em 0 0;
   padding: 0.78571429em 1.5em 0.78571429em;
   text-transform: none;
   text-shadow: none;

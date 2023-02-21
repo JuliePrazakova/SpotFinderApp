@@ -6,11 +6,10 @@ export const CategorySection = styled.div`
   border: 1px solid #98475b;
   border-radius: 50px;
   padding: 60px;
-  margin: auto;
+  margin: 50px auto auto;
   color: #98475b;
   font-size: 15px;
   font-weight: 300;
-  padding-top: 50px;
 
   div:first-of-type {
     padding-top: 30px;

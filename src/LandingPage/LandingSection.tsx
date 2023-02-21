@@ -11,22 +11,6 @@ import Data from "../Data/categories.json";
 
 export type ITestPageProps = Record<string, unknown>;
 
-export type CartItemType = {
-  id: number;
-  category: string;
-  smallDes1: string;
-  smallDes2: string;
-  description: string;
-  image: string;
-  price: number;
-  title: string;
-  amount: number;
-  city: string;
-  street: string;
-  streetNumber: number;
-  zip: number;
-  country: string;
-};
 export type CategoryItemType = {
   id: number;
   name: string;

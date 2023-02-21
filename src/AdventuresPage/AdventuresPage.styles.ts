@@ -34,24 +34,28 @@ export const Wrapper = styled.div`
     width: 80%;
   }
   .middle-section > div:first-of-type {
-    width: fit-content;
+    width: 70%;
+    justify-content: space-between;
     margin: auto;
+    display: flex;
+    padding: 80px 0 0 0;
+  }
+  .middle-section > div:first-of-type > p {
+    width: fit-content;
     color: #98475b;
     font-size: 35px;
-    padding: 80px;
     font-weight: 600;
+  }
+  img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
   }
 `;
 export const Grid = styled.div`
   width: 70%;
-  display: flex;
   flex-wrap: wrap;
   margin: auto;
-  padding-bottom: 140px;
-
-  div {
-    margin: auto;
-  }
 `;
 
 export const InstructionSection = styled.div`
@@ -94,5 +98,22 @@ export const InstructionSection = styled.div`
     font-size: 22px;
     font-weight: 400;
     margin-right: 10px;
+  }
+`;
+export const Tour = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin: 60px 0 60px 0;
+  > div {
+    display: flex;
+  }
+  .text-box {
+    padding: 25px 0px 0px 25px;
+  }
+  .text-box > p:first-of-type {
+    font-size: 16px;
+  }
+  .list {
+    font-size: 13px;
   }
 `;
