@@ -13,11 +13,13 @@ const CartItem: React.FunctionComponent<ICategoryItemProps> = ({
   category,
 }) => (
   <CategorySection>
-    <h3>{category.name}</h3>
     <div>
-      <p>{category.description}</p>
+      <h3>{category.name}</h3>
+      <div>
+        <p>{category.description}</p>
+      </div>
     </div>
-    <Button>
+    <Button className="width">
       <a href="/adventures">Learn more</a>
     </Button>
   </CategorySection>
