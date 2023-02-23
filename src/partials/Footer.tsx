@@ -18,7 +18,7 @@ const Footer: React.FunctionComponent = () => {
         </LeftPart>
         <Line></Line>
         <MiddlePart>
-          <span className="contact">Contact us</span>
+          <span>Contact us</span>
           <div>
             <i className="whatsapp icon"></i>
             <div>+420 731 082 290</div>

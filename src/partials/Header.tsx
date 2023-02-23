@@ -6,7 +6,7 @@ const Header: React.FunctionComponent = () => {
   return (
     <Navigation>
       <Logo href="/">
-        <img className="img" src={"/images/logo.png"} alt="Logo" />
+        <img className="img" src="/images/logo.png" alt="Logo" />
       </Logo>
       <RightSection>
         <div>
