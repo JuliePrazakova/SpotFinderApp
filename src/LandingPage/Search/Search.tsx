@@ -3,9 +3,7 @@
 import { Wrapper, Buttons } from "./Search.styles";
 import React, { useState } from "react";
 
-export type ISearchProps = Record<string, unknown>;
-
-const Search: React.FunctionComponent<ISearchProps> = () => {
+const Search: React.FunctionComponent = () => {
   const [oneWay, setOneWay] = useState(true);
   const [roadTrip, setRoadTrip] = useState(false);
   const [toggleClass, setToggleClass] = useState(true);

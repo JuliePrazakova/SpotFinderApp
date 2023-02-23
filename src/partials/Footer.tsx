@@ -1,9 +1,7 @@
 import * as React from "react";
 import { Wrapper } from "./Footer.styles";
 
-export type IFooterProps = Record<string, unknown>;
-
-const Footer: React.FunctionComponent<IFooterProps> = () => {
+const Footer: React.FunctionComponent = () => {
   return (
     <Wrapper>
       <div className="footer">

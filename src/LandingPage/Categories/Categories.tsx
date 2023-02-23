@@ -5,19 +5,19 @@ import { CategorySection } from "./Categories.styles";
 import { Button } from "../../App.styles";
 import React from "react";
 
-export type ICategoryItemProps = {
+export type CategoryItemProps = {
   category: CategoryItemType;
 };
 
-const CartItem: React.FunctionComponent<ICategoryItemProps> = ({
-  category,
-}) => (
+const CartItem: React.FunctionComponent<CategoryItemProps> = ({ category }) => (
   <CategorySection>
-    <h3>{category.name}</h3>
     <div>
-      <p>{category.description}</p>
+      <h3>{category.name}</h3>
+      <div>
+        <p>{category.description}</p>
+      </div>
     </div>
-    <Button>
+    <Button className="width">
       <a href="/adventures">Learn more</a>
     </Button>
   </CategorySection>

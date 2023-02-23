@@ -9,8 +9,6 @@ import { Wrapper, Grid, ContactSection } from "./LandingSection.styles";
 import * as React from "react";
 import Data from "../Data/categories.json";
 
-export type ITestPageProps = Record<string, unknown>;
-
 export type CategoryItemType = {
   id: number;
   name: string;
@@ -28,7 +26,7 @@ const Contact = () => (
     </div>
   </ContactSection>
 );
-const LandingSection: React.FunctionComponent<ITestPageProps> = () => {
+const LandingSection: React.FunctionComponent = () => {
   return (
     <>
       {" "}

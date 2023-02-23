@@ -6,13 +6,11 @@ import { Button } from "../../App.styles";
 import { List } from "semantic-ui-react";
 import React from "react";
 
-export type ICategoryListProps = {
+export type CategoryListProps = {
   tour: TourItem;
 };
 
-const CategoryList: React.FunctionComponent<ICategoryListProps> = ({
-  tour,
-}) => (
+const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => (
   <Tour>
     <div>
       <img src={tour.image} alt={tour.name} />
@@ -35,7 +33,7 @@ const CategoryList: React.FunctionComponent<ICategoryListProps> = ({
             <List.Content>{tour.desc_short}</List.Content>
           </List.Item>
         </List>
-        <b>From ${tour.ticket_price} per person</b>
+        <p>From ${tour.ticket_price} per person</p>
       </div>
     </div>
     <Button>

@@ -68,5 +68,10 @@ export const ContactSection = styled.div`
   .btn {
     padding: 20px 50px 20px 50px;
     font-size: 20px;
+    border: 1px solid #98475b;
+    border-radius: 50px;
+  }
+  .btn > a {
+    color: #98475b;
   }
 `;
