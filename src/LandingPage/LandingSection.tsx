@@ -3,12 +3,22 @@ import Search from "./Search/Search";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 import Categories from "./Categories/Categories";
-// Types
+
 // Styles
-import { Wrapper, Grid, ContactSection } from "./LandingSection.styles";
+import {
+  Wrapper,
+  Grid,
+  ContactSection,
+  BackgroundCover,
+  Title,
+  MiddleSection,
+  Box,
+  ContactButton,
+} from "./LandingSection.styles";
 import * as React from "react";
 import Data from "../Data/categories.json";
 
+// Types
 export type CategoryItemType = {
   id: number;
   name: string;
@@ -18,28 +28,27 @@ const categories = Data.categories;
 
 const Contact = () => (
   <ContactSection>
-    <div className="help-section">
+    <Box>
       <div>Need help with planning your trip? Let us know!</div>
-      <div className="btn">
+      <ContactButton>
         <a href="/contact">Contact us</a>
-      </div>
-    </div>
+      </ContactButton>
+    </Box>
   </ContactSection>
 );
 const LandingSection: React.FunctionComponent = () => {
   return (
     <>
-      {" "}
       <Header />
       <Wrapper>
-        <div className="background-cover">
-          <div className="title">
+        <BackgroundCover>
+          <Title>
             <p>Where are you going?</p>
-          </div>
+          </Title>
           <Search />
-        </div>
+        </BackgroundCover>
 
-        <div className="middle-section">
+        <MiddleSection>
           <div>Categories</div>
 
           <Grid>
@@ -49,7 +58,7 @@ const LandingSection: React.FunctionComponent = () => {
               </div>
             ))}
           </Grid>
-        </div>
+        </MiddleSection>
 
         <Contact />
       </Wrapper>

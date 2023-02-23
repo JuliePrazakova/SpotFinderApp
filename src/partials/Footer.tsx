@@ -1,17 +1,24 @@
 import * as React from "react";
-import { Wrapper } from "./Footer.styles";
+import {
+  Wrapper,
+  Box,
+  Line,
+  LeftPart,
+  MiddlePart,
+  Icons,
+} from "./Footer.styles";
 
 const Footer: React.FunctionComponent = () => {
   return (
     <Wrapper>
-      <div className="footer">
-        <div className="left-part">
+      <Box>
+        <LeftPart>
           <span>Copywrite @ 2022 SpotFinder</span>
           <div>Privacy policy</div>
-        </div>
-        <span className="vl"></span>
-        <div className="information">
-          <span className="contact">Contact us</span>
+        </LeftPart>
+        <Line></Line>
+        <MiddlePart>
+          <span>Contact us</span>
           <div>
             <i className="whatsapp icon"></i>
             <div>+420 731 082 290</div>
@@ -20,13 +27,13 @@ const Footer: React.FunctionComponent = () => {
             <i className="envelope icon"></i>
             <div>spotfinder@gmail.com</div>
           </div>
-        </div>
-        <span className="vl"></span>
-        <div className="icons">
+        </MiddlePart>
+        <Line></Line>
+        <Icons>
           <i className="facebook f large icon"></i>
           <i className="instagram large icon"></i>
-        </div>
-      </div>
+        </Icons>
+      </Box>
     </Wrapper>
   );
 };
