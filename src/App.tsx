@@ -4,9 +4,7 @@ import LandingSection from "./LandingPage/LandingSection";
 import AdventuresPage from "./AdventuresPage/AdventuresPage";
 import "semantic-ui-css/semantic.min.css";
 
-export type IApplicationProps = Record<string, unknown>;
-
-const Application: React.FunctionComponent<IApplicationProps> = () => {
+const Application: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
       <Routes>

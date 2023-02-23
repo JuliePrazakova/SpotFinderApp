@@ -1,9 +1,7 @@
 import * as React from "react";
 import { Wrapper } from "./Question-box.styles";
 
-export type IQuestionBoxProps = Record<string, unknown>;
-
-const QuestionBox: React.FunctionComponent<IQuestionBoxProps> = () => {
+const QuestionBox: React.FunctionComponent = () => {
   return (
     <Wrapper>
       <div className="title">Any question? Ask here!</div>

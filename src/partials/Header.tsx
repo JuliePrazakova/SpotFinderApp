@@ -1,11 +1,9 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import Logo from "./logo.png";
+import Logo from "../../public/images/logo.png";
 import { Wrapper } from "./Header.styles";
 
-export type IHeaderProps = Record<string, unknown>;
-
-const Header: React.FunctionComponent<IHeaderProps> = () => {
+const Header: React.FunctionComponent = () => {
   return (
     <Wrapper>
       <div className="topNav">
@@ -14,16 +12,16 @@ const Header: React.FunctionComponent<IHeaderProps> = () => {
         </a>
         <div className="header-right">
           <div>
-            <Link to={"/"}>Home</Link>
+            <Link to="/">Home</Link>
           </div>
           <div>
-            <Link to={"/adventures"}>Adventures</Link>
+            <Link to="/adventures">Adventures</Link>
           </div>
           <div>
-            <Link to={"/contact"}>Contact us</Link>
+            <Link to="/contact">Contact us</Link>
           </div>
           <div>
-            <Link to={"/signin"}>Sign in</Link>
+            <Link to="/signin">Sign in</Link>
           </div>
           <i className="cart plus large icon"></i>
           <i className="facebook f large icon"></i>

@@ -110,8 +110,11 @@ export const Tour = styled.div`
   .text-box {
     padding: 25px 0px 0px 25px;
   }
-  .text-box > p:first-of-type {
+  .text-box > p {
     font-size: 16px;
+  }
+  .text-box > p:last-of-type {
+    font-weight: 600;
   }
   .list {
     font-size: 13px;
