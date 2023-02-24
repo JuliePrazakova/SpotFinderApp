@@ -3,7 +3,20 @@ import Header from "../partials/Header";
 import Footer from "../partials/Footer";
 // Types
 // Styles
-import { Wrapper, InstructionSection, Grid } from "./AdventuresPage.styles";
+import { Wrapper } from "../LandingPage/LandingSection.styles";
+
+import {
+  InstructionSection,
+  MiddleSection,
+  Grid,
+  BackgroundCover,
+  Title,
+  TopBar,
+  Box,
+  Number,
+  Line,
+  InstructionBox,
+} from "./AdventuresPage.styles";
 import * as React from "react";
 import Tour from "./Tour/Tour";
 import Data from "../Data/products.json";
@@ -25,37 +38,34 @@ export type TourItem = {
   image: string;
   duration: string;
 };
-// "phone": 358408253756,
-// "category": "reindeers",
-// "image": "/images/sieriporo.jpeg",
 
 const products = Data.products;
 
 const Instruction = () => (
   <InstructionSection>
-    <div className="info-section">
+    <InstructionBox>
       <div>How to reserve a tour?</div>
-      <section>
+      <Line>
         <div>
-          <div className="number">1</div>
+          <Number>1</Number>
           Choose a tour you want
         </div>
         <div>
-          <div className="number">2</div>
+          <Number>2</Number>
           Pick a date and time of your tour
         </div>
-      </section>
-      <section>
+      </Line>
+      <Line>
         <div>
-          <div className="number">3</div>
+          <Number>3</Number>
           Set amount of people
         </div>
         <div>
-          <div className="number">4</div>
+          <Number>4</Number>
           Click order
         </div>
-      </section>
-    </div>
+      </Line>
+    </InstructionBox>
   </InstructionSection>
 );
 const AdventuresPage: React.FunctionComponent<ITestPageProps> = () => {
@@ -63,34 +73,36 @@ const AdventuresPage: React.FunctionComponent<ITestPageProps> = () => {
     <>
       <Header />
       <Wrapper>
-        <div className="background-cover">
-          <div className="title">
-            <p>
-              Explore
-              <br />
-              the world <br />
-              with SpotFinder
-            </p>
-            <div>Choose the best activities for your trip</div>
-          </div>
-        </div>
-        <Instruction />
+        <Box>
+          <BackgroundCover>
+            <Title>
+              <p>
+                Explore
+                <br />
+                the world <br />
+                with SpotFinder
+              </p>
+              <div>Choose the best activities for your trip</div>
+            </Title>
+          </BackgroundCover>
+          <Instruction />
 
-        <div className="middle-section">
-          <div>
-            <p>Our Tours</p>
-            <Search placeholder="Search..." />
-          </div>
+          <MiddleSection>
+            <TopBar>
+              <p>Our Tours</p>
+              <Search placeholder="Search..." />
+            </TopBar>
 
-          <Grid>
-            {products?.map((products) => (
-              <div key={products.id}>
-                <Tour tour={products} />
-                <Divider section />
-              </div>
-            ))}
-          </Grid>
-        </div>
+            <Grid>
+              {products?.map((products) => (
+                <div key={products.id}>
+                  <Tour tour={products} />
+                  <Divider section />
+                </div>
+              ))}
+            </Grid>
+          </MiddleSection>
+        </Box>
       </Wrapper>
       <Footer />
     </>
