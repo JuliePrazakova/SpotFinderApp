@@ -1,7 +1,7 @@
 // Types
 import { TourItem } from "../AdventuresPage";
 // Styles
-import { Tour } from "../AdventuresPage.styles";
+import { Tour, TourBox, TextBox } from "../AdventuresPage.styles";
 import { Button } from "../../App.styles";
 import { List } from "semantic-ui-react";
 import React from "react";
@@ -12,12 +12,12 @@ export type CategoryListProps = {
 
 const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => (
   <Tour>
-    <div>
+    <TourBox>
       <img src={tour.image} alt={tour.name} />
-      <div className="text-box">
+      <TextBox>
         <h3>{tour.company}</h3>
         <p>{tour.name}</p>
-        <List className="list">
+        <List>
           <List.Item>
             <List.Icon name="marker" />
             <List.Content>
@@ -34,8 +34,8 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => (
           </List.Item>
         </List>
         <p>From ${tour.ticket_price} per person</p>
-      </div>
-    </div>
+      </TextBox>
+    </TourBox>
     <Button>
       <a href="/adventures">Learn more</a>
     </Button>
