@@ -4,6 +4,8 @@ import Footer from "../partials/Footer";
 // Types
 // Styles
 import { Wrapper } from "../LandingPage/LandingSection.styles";
+import messages from "../Messages";
+import { useIntl } from "react-intl";
 
 import {
   InstructionSection,
@@ -41,34 +43,40 @@ export type TourItem = {
 
 const products = Data.products;
 
-const Instruction = () => (
-  <InstructionSection>
-    <InstructionBox>
-      <div>How to reserve a tour?</div>
-      <Line>
-        <div>
-          <Number>1</Number>
-          Choose a tour you want
-        </div>
-        <div>
-          <Number>2</Number>
-          Pick a date and time of your tour
-        </div>
-      </Line>
-      <Line>
-        <div>
-          <Number>3</Number>
-          Set amount of people
-        </div>
-        <div>
-          <Number>4</Number>
-          Click order
-        </div>
-      </Line>
-    </InstructionBox>
-  </InstructionSection>
-);
-const AdventuresPage: React.FunctionComponent<ITestPageProps> = () => {
+const Instruction = () => {
+  const intl = useIntl();
+
+  return (
+    <InstructionSection>
+      <InstructionBox>
+        <div>{intl.formatMessage(messages.instructionTitle)}</div>
+        <Line>
+          <div>
+            <Number>1</Number>
+            {intl.formatMessage(messages.instructionFirst)}
+          </div>
+          <div>
+            <Number>2</Number>
+            {intl.formatMessage(messages.instructionSecond)}
+          </div>
+        </Line>
+        <Line>
+          <div>
+            <Number>3</Number>
+            {intl.formatMessage(messages.instructionThird)}
+          </div>
+          <div>
+            <Number>4</Number>
+            {intl.formatMessage(messages.instructionFourth)}
+          </div>
+        </Line>
+      </InstructionBox>
+    </InstructionSection>
+  );
+};
+const AdventuresPage: React.FunctionComponent = () => {
+  const intl = useIntl();
+
   return (
     <>
       <Header />
@@ -77,19 +85,18 @@ const AdventuresPage: React.FunctionComponent<ITestPageProps> = () => {
           <BackgroundCover>
             <Title>
               <p>
-                Explore
-                <br />
-                the world <br />
-                with SpotFinder
+                {intl.formatMessage(messages.explore)} <br />{" "}
+                {intl.formatMessage(messages.theWorld)} <br />{" "}
+                {intl.formatMessage(messages.withSpotFinder)}{" "}
               </p>
-              <div>Choose the best activities for your trip</div>
+              <div>{intl.formatMessage(messages.adventuresPageSubtitle)}</div>
             </Title>
           </BackgroundCover>
           <Instruction />
 
           <MiddleSection>
             <TopBar>
-              <p>Our Tours</p>
+              <p>{intl.formatMessage(messages.ourTours)}</p>
               <Search placeholder="Search..." />
             </TopBar>
 

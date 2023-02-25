@@ -16,6 +16,8 @@ import {
   ContactButton,
 } from "./LandingSection.styles";
 import * as React from "react";
+import messages from "../Messages";
+import { useIntl } from "react-intl";
 import Data from "../Data/categories.json";
 
 // Types
@@ -26,30 +28,37 @@ export type CategoryItemType = {
 };
 const categories = Data.categories;
 
-const Contact = () => (
-  <ContactSection>
-    <Box>
-      <div>Need help with planning your trip? Let us know!</div>
-      <ContactButton>
-        <a href="/contact">Contact us</a>
-      </ContactButton>
-    </Box>
-  </ContactSection>
-);
+const Contact = () => {
+  const intl = useIntl();
+
+  return (
+    <ContactSection>
+      <Box>
+        <div>Need help with planning your trip? Let us know!</div>
+        <ContactButton>
+          <a href="/contact">{intl.formatMessage(messages.contactUs)}</a>
+        </ContactButton>
+      </Box>
+    </ContactSection>
+  );
+};
+
 const LandingSection: React.FunctionComponent = () => {
+  const intl = useIntl();
+
   return (
     <>
       <Header />
       <Wrapper>
         <BackgroundCover>
           <Title>
-            <p>Where are you going?</p>
+            <p>{intl.formatMessage(messages.landingPageTitle)}</p>
           </Title>
           <Search />
         </BackgroundCover>
 
         <MiddleSection>
-          <div>Categories</div>
+          <div>{intl.formatMessage(messages.categories)}</div>
 
           <Grid>
             {categories?.map((category) => (

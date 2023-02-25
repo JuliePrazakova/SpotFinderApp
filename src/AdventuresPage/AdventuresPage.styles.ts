@@ -105,7 +105,6 @@ export const Number = styled.section({
 
 export const Grid = styled.div({
   width: "70%",
-  flexWrap: "wrap",
   margin: "auto",
 });
 
@@ -117,6 +116,11 @@ export const Tour = styled.div({
 
 export const TourBox = styled.div({
   display: "flex",
+  [`> img`]: {
+    width: "300px",
+    height: "200px",
+    objectFit: "cover",
+  },
 });
 
 export const TextBox = styled.div({

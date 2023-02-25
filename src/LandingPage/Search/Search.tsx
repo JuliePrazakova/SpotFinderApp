@@ -1,9 +1,22 @@
 // Types
 // Styles
-import { Wrapper, Buttons } from "./Search.styles";
+import {
+  SearchBar,
+  Buttons,
+  SearchButton,
+  Line,
+  TypeButton,
+  Label,
+  RoadTripBarSection,
+  OneWayBarSection,
+} from "./Search.styles";
 import React, { useState } from "react";
+import messages from "../../Messages";
+import { useIntl } from "react-intl";
 
 const Search: React.FunctionComponent = () => {
+  const intl = useIntl();
+
   const [oneWay, setOneWay] = useState(true);
   const [roadTrip, setRoadTrip] = useState(false);
   const [toggleClass, setToggleClass] = useState(true);
@@ -22,55 +35,66 @@ const Search: React.FunctionComponent = () => {
   return (
     <div>
       <Buttons>
-        <div className={toggleClass ? "type-button active" : "type-button"}>
-          <button onClick={changeOneWay}>One place</button>
-        </div>
-        <div className={toggleClass ? "type-button" : "type-button active"}>
-          <button onClick={changeRoadTrip}>Road trip</button>
-        </div>
+        <TypeButton className={toggleClass ? "active" : ""}>
+          <button onClick={changeOneWay}>
+            {intl.formatMessage(messages.onePlace)}
+          </button>
+        </TypeButton>
+        <TypeButton className={toggleClass ? "" : "active"}>
+          <button onClick={changeRoadTrip}>
+            {intl.formatMessage(messages.roadTrip)}
+          </button>
+        </TypeButton>
       </Buttons>
-      <Wrapper>
+      <SearchBar>
         {oneWay && <OneWayBar />}
         {roadTrip && <RoadTripBar />}
-        <div className="search-button">
-          <div>Search</div>
-        </div>
-      </Wrapper>
+        <SearchButton>
+          <div>{intl.formatMessage(messages.search)}</div>
+        </SearchButton>
+      </SearchBar>
     </div>
   );
 };
-const OneWayBar = () => (
-  <>
-    <div className="label left">
-      Where:
-      <input type="text" className="search-left" />
-    </div>
-    <div className="vl"></div>
-    <div className="label">
-      Radius:
-      <input type="text" className="search-left" />
-    </div>
-  </>
-);
+const OneWayBar = () => {
+  const intl = useIntl();
 
-const RoadTripBar = () => (
-  <>
-    <div className="label left">
-      From:
-      <input type="text" className="search-left" />
-    </div>
-    <div className="vl"></div>
+  return (
+    <OneWayBarSection>
+      <Label>
+        {intl.formatMessage(messages.where)}:
+        <input type="text" />
+      </Label>
+      <Line></Line>
+      <Label>
+        {intl.formatMessage(messages.radius)}:
+        <input type="text" />
+      </Label>
+    </OneWayBarSection>
+  );
+};
 
-    <div className="label">
-      To:
-      <input type="text" className="search-left" />
-    </div>
-    <div className="vl"></div>
-    <div className="label">
-      Radius:
-      <input type="text" className="search-left" />
-    </div>
-  </>
-);
+const RoadTripBar = () => {
+  const intl = useIntl();
+
+  return (
+    <RoadTripBarSection>
+      <Label>
+        {intl.formatMessage(messages.from)}:
+        <input type="text" />
+      </Label>
+      <Line></Line>
+      <Label>
+        {intl.formatMessage(messages.to)}:
+        <input type="text" />
+      </Label>
+      <Line></Line>
+      <Label>
+        {intl.formatMessage(messages.radius)}:
+        <input type="text" />
+      </Label>
+    </RoadTripBarSection>
+  );
+};
 
 export default Search;
