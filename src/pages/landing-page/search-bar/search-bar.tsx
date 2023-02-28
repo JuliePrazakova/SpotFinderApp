@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import messages from "../../Messages";
+import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 
 // Styles
@@ -12,7 +12,7 @@ import {
   Label,
   RoadTripBarSection,
   OneWayBarSection,
-} from "./Search.styles";
+} from "./search-bar.styles";
 
 const Search: React.FunctionComponent = () => {
   const intl = useIntl();

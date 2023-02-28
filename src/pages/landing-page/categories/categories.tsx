@@ -1,13 +1,13 @@
 import React from "react";
-import messages from "../../Messages";
+import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 
 // Types
-import { CategoryItemType } from "../LandingSection";
+import { CategoryItemType } from "../landing-section";
 
 // Styles
-import { CategorySection, Text } from "./Categories.styles";
-import { Button } from "../../App.styles";
+import { CategorySection, Text } from "./categories.styles";
+import { Button } from "../../../App.styles";
 
 export type CategoryItemProps = {
   category: CategoryItemType;

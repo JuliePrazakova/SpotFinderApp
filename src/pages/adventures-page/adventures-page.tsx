@@ -1,11 +1,13 @@
-import Header from "../partials/Header";
-import Footer from "../partials/Footer";
+import Header from "../../partials/Header";
+import Footer from "../../partials/Footer";
 import { useIntl } from "react-intl";
-import messages from "../Messages";
+import messages from "../../Messages";
+import * as React from "react";
+import Tour from "./tour/tour";
+import Data from "../../data/products.json";
 
 // Styles
-import { Wrapper } from "../LandingPage/LandingSection.styles";
-
+import { Wrapper } from "../landing-page/landing-section.styles";
 import {
   InstructionSection,
   MiddleSection,
@@ -17,13 +19,8 @@ import {
   Number,
   Line,
   InstructionBox,
-} from "./AdventuresPage.styles";
-import * as React from "react";
-import Tour from "./Tour/Tour";
-import Data from "../Data/products.json";
+} from "./adventures-page.styles";
 import { Search, Divider } from "semantic-ui-react";
-
-export type ITestPageProps = Record<string, unknown>;
 
 export type TourItem = {
   id: string;

@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import messages from "../../Messages";
+import messages from "../../../Messages";
 import { useIntl } from "react-intl";
-import paths from "../../utilities/pathnames";
+import paths from "../../../utilities/pathnames";
 
 // Types
-import { TourItem } from "../AdventuresPage";
+import { TourItem } from "../adventures-page";
 
 // Styles
-import { Tour, TourBox, TextBox } from "../AdventuresPage.styles";
-import { Button } from "../../App.styles";
+import { Tour, TourBox, TextBox } from "../adventures-page.styles";
+import { Button } from "../../../App.styles";
 import { List } from "semantic-ui-react";
 
 export type CategoryListProps = {

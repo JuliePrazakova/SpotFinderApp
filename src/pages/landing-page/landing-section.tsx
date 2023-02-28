@@ -1,11 +1,11 @@
 import * as React from "react";
-import messages from "../Messages";
+import messages from "../../Messages";
 import { useIntl } from "react-intl";
-import Data from "../Data/categories.json";
-import Search from "./Search/Search";
-import Header from "../partials/Header";
-import Footer from "../partials/Footer";
-import Categories from "./Categories/Categories";
+import Data from "../../data/categories.json";
+import Search from "./search-bar/search-bar";
+import Header from "../../partials/Header";
+import Footer from "../../partials/Footer";
+import Categories from "./categories/categories";
 
 // Styles
 import {
@@ -17,7 +17,7 @@ import {
   MiddleSection,
   Box,
   ContactButton,
-} from "./LandingSection.styles";
+} from "./landing-section.styles";
 
 export type CategoryItemType = {
   id: number;
