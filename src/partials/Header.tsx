@@ -25,7 +25,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
                                     <Link to={`/contact`}>Contact US</Link>
                                 </div>
                                 <div>
-                                    <Link to={`/signin`}>Sign in</Link>
+                                    <Link to={`/signin`}>Sign out</Link>
                                 </div>
                                 <i className="cart plus large icon"></i>
                                 <i className="facebook f large icon"></i>
