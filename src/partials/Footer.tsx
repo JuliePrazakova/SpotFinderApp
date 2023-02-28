@@ -2,6 +2,7 @@ import * as React from "react";
 import { useIntl } from "react-intl";
 import messages from "../Messages";
 
+// Styles
 import {
   Wrapper,
   Box,

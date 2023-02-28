@@ -1,12 +1,16 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import messages from "../../Messages";
+import { useIntl } from "react-intl";
+import paths from "../../utilities/pathnames";
+
 // Types
 import { TourItem } from "../AdventuresPage";
+
 // Styles
 import { Tour, TourBox, TextBox } from "../AdventuresPage.styles";
 import { Button } from "../../App.styles";
 import { List } from "semantic-ui-react";
-import React from "react";
-import messages from "../../Messages";
-import { useIntl } from "react-intl";
 
 export type CategoryListProps = {
   tour: TourItem;
@@ -51,7 +55,9 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => {
       </TourBox>
 
       <Button>
-        <a href="/adventures">{intl.formatMessage(messages.learnMore)}</a>
+        <Link to={paths["adventure-detail"].path.replace(":id", tour.id)}>
+          {intl.formatMessage(messages.learnMore)}
+        </Link>
       </Button>
     </Tour>
   );

@@ -1,4 +1,7 @@
-//components
+import * as React from "react";
+import messages from "../Messages";
+import { useIntl } from "react-intl";
+import Data from "../Data/categories.json";
 import Search from "./Search/Search";
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
@@ -15,12 +18,7 @@ import {
   Box,
   ContactButton,
 } from "./LandingSection.styles";
-import * as React from "react";
-import messages from "../Messages";
-import { useIntl } from "react-intl";
-import Data from "../Data/categories.json";
 
-// Types
 export type CategoryItemType = {
   id: number;
   name: string;

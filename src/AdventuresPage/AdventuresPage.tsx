@@ -1,11 +1,10 @@
-//components
 import Header from "../partials/Header";
 import Footer from "../partials/Footer";
-// Types
+import { useIntl } from "react-intl";
+import messages from "../Messages";
+
 // Styles
 import { Wrapper } from "../LandingPage/LandingSection.styles";
-import messages from "../Messages";
-import { useIntl } from "react-intl";
 
 import {
   InstructionSection,
@@ -27,7 +26,7 @@ import { Search, Divider } from "semantic-ui-react";
 export type ITestPageProps = Record<string, unknown>;
 
 export type TourItem = {
-  id: number;
+  id: string;
   company: string;
   name: string;
   country: string;
