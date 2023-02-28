@@ -18,7 +18,7 @@ export type CategoryListProps = {
 
 const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => {
   const intl = useIntl();
-  const price = tour.ticket_price;
+  const price = tour.ticketPrice;
 
   return (
     <Tour>
@@ -46,7 +46,7 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => {
 
             <List.Item>
               <List.Icon name="check" />
-              <List.Content>{tour.desc_short}</List.Content>
+              <List.Content>{tour.descShort}</List.Content>
             </List.Item>
           </List>
 
@@ -55,7 +55,12 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => {
       </TourBox>
 
       <Button>
-        <Link to={paths["adventure-detail"].path.replace(":id", tour.id)}>
+        <Link
+          to={paths["adventure-detail"].path.replace(
+            ":companyId",
+            tour.companyId
+          )}
+        >
           {intl.formatMessage(messages.learnMore)}
         </Link>
       </Button>

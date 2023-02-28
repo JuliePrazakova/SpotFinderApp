@@ -1,0 +1,27 @@
+{
+"companies": [
+    {
+      "id": "1",
+      "name": "Sieri Poro Farm",
+      "country": "Finland",
+      "city": "Rovaniemi",
+      "street": "Kurivaarantie 203",
+      "zip": "96600",
+      "desc_short": "A reindeer farm in the middle of Lapland just 20 minutes from Rovaniemi by a car. The best reindeer experience possible in  beautiful surrounding of one of the last family farms in this area.",
+      "desc_long": "More details about particular farms, activities and rules during them",
+      "image": "/images/sieriporo.jpeg"
+    },
+    {
+      "id": "2",
+      "name": "SoulMate Huskies",
+      "country": "Finland",
+      "city": "Pello",
+      "street": "Rovaniementie",
+      "zip": "95700",
+      "desc_short": "Husky farm located hour and a half from Lapish city Rovaniemi providing husky tours in a home like conditions. This farm is not like any other because of the family spirit of the whole place.",
+      "desc_long": "More details about particular farms, activities and rules during them",
+      "image": "/images/soulmatehuskies.jpeg"
+    }
+  ]
+}
+

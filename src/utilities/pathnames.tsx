@@ -8,7 +8,7 @@ const pathnames = {
     title: "Adventures page",
   },
   "adventure-detail": {
-    path: "/adventures/detail/:id",
+    path: "/adventures/detail/:companyId",
     title: "Adventure",
   },
   contact: {
