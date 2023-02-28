@@ -21,7 +21,7 @@ export const TypeButton = styled.div({
   },
 });
 
-export const SearchBar = styled.div({
+export const SearchBar = styled.form({
   display: "flex",
   width: "50%",
   marginLeft: "15%",

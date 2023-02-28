@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import messages from "../Messages";
 import { useIntl } from "react-intl";
 import paths from "../utilities/pathnames";
+import MiniSearch from "../pages/landing-page/search-bar/mini-search-bar";
 
 // Styles
 import { Logo, Navigation, RightSection } from "./Header.styles";
+import { HeaderType } from "../pages/landing-page/landing-section";
 
-const Header: React.FunctionComponent = () => {
+const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const intl = useIntl();
 
   return (
@@ -15,6 +17,9 @@ const Header: React.FunctionComponent = () => {
       <Logo href={paths.home.path}>
         <img className="img" src="/images/logo.png" alt="Logo" />
       </Logo>
+
+      {visible && <MiniSearch />}
+
       <RightSection>
         <div>
           <Link to={paths.home.path}>{intl.formatMessage(messages.home)}</Link>

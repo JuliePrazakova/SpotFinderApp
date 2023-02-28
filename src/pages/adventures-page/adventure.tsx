@@ -1,22 +1,35 @@
 import Header from "../../partials/Header";
 import Footer from "../../partials/Footer";
 import { useIntl } from "react-intl";
+import { useParams } from "react-router-dom";
 import messages from "../../Messages";
 import * as React from "react";
 import Tour from "./tour/tour";
 import Data from "../../data/tours.json";
+import Companies from "../../data/companies.json";
 
 // Styles
 import { Wrapper } from "../landing-page/landing-section.styles";
+import { Box } from "./adventures-page.styles";
+import { Button } from "../../App.styles";
 import {
-  MiddleSection,
-  Grid,
-  BackgroundCover,
   Title,
+  Address,
+  ShortDescription,
+  LongDescription,
+  TopSection,
+  OrderForm,
+  MiddleSection,
+  Subtitle,
+  LeftBox,
+  Grid,
   TopBar,
-  Box,
-} from "./adventures-page.styles";
-import { Search, Divider } from "semantic-ui-react";
+  LeftSide,
+  RightSide,
+  MainImg,
+  SideImgs,
+} from "./adventure.styles";
+import { Form, Icon } from "semantic-ui-react";
 
 export type TourItem = {
   id: string;
@@ -34,41 +47,79 @@ export type TourItem = {
   duration: string;
 };
 
-const products = Data.tours;
+const tours = Data.tours;
+const companies = Companies.companies;
 
-const AdventuresPage: React.FunctionComponent = () => {
+export type RouteParams = {
+  companyId: string;
+};
+
+const Adventure: React.FunctionComponent = () => {
   const intl = useIntl();
+  const { companyId } = useParams<RouteParams>();
+  const company = companies.find((com) => com.id === companyId);
 
   return (
     <>
-      <Header />
+      <Header visible={true} />
       <Wrapper>
         <Box>
-          <BackgroundCover>
-            <Title>
-              <p>
-                {intl.formatMessage(messages.explore)} <br />{" "}
-                {intl.formatMessage(messages.theWorld)} <br />{" "}
-                {intl.formatMessage(messages.withSpotFinder)}{" "}
-              </p>
-              <div>{intl.formatMessage(messages.adventuresPageSubtitle)}</div>
-            </Title>
-          </BackgroundCover>
+          <TopBar></TopBar>
+          <TopSection>
+            <LeftSide>
+              <Title>{company?.name}</Title>
+              <Address>
+                <Icon name="marker" />
+                {company?.street}, {company?.zip} {company?.city}
+              </Address>
+              <ShortDescription>{company?.descShort}</ShortDescription>
+              <LongDescription>{company?.descLong}</LongDescription>
+            </LeftSide>
+            <RightSide>
+              <MainImg>
+                <img src={company?.image1} alt={company?.name} />
+              </MainImg>
+              <SideImgs>
+                <img src={company?.image2} alt={company?.name} />
+                <img src={company?.image3} alt={company?.name} />
+              </SideImgs>
+            </RightSide>
+          </TopSection>
 
           <MiddleSection>
-            <TopBar>
-              <p>{intl.formatMessage(messages.ourTours)}</p>
-              <Search placeholder="Search..." />
-            </TopBar>
+            <LeftBox>
+              <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
+              <Grid>
+                {tours?.map((tours) => (
+                  <div key={tours.id}>
+                    {tours.companyId === company?.id ? (
+                      <Tour tour={tours} btn={false} />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ))}
+              </Grid>
+            </LeftBox>
+            <OrderForm>
+              <Form>
+                <Form.Group>
+                  <Form.Input
+                    label="Tour"
+                    placeholder="Long ride"
+                    id="form-input-first-name"
+                  />
+                  <Form.Input label="People" placeholder="1" />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Input label="Date" placeholder="03. 03. 2023" />
+                  <Form.Input label="Time" placeholder="1" />
+                </Form.Group>
 
-            <Grid>
-              {products?.map((products) => (
-                <div key={products.id}>
-                  <Tour tour={products} />
-                  <Divider section />
-                </div>
-              ))}
-            </Grid>
+                <Form.Field></Form.Field>
+                <Button>Add to cart</Button>
+              </Form>
+            </OrderForm>
           </MiddleSection>
         </Box>
       </Wrapper>
@@ -77,4 +128,4 @@ const AdventuresPage: React.FunctionComponent = () => {
   );
 };
 
-export default AdventuresPage;
+export default Adventure;

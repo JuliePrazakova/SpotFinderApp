@@ -1,18 +1,24 @@
 import React, { useState } from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
+import { useDispatch } from "react-redux";
+import { setFilter } from "../../../redux/actions/search-actions";
 
 // Styles
 import {
-  SearchBar,
   Buttons,
   SearchButton,
   Line,
   TypeButton,
   Label,
-  RoadTripBarSection,
-  OneWayBarSection,
 } from "./search-bar.styles";
+
+export type SearchItemType = {
+  where: string;
+  from: string;
+  to: string;
+  radius: string;
+};
 
 const Search: React.FunctionComponent = () => {
   const intl = useIntl();
@@ -46,54 +52,123 @@ const Search: React.FunctionComponent = () => {
           </button>
         </TypeButton>
       </Buttons>
-      <SearchBar>
-        {oneWay && <OneWayBar />}
-        {roadTrip && <RoadTripBar />}
-        <SearchButton>
-          <div>{intl.formatMessage(messages.search)}</div>
-        </SearchButton>
-      </SearchBar>
+
+      {oneWay && <OneWayBar />}
+      {roadTrip && <RoadTripBar />}
     </div>
   );
 };
+
 const OneWayBar = () => {
   const intl = useIntl();
 
+  const [formData, setFormData] = useState({
+    where: "",
+    from: "",
+    to: "",
+    radius: 0,
+  });
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(formData);
+    event.preventDefault();
+    dispatch(setFilter(formData));
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
   return (
-    <OneWayBarSection>
+    <form onSubmit={handleSubmit}>
       <Label>
         {intl.formatMessage(messages.where)}:
-        <input type="text" />
+        <input
+          type="text"
+          name="where"
+          value={formData.where}
+          onChange={handleChange}
+        />
       </Label>
       <Line></Line>
       <Label>
         {intl.formatMessage(messages.radius)}:
-        <input type="text" />
+        <input
+          type="text"
+          name="radius"
+          value={formData.radius}
+          onChange={handleChange}
+        />
       </Label>
-    </OneWayBarSection>
+      <SearchButton>
+        <button type="submit">{intl.formatMessage(messages.search)}</button>
+      </SearchButton>
+    </form>
   );
 };
 
 const RoadTripBar = () => {
   const intl = useIntl();
 
+  const [formData, setFormData] = useState({
+    where: "",
+    from: "",
+    to: "",
+    radius: 0,
+  });
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(formData);
+    event.preventDefault();
+    dispatch(setFilter(formData));
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
   return (
-    <RoadTripBarSection>
+    <form onSubmit={handleSubmit}>
       <Label>
         {intl.formatMessage(messages.from)}:
-        <input type="text" />
+        <input
+          type="text"
+          name="from"
+          value={formData.from}
+          onChange={handleChange}
+        />
       </Label>
       <Line></Line>
       <Label>
         {intl.formatMessage(messages.to)}:
-        <input type="text" />
+        <input
+          type="text"
+          name="to"
+          value={formData.to}
+          onChange={handleChange}
+        />
       </Label>
       <Line></Line>
       <Label>
         {intl.formatMessage(messages.radius)}:
-        <input type="text" />
+        <input
+          type="text"
+          name="radius"
+          value={formData.radius}
+          onChange={handleChange}
+        />
       </Label>
-    </RoadTripBarSection>
+
+      <button type="submit">{intl.formatMessage(messages.search)}</button>
+    </form>
   );
 };
 

@@ -13,8 +13,6 @@ const Application: React.FunctionComponent = () => {
         <Route path={paths.home.path} element={<LandingSection />} />
         <Route path={paths.adventures.path} element={<AdventuresPage />} />
         <Route path={paths["adventure-detail"].path} element={<Adventure />} />
-        {/* <Route path={paths.contact.path} element={} />
-        <Route path={paths.signIn.path} element={} /> */}
       </Routes>
     </BrowserRouter>
   );

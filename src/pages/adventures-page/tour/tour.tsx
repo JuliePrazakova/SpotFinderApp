@@ -5,18 +5,37 @@ import { useIntl } from "react-intl";
 import paths from "../../../utilities/pathnames";
 
 // Types
-import { TourItem } from "../adventures-page";
 
 // Styles
 import { Tour, TourBox, TextBox } from "../adventures-page.styles";
 import { Button } from "../../../App.styles";
 import { List } from "semantic-ui-react";
 
-export type CategoryListProps = {
-  tour: TourItem;
+export type TourItem = {
+  id: string;
+  company: string;
+  companyId: string;
+  name: string;
+  country: string;
+  city: string;
+  street: string;
+  zip: string;
+  descShort: string;
+  descLong: string;
+  ticketPrice: number;
+  image: string;
+  duration: string;
 };
 
-const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => {
+export type CategoryListProps = {
+  tour: TourItem;
+  btn: boolean;
+};
+
+const CategoryList: React.FunctionComponent<CategoryListProps> = ({
+  tour,
+  btn,
+}) => {
   const intl = useIntl();
   const price = tour.ticketPrice;
 
@@ -61,7 +80,9 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => {
             tour.companyId
           )}
         >
-          {intl.formatMessage(messages.learnMore)}
+          {btn
+            ? intl.formatMessage(messages.learnMore)
+            : intl.formatMessage(messages.select)}
         </Link>
       </Button>
     </Tour>

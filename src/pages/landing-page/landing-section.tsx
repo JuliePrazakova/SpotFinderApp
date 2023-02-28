@@ -6,6 +6,8 @@ import Search from "./search-bar/search-bar";
 import Header from "../../partials/Header";
 import Footer from "../../partials/Footer";
 import Categories from "./categories/categories";
+import paths from "../../utilities/pathnames";
+import { Link } from "react-router-dom";
 
 // Styles
 import {
@@ -24,6 +26,11 @@ export type CategoryItemType = {
   name: string;
   description: string;
 };
+
+export type HeaderType = {
+  visible: boolean;
+};
+
 const categories = Data.categories;
 
 const Contact = () => {
@@ -34,7 +41,9 @@ const Contact = () => {
       <Box>
         <div>Need help with planning your trip? Let us know!</div>
         <ContactButton>
-          <a href="/contact">{intl.formatMessage(messages.contactUs)}</a>
+          <Link to={paths.contact.path}>
+            {intl.formatMessage(messages.contactUs)}
+          </Link>
         </ContactButton>
       </Box>
     </ContactSection>
@@ -46,7 +55,7 @@ const LandingSection: React.FunctionComponent = () => {
 
   return (
     <>
-      <Header />
+      <Header visible={false} />
       <Wrapper>
         <BackgroundCover>
           <Title>

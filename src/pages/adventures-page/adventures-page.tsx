@@ -22,23 +22,7 @@ import {
 } from "./adventures-page.styles";
 import { Search, Divider } from "semantic-ui-react";
 
-export type TourItem = {
-  id: string;
-  company: string;
-  companyId: string;
-  name: string;
-  country: string;
-  city: string;
-  street: string;
-  zip: string;
-  descShort: string;
-  descLong: string;
-  ticketPrice: number;
-  image: string;
-  duration: string;
-};
-
-const products = Data.tours;
+const tours = Data.tours;
 
 const Instruction = () => {
   const intl = useIntl();
@@ -76,7 +60,7 @@ const AdventuresPage: React.FunctionComponent = () => {
 
   return (
     <>
-      <Header />
+      <Header visible={true} />
       <Wrapper>
         <Box>
           <BackgroundCover>
@@ -98,9 +82,9 @@ const AdventuresPage: React.FunctionComponent = () => {
             </TopBar>
 
             <Grid>
-              {products?.map((products) => (
-                <div key={products.id}>
-                  <Tour tour={products} />
+              {tours?.map((tours) => (
+                <div key={tours.id}>
+                  <Tour tour={tours} btn={true} />
                   <Divider section />
                 </div>
               ))}

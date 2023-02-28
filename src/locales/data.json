@@ -30,6 +30,7 @@
       "from": "From",
       "to": "To",
       "duration": "Duration",
-      "pricePerPerson": "From {price}€ per person"
+      "pricePerPerson": "From {price}€ per person",
+      "select": "Select"
      }
 }  

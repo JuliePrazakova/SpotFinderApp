@@ -125,4 +125,8 @@ export default defineMessages({
     id: "pricePerPerson",
     defaultMessage: "From {price}€ per person",
   },
+  select: {
+    id: "select",
+    defaultMessage: "Select",
+  },
 });

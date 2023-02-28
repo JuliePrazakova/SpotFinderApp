@@ -1,6 +1,7 @@
 import React from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
+import { Link } from "react-router-dom";
 
 // Types
 import { CategoryItemType } from "../landing-section";
@@ -8,6 +9,7 @@ import { CategoryItemType } from "../landing-section";
 // Styles
 import { CategorySection, Text } from "./categories.styles";
 import { Button } from "../../../App.styles";
+import paths from "../../../utilities/pathnames";
 
 export type CategoryItemProps = {
   category: CategoryItemType;
@@ -25,7 +27,9 @@ const CartItem: React.FunctionComponent<CategoryItemProps> = ({ category }) => {
         </div>
       </Text>
       <Button>
-        <a href="/adventures">{intl.formatMessage(messages.learnMore)}</a>
+        <Link to={paths.adventures.path}>
+          {intl.formatMessage(messages.learnMore)}
+        </Link>
       </Button>
     </CategorySection>
   );
