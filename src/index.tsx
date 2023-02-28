@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { IntlProvider } from "react-intl";
-import messages from "../locales/data.json";
+import messages from "./locales/data.json";
 
 export const locale = "en";
 
