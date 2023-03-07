@@ -1,4 +1,8 @@
 import * as React from "react";
+import { useIntl } from "react-intl";
+import messages from "../Messages";
+
+// Styles
 import {
   Wrapper,
   Box,
@@ -9,23 +13,25 @@ import {
 } from "./Footer.styles";
 
 const Footer: React.FunctionComponent = () => {
+  const intl = useIntl();
+
   return (
     <Wrapper>
       <Box>
         <LeftPart>
-          <span>Copywrite @ 2022 SpotFinder</span>
-          <div>Privacy policy</div>
+          <span>{intl.formatMessage(messages.copywrite)}</span>
+          <div>{intl.formatMessage(messages.privacyPolicy)}</div>
         </LeftPart>
         <Line></Line>
         <MiddlePart>
-          <span>Contact us</span>
+          <span>{intl.formatMessage(messages.contactUs)}</span>
           <div>
             <i className="whatsapp icon"></i>
-            <div>+420 731 082 290</div>
+            <div>{intl.formatMessage(messages.phoneNumber)}</div>
           </div>
           <div>
             <i className="envelope icon"></i>
-            <div>spotfinder@gmail.com</div>
+            <div>{intl.formatMessage(messages.email)}</div>
           </div>
         </MiddlePart>
         <Line></Line>

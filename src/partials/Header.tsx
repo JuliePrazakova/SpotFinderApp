@@ -1,25 +1,43 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import { Logo, Navigation, RightSection } from "./Header.styles";
+import messages from "../Messages";
+import { useIntl } from "react-intl";
+import paths from "../utilities/pathnames";
+import MiniSearch from "../pages/landing-page/search-bar/mini-search-bar";
 
-const Header: React.FunctionComponent = () => {
+// Styles
+import { Logo, Navigation, RightSection } from "./Header.styles";
+import { HeaderType } from "../pages/landing-page/landing-section";
+
+const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
+  const intl = useIntl();
+
   return (
     <Navigation>
-      <Logo href="/">
+      <Logo href={paths.home.path}>
         <img className="img" src="/images/logo.png" alt="Logo" />
       </Logo>
+
+      {visible && <MiniSearch />}
+
       <RightSection>
         <div>
-          <Link to="/">Home</Link>
+          <Link to={paths.home.path}>{intl.formatMessage(messages.home)}</Link>
         </div>
         <div>
-          <Link to="/adventures">Adventures</Link>
+          <Link to={paths.adventures.path}>
+            {intl.formatMessage(messages.adventures)}
+          </Link>
         </div>
         <div>
-          <Link to="/contact">Contact us</Link>
+          <Link to={paths.contact.path}>
+            {intl.formatMessage(messages.contactUs)}
+          </Link>
         </div>
         <div>
-          <Link to="/signin">Sign in</Link>
+          <Link to={paths.signIn.path}>
+            {intl.formatMessage(messages.signIn)}
+          </Link>
         </div>
         <i className="cart plus large icon"></i>
         <i className="facebook f large icon"></i>
