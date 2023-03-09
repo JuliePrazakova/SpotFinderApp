@@ -6,7 +6,9 @@ import searchSlice from "./redux/reducers/search-reducer";
 // });
 
 const store = configureStore({
-  reducer: searchSlice.reducer,
+  reducer: {
+    search: searchSlice.reducer,
+  },
 });
 
 export default store;
