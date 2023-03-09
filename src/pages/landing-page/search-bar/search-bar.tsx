@@ -11,6 +11,9 @@ import {
   Line,
   TypeButton,
   Label,
+  RoadTripBarSection,
+  OneWayBarSection,
+  SearchBar,
 } from "./search-bar.styles";
 
 export type SearchItemType = {
@@ -52,9 +55,10 @@ const Search: React.FunctionComponent = () => {
           </button>
         </TypeButton>
       </Buttons>
-
-      {oneWay && <OneWayBar />}
-      {roadTrip && <RoadTripBar />}
+      <SearchBar>
+        {oneWay && <OneWayBar />}
+        {roadTrip && <RoadTripBar />}
+      </SearchBar>
     </div>
   );
 };
@@ -84,7 +88,7 @@ const OneWayBar = () => {
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <OneWayBarSection onSubmit={handleSubmit}>
       <Label>
         {intl.formatMessage(messages.where)}:
         <input
@@ -105,9 +109,11 @@ const OneWayBar = () => {
         />
       </Label>
       <SearchButton>
-        <button type="submit">{intl.formatMessage(messages.search)}</button>
+        <div>
+          <button type="submit">{intl.formatMessage(messages.search)}</button>
+        </div>
       </SearchButton>
-    </form>
+    </OneWayBarSection>
   );
 };
 
@@ -136,7 +142,7 @@ const RoadTripBar = () => {
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <RoadTripBarSection onSubmit={handleSubmit}>
       <Label>
         {intl.formatMessage(messages.from)}:
         <input
@@ -166,9 +172,12 @@ const RoadTripBar = () => {
           onChange={handleChange}
         />
       </Label>
-
-      <button type="submit">{intl.formatMessage(messages.search)}</button>
-    </form>
+      <SearchButton>
+        <div>
+          <button type="submit">{intl.formatMessage(messages.search)}</button>
+        </div>
+      </SearchButton>
+    </RoadTripBarSection>
   );
 };
 

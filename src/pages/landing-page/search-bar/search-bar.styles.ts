@@ -21,7 +21,7 @@ export const TypeButton = styled.div({
   },
 });
 
-export const SearchBar = styled.form({
+export const SearchBar = styled.div({
   display: "flex",
   width: "50%",
   marginLeft: "15%",
@@ -43,6 +43,10 @@ export const SearchButton = styled.div({
   [`> div`]: {
     margin: "auto",
     width: "fit-content",
+    [`> button`]: {
+      background: "none",
+      border: "none",
+    },
   },
 });
 
@@ -73,7 +77,7 @@ export const Label = styled.div({
   },
 });
 
-export const RoadTripBarSection = styled.div({
+export const RoadTripBarSection = styled.form({
   display: "flex",
   width: "100%",
   [`> div:first-of-type`]: {
@@ -82,7 +86,7 @@ export const RoadTripBarSection = styled.div({
   },
 });
 
-export const OneWayBarSection = styled.div({
+export const OneWayBarSection = styled.form({
   display: "flex",
   width: "100%",
   [`> div:first-of-type`]: {
