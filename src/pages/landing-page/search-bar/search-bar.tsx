@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 import { useDispatch } from "react-redux";
+import paths from "../../../utilities/pathnames";
 import { setFilter } from "../../../redux/actions/search-actions";
 
 // Styles
@@ -65,6 +67,7 @@ const Search: React.FunctionComponent = () => {
 
 const OneWayBar = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     where: "",
@@ -79,6 +82,7 @@ const OneWayBar = () => {
     console.log(formData);
     event.preventDefault();
     dispatch(setFilter(formData));
+    navigate(paths.search.path);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -119,6 +123,7 @@ const OneWayBar = () => {
 
 const RoadTripBar = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     where: "",
@@ -130,9 +135,9 @@ const RoadTripBar = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(formData);
     event.preventDefault();
     dispatch(setFilter(formData));
+    navigate(paths.search.path);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {

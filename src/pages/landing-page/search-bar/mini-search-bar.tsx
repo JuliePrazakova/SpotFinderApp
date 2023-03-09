@@ -62,11 +62,11 @@ const OneWayBar: React.FC<SearchItemProps> = ({ filter }) => {
   return (
     <OneWayBarSection>
       <Label>
-        <input type="text" value={filter?.where} />
+        <div>{filter?.where}</div>
       </Label>
       <Line></Line>
       <Label>
-        <input type="text" value={filter?.radius} />
+        <div>{filter?.radius}</div>
       </Label>
     </OneWayBarSection>
   );
@@ -76,15 +76,15 @@ const RoadTripBar: React.FC<SearchItemProps> = ({ filter }) => {
   return (
     <RoadTripBarSection>
       <Label>
-        <input type="text" value={filter?.from} />
+        <div>{filter?.from}</div>
       </Label>
       <Line></Line>
       <Label>
-        <input type="text" value={filter?.to} />
+        <div>{filter?.to}</div>
       </Label>
       <Line></Line>
       <Label>
-        <input type="text" value={filter?.radius} />
+        <div>{filter?.radius}</div>
       </Label>
     </RoadTripBarSection>
   );

@@ -6,7 +6,7 @@ import paths from "../utilities/pathnames";
 import MiniSearch from "../pages/landing-page/search-bar/mini-search-bar";
 
 // Styles
-import { Logo, Navigation, RightSection } from "./Header.styles";
+import { Logo, Navigation, RightSection } from "./header.styles";
 import { HeaderType } from "../pages/landing-page/landing-section";
 
 const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {

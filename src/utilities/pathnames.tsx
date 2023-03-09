@@ -19,6 +19,10 @@ const pathnames = {
     path: "/sign-in",
     title: "Sign in",
   },
+  search: {
+    path: "/search",
+    title: "Search page",
+  },
 };
 
 export default pathnames;
