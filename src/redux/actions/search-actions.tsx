@@ -4,7 +4,7 @@ const setFilter = (filter: {
   where: string;
   from: string;
   to: string;
-  radius: string;
+  radius: number;
 }) => ({
   type: SET_FILTER,
   payload: {

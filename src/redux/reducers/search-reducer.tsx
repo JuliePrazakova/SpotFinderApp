@@ -4,14 +4,14 @@ type AppState = {
   where: string;
   from: string;
   to: string;
-  radius: string;
+  radius: number;
 };
 
 const initialState: AppState = {
   where: "",
   from: "",
   to: "",
-  radius: "",
+  radius: 0,
 };
 
 export const searchSlice = createSlice({

@@ -22,7 +22,7 @@ export type SearchItemType = {
   where: string;
   from: string;
   to: string;
-  radius: string;
+  radius: number;
 };
 
 const Search: React.FunctionComponent = () => {
@@ -73,7 +73,7 @@ const OneWayBar = () => {
     where: "",
     from: "",
     to: "",
-    radius: "",
+    radius: 0,
   });
 
   const dispatch = useDispatch();
@@ -129,7 +129,7 @@ const RoadTripBar = () => {
     where: "",
     from: "",
     to: "",
-    radius: "",
+    radius: 0,
   });
 
   const dispatch = useDispatch();
