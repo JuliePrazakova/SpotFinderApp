@@ -1,29 +1,30 @@
 import { useIntl } from "react-intl";
 import messages from "../../Messages";
 import * as React from "react";
-import Tour from "../adventures-page/tour/tour";
+import MiniTour from "../adventures-page/tour/tour-small";
 import Data from "../../data/tours.json";
 import Companies from "../../data/companies.json";
+import paths from "../../utilities/pathnames";
 
 // Styles
-import { Wrapper } from "../landing-page/landing-section.styles";
-import { Box } from "../adventures-page/adventures-page.styles";
 //import { Button } from "../../App.styles";
+import { Wrapper } from "./map-page.styles";
 import {
   Title,
   Address,
   ShortDescription,
-  LongDescription,
   TopSection,
-  MiddleSection,
   Subtitle,
-  LeftBox,
   Grid,
-  LeftSide,
+  LowerSection,
   MainImg,
-} from "../adventures-page/adventure.styles";
+  ButtonSection,
+} from "./map-page.styles";
 import { Icon } from "semantic-ui-react";
-import { MapSearchType } from "./map-page";
+import { Link } from "react-router-dom";
+import { Button } from "../../App.styles";
+// import { MapSearchType } from "./map-page";
+// import { useSelector } from "react-redux";
 
 export type TourItem = {
   id: string;
@@ -44,51 +45,56 @@ export type TourItem = {
 const tours = Data.tours;
 const companies = Companies.companies;
 
-export type MapSearchProps = {
-  mapSearch: MapSearchType;
-};
-
-const Company: React.FunctionComponent<MapSearchProps> = ({ mapSearch }) => {
+const Company: React.FunctionComponent = () => {
   const intl = useIntl();
-  const company = companies.find((com) => com.id === mapSearch.id);
+  // const mapSearch = useSelector((state: { map: MapSearchType }) => state.map);
+
+  const company = companies.find((com) => com.id === "1");
 
   return (
     <>
-      <Wrapper>
-        <Box>
+      {company && (
+        <Wrapper>
+          <MainImg>
+            <img src={company?.image1} alt={company?.name} />
+          </MainImg>
           <TopSection>
-            <LeftSide>
-              <MainImg>
-                <img src={company?.image1} alt={company?.name} />
-              </MainImg>
-              <Title>{company?.name}</Title>
-              <Address>
-                <Icon name="marker" />
-                {company?.street}, {company?.zip} {company?.city}
-              </Address>
-              <ShortDescription>{company?.descShort}</ShortDescription>
-              <LongDescription>{company?.descLong}</LongDescription>
-            </LeftSide>
+            <Title>{company?.name}</Title>
+            <Address>
+              <Icon name="marker" />
+              {company?.street}, {company?.zip} {company?.city}
+            </Address>
+            <ShortDescription>{company?.descShort}</ShortDescription>
           </TopSection>
 
-          <MiddleSection>
-            <LeftBox>
-              <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
-              <Grid>
-                {tours?.map((tours) => (
-                  <div key={tours.id}>
-                    {tours.companyId === company?.id ? (
-                      <Tour tour={tours} btn={false} />
-                    ) : (
-                      ""
-                    )}
-                  </div>
-                ))}
-              </Grid>
-            </LeftBox>
-          </MiddleSection>
-        </Box>
-      </Wrapper>
+          <LowerSection>
+            <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
+            <Grid>
+              {tours?.map((tours) => (
+                <div key={tours.id}>
+                  {tours.companyId === company.id ? (
+                    <MiniTour tour={tours} />
+                  ) : (
+                    ""
+                  )}
+                </div>
+              ))}
+            </Grid>
+          </LowerSection>
+          <ButtonSection>
+            <Button>
+              <Link
+                to={paths["adventure-detail"].path.replace(
+                  ":companyId",
+                  company.id
+                )}
+              >
+                {intl.formatMessage(messages.learnMore)}
+              </Link>
+            </Button>
+          </ButtonSection>
+        </Wrapper>
+      )}
     </>
   );
 };

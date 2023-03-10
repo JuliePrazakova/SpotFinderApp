@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "../../partials/header";
+import Company from "./company";
 import Map from "./map";
 //import Company from "./company";
 //import messages from "../../../Messages";
@@ -10,6 +11,7 @@ import Map from "./map";
 // Types
 
 // Styles
+import { Section } from "./map-page.styles";
 //import { useSelector } from "react-redux";
 
 export type MapSearchType = {
@@ -20,7 +22,10 @@ const MapPage: React.FunctionComponent = () => {
   return (
     <div>
       <Header visible={true} />
-      <Map />
+      <Section>
+        <Company />
+        <Map />
+      </Section>
     </div>
   );
 };

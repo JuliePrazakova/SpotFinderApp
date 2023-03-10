@@ -114,9 +114,9 @@ const Map = () => {
     <>
       {cityCoordinates ? (
         <MapContainer
-          style={{ height: "1000px" }}
+          style={{ height: "93vh", float: "right", width: "100%" }}
           center={cityCoordinates}
-          zoom={13}
+          zoom={11}
         >
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
