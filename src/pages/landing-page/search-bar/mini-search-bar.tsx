@@ -1,6 +1,4 @@
-import React, { useState } from "react";
-import messages from "../../../Messages";
-import { useIntl } from "react-intl";
+import React from "react";
 
 import { SearchItemType } from "./search-bar";
 import { useSelector } from "react-redux";
@@ -8,11 +6,11 @@ import { useSelector } from "react-redux";
 // Styles
 import { Icon, Search } from "semantic-ui-react";
 import {
-  SearchBar,
-  Line,
-  Label,
-  RoadTripBarSection,
-  OneWayBarSection,
+  SearchBarMini,
+  LineMini,
+  RoadTripBarSectionMini,
+  OneWayBarSectionMini,
+  SearchIcon,
 } from "./search-bar.styles";
 
 type SearchItemProps = {
@@ -20,15 +18,12 @@ type SearchItemProps = {
 };
 
 const TopSearchBar: React.FunctionComponent = () => {
-  const [oneWay] = useState(false);
-  const [roadTrip] = useState(false);
   const search = useSelector(
     (state: { search: SearchItemType }) => state.search
   );
 
-  // Check if the `search` slice state exists
   if (!search) {
-    return null; // or a loading indicator
+    return null;
   }
 
   const filter = {
@@ -37,63 +32,53 @@ const TopSearchBar: React.FunctionComponent = () => {
     to: search.to,
     radius: search.radius,
   };
-  console.log(search);
 
   return (
     <div>
-      {filter.where || filter.from || filter.to || filter.radius ? (
-        <Search placeholder="Search..." />
-      ) : (
-        <SearchBar>
-          {oneWay && <OneWayBar filter={filter} />}
-          {roadTrip && <RoadTripBar filter={filter} />}
-          <div>
+      {filter.where ? (
+        <SearchBarMini>
+          <OneWayBar filter={filter} />
+          <SearchIcon>
             <Icon name="search" />
-          </div>
-        </SearchBar>
+          </SearchIcon>
+        </SearchBarMini>
+      ) : filter.from && filter.to ? (
+        <SearchBarMini>
+          <RoadTripBar filter={filter} />
+          <SearchIcon>
+            <Icon name="search" />
+          </SearchIcon>
+        </SearchBarMini>
+      ) : (
+        <Search placeholder="Search..." />
       )}
     </div>
   );
 };
 
 const OneWayBar: React.FC<SearchItemProps> = ({ filter }) => {
-  const intl = useIntl();
-
   return (
-    <OneWayBarSection>
-      <Label>
-        {intl.formatMessage(messages.where)}:
-        <input type="text" value={filter?.where} />
-      </Label>
-      <Line></Line>
-      <Label>
-        {intl.formatMessage(messages.radius)}:
-        <input type="text" value={filter?.radius} />
-      </Label>
-    </OneWayBarSection>
+    <OneWayBarSectionMini>
+      <div>{filter?.where}</div>
+      <LineMini></LineMini>
+      <div>{filter?.radius}</div>
+    </OneWayBarSectionMini>
   );
 };
 
 const RoadTripBar: React.FC<SearchItemProps> = ({ filter }) => {
-  const intl = useIntl();
-
   return (
-    <RoadTripBarSection>
-      <Label>
-        {intl.formatMessage(messages.from)}:
-        <input type="text" value={filter?.from} />
-      </Label>
-      <Line></Line>
-      <Label>
-        {intl.formatMessage(messages.to)}:
-        <input type="text" value={filter?.to} />
-      </Label>
-      <Line></Line>
-      <Label>
-        {intl.formatMessage(messages.radius)}:
-        <input type="text" value={filter?.radius} />
-      </Label>
-    </RoadTripBarSection>
+    <RoadTripBarSectionMini>
+      <div>{filter?.from}</div>
+
+      <LineMini></LineMini>
+
+      <div>{filter?.to}</div>
+
+      <LineMini></LineMini>
+
+      <div>{filter?.radius}</div>
+    </RoadTripBarSectionMini>
   );
 };
 

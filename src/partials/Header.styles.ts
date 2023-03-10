@@ -2,9 +2,11 @@ import styled from "styled-components";
 
 export const Navigation = styled.div({
   width: "80%",
+  display: "flex",
   margin: "auto",
   overflow: "hidden",
   backgroundColor: "white",
+  justifyContent: "space-between",
   fontFamily: "Open Sans, serif",
   verticalAlign: "middle",
   [`> a`]: {
@@ -21,7 +23,7 @@ export const RightSection = styled.div({
   float: "right",
   height: "65px",
   display: "flex",
-
+  marginRight: "0px",
   [`> div, i`]: {
     color: "#98475b",
     height: "20px",

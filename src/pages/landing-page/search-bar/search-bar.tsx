@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 import { useDispatch } from "react-redux";
+import paths from "../../../utilities/pathnames";
 import { setFilter } from "../../../redux/actions/search-actions";
 
 // Styles
@@ -11,13 +13,16 @@ import {
   Line,
   TypeButton,
   Label,
+  RoadTripBarSection,
+  OneWayBarSection,
+  SearchBar,
 } from "./search-bar.styles";
 
 export type SearchItemType = {
   where: string;
   from: string;
   to: string;
-  radius: string;
+  radius: number;
 };
 
 const Search: React.FunctionComponent = () => {
@@ -52,15 +57,17 @@ const Search: React.FunctionComponent = () => {
           </button>
         </TypeButton>
       </Buttons>
-
-      {oneWay && <OneWayBar />}
-      {roadTrip && <RoadTripBar />}
+      <SearchBar>
+        {oneWay && <OneWayBar />}
+        {roadTrip && <RoadTripBar />}
+      </SearchBar>
     </div>
   );
 };
 
 const OneWayBar = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     where: "",
@@ -75,6 +82,7 @@ const OneWayBar = () => {
     console.log(formData);
     event.preventDefault();
     dispatch(setFilter(formData));
+    navigate(paths.search.path);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,7 +92,7 @@ const OneWayBar = () => {
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <OneWayBarSection onSubmit={handleSubmit}>
       <Label>
         {intl.formatMessage(messages.where)}:
         <input
@@ -105,14 +113,17 @@ const OneWayBar = () => {
         />
       </Label>
       <SearchButton>
-        <button type="submit">{intl.formatMessage(messages.search)}</button>
+        <div>
+          <button type="submit">{intl.formatMessage(messages.search)}</button>
+        </div>
       </SearchButton>
-    </form>
+    </OneWayBarSection>
   );
 };
 
 const RoadTripBar = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     where: "",
@@ -124,9 +135,9 @@ const RoadTripBar = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(formData);
     event.preventDefault();
     dispatch(setFilter(formData));
+    navigate(paths.search.path);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,7 +147,7 @@ const RoadTripBar = () => {
     });
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <RoadTripBarSection onSubmit={handleSubmit}>
       <Label>
         {intl.formatMessage(messages.from)}:
         <input
@@ -166,9 +177,12 @@ const RoadTripBar = () => {
           onChange={handleChange}
         />
       </Label>
-
-      <button type="submit">{intl.formatMessage(messages.search)}</button>
-    </form>
+      <SearchButton>
+        <div>
+          <button type="submit">{intl.formatMessage(messages.search)}</button>
+        </div>
+      </SearchButton>
+    </RoadTripBarSection>
   );
 };
 

@@ -1,5 +1,5 @@
-import Header from "../../partials/Header";
-import Footer from "../../partials/Footer";
+import Header from "../../partials/header";
+import Footer from "../../partials/footer";
 import { useIntl } from "react-intl";
 import { useParams } from "react-router-dom";
 import messages from "../../Messages";

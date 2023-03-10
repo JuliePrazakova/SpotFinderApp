@@ -10,7 +10,7 @@ import {
   LeftPart,
   MiddlePart,
   Icons,
-} from "./Footer.styles";
+} from "./footer.styles";
 
 const Footer: React.FunctionComponent = () => {
   const intl = useIntl();
