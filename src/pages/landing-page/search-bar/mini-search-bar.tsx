@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 // Styles
 import { Icon, Search } from "semantic-ui-react";
 import {
-  SearchBar,
-  Line,
-  Label,
-  RoadTripBarSection,
-  OneWayBarSection,
+  SearchBarMini,
+  LineMini,
+  RoadTripBarSectionMini,
+  OneWayBarSectionMini,
+  SearchIcon,
 } from "./search-bar.styles";
 
 type SearchItemProps = {
@@ -22,7 +22,6 @@ const TopSearchBar: React.FunctionComponent = () => {
     (state: { search: SearchItemType }) => state.search
   );
 
-  // Check if the `search` slice state exists
   if (!search) {
     return null;
   }
@@ -33,24 +32,23 @@ const TopSearchBar: React.FunctionComponent = () => {
     to: search.to,
     radius: search.radius,
   };
-  console.log("tohle je vysledek search: ", search);
 
   return (
     <div>
       {filter.where ? (
-        <SearchBar>
+        <SearchBarMini>
           <OneWayBar filter={filter} />
-          <div>
+          <SearchIcon>
             <Icon name="search" />
-          </div>
-        </SearchBar>
+          </SearchIcon>
+        </SearchBarMini>
       ) : filter.from && filter.to ? (
-        <SearchBar>
+        <SearchBarMini>
           <RoadTripBar filter={filter} />
-          <div>
+          <SearchIcon>
             <Icon name="search" />
-          </div>
-        </SearchBar>
+          </SearchIcon>
+        </SearchBarMini>
       ) : (
         <Search placeholder="Search..." />
       )}
@@ -60,33 +58,27 @@ const TopSearchBar: React.FunctionComponent = () => {
 
 const OneWayBar: React.FC<SearchItemProps> = ({ filter }) => {
   return (
-    <OneWayBarSection>
-      <Label>
-        <div>{filter?.where}</div>
-      </Label>
-      <Line></Line>
-      <Label>
-        <div>{filter?.radius}</div>
-      </Label>
-    </OneWayBarSection>
+    <OneWayBarSectionMini>
+      <div>{filter?.where}</div>
+      <LineMini></LineMini>
+      <div>{filter?.radius}</div>
+    </OneWayBarSectionMini>
   );
 };
 
 const RoadTripBar: React.FC<SearchItemProps> = ({ filter }) => {
   return (
-    <RoadTripBarSection>
-      <Label>
-        <div>{filter?.from}</div>
-      </Label>
-      <Line></Line>
-      <Label>
-        <div>{filter?.to}</div>
-      </Label>
-      <Line></Line>
-      <Label>
-        <div>{filter?.radius}</div>
-      </Label>
-    </RoadTripBarSection>
+    <RoadTripBarSectionMini>
+      <div>{filter?.from}</div>
+
+      <LineMini></LineMini>
+
+      <div>{filter?.to}</div>
+
+      <LineMini></LineMini>
+
+      <div>{filter?.radius}</div>
+    </RoadTripBarSectionMini>
   );
 };
 

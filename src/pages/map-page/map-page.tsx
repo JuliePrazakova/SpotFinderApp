@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "../../partials/header";
-import Map from "./Map";
+import Map from "./map";
 //import Company from "./company";
 //import messages from "../../../Messages";
 //import { useIntl } from "react-intl";

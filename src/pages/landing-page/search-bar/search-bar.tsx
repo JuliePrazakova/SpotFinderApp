@@ -73,7 +73,7 @@ const OneWayBar = () => {
     where: "",
     from: "",
     to: "",
-    radius: 0,
+    radius: "",
   });
 
   const dispatch = useDispatch();
@@ -129,7 +129,7 @@ const RoadTripBar = () => {
     where: "",
     from: "",
     to: "",
-    radius: 0,
+    radius: "",
   });
 
   const dispatch = useDispatch();
