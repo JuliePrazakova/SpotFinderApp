@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Divider } from "semantic-ui-react";
 import { Button } from "../../App.styles";
+import messages from "../../Messages";
+import { useIntl } from "react-intl";
 
 import { CartState } from "../../redux/reducers/cart-reducer";
 import CartItem from "./cart-item";
@@ -17,6 +19,7 @@ import {
   Input,
   Textarea,
   SubTitle,
+  TotalPrice,
 } from "./cart-page.styles";
 
 type ModalProps = {
@@ -26,11 +29,13 @@ type ModalProps = {
 };
 
 const OrderingForm: React.FC = () => {
+  const intl = useIntl();
+
   return (
     <Order>
-      <Button>Log in</Button>
-      <Divider horizontal>Or</Divider>
-      <SubTitle>Fill in</SubTitle>
+      <Button>{intl.formatMessage(messages.login)}</Button>
+      <Divider horizontal>{intl.formatMessage(messages.or)}</Divider>
+      <SubTitle>{intl.formatMessage(messages.fillIn)}</SubTitle>
       <form>
         <Group>
           <Input placeholder="First name" id="form-input-first-name" />
@@ -44,7 +49,7 @@ const OrderingForm: React.FC = () => {
           <Textarea placeholder="Message" />
         </Group>
         <Group>
-          <Button>Add to cart</Button>
+          <Button>{intl.formatMessage(messages.order)}</Button>
         </Group>
       </form>
     </Order>
@@ -52,6 +57,8 @@ const OrderingForm: React.FC = () => {
 };
 
 const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
+  const intl = useIntl();
+
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -65,7 +72,7 @@ const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.addEventListener("keydown", handleEscapeKey, false);
     return () => {
       document.removeEventListener("keydown", handleEscapeKey, false);
@@ -91,8 +98,11 @@ const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
               <CartItem item={item} />
             </div>
           ))}
-
           <Divider />
+          <TotalPrice>
+            <p>{intl.formatMessage(messages.total)}:</p>
+            <p>${cart.totalPrice}</p>
+          </TotalPrice>
 
           <OrderingForm />
         </ModalBody>

@@ -20,6 +20,7 @@ import {
   InstructionBox,
 } from "./adventures-page.styles";
 import { Search, Divider } from "semantic-ui-react";
+import Tour from "./tour/tour";
 
 const tours = Data.tours;
 
@@ -83,6 +84,7 @@ const AdventuresPage: React.FunctionComponent = () => {
             <Grid>
               {tours?.map((tours) => (
                 <div key={tours.id}>
+                  <Tour tour={tours} btn={true} />
                   <Divider section />
                 </div>
               ))}

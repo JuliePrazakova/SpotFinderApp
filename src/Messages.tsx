@@ -129,4 +129,36 @@ export default defineMessages({
     id: "select",
     defaultMessage: "Select",
   },
+  when: {
+    id: "when",
+    defaultMessage: "When",
+  },
+  people: {
+    id: "people",
+    defaultMessage: "People",
+  },
+  total: {
+    id: "total",
+    defaultMessage: "Total",
+  },
+  login: {
+    id: "login",
+    defaultMessage: "Log in",
+  },
+  or: {
+    id: "or",
+    defaultMessage: "OR",
+  },
+  fillIn: {
+    id: "fillIn",
+    defaultMessage: "Fill in",
+  },
+  order: {
+    id: "order",
+    defaultMessage: "Order",
+  },
+  ticketPrice: {
+    id: "ticketPrice",
+    defaultMessage: "Ticket price",
+  },
 });

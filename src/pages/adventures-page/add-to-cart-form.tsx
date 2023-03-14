@@ -78,7 +78,7 @@ const AddToCartForm: React.FunctionComponent<TourName> = ({ name, id }) => {
         </Form.Group>
         <Form.Group>
           <Form.Input
-            type="number"
+            type="time"
             name="time"
             value={formData.time}
             onChange={handleChange}
@@ -86,7 +86,7 @@ const AddToCartForm: React.FunctionComponent<TourName> = ({ name, id }) => {
             placeholder="03. 03. 2023"
           />
           <Form.Input
-            type="number"
+            type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}

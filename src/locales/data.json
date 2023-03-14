@@ -31,6 +31,14 @@
       "to": "To",
       "duration": "Duration",
       "pricePerPerson": "From {price}€ per person",
-      "select": "Select"
+      "select": "Select",
+      "when": "When",
+      "people": "People",
+      "total": "Total",
+      "login": "Log in",
+      "or": "OR",
+      "fillIn": "Fill in",
+      "order": "Order",
+      "ticketPrice": "Ticket price"
      }
 }  

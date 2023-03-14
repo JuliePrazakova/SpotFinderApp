@@ -30,7 +30,7 @@ export type TourItem = {
 export type TourProps = {
   tour: TourItem;
   btn: boolean;
-  onData: (data: { name: string; id: string }) => void;
+  onData?: (data: { name: string; id: string }) => void;
 };
 
 const CategoryList: React.FunctionComponent<TourProps> = ({
@@ -46,7 +46,9 @@ const CategoryList: React.FunctionComponent<TourProps> = ({
       name: tour.name,
       id: tour.id,
     };
-    onData(data);
+    if (onData) {
+      onData(data);
+    }
   };
 
   return (
