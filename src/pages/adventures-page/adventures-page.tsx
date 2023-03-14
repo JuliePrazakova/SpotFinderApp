@@ -2,8 +2,7 @@ import Header from "../../partials/header";
 import Footer from "../../partials/footer";
 import { useIntl } from "react-intl";
 import messages from "../../Messages";
-import * as React from "react";
-import Tour from "./tour/tour";
+import React from "react";
 import Data from "../../data/tours.json";
 
 // Styles
@@ -84,7 +83,6 @@ const AdventuresPage: React.FunctionComponent = () => {
             <Grid>
               {tours?.map((tours) => (
                 <div key={tours.id}>
-                  <Tour tour={tours} btn={true} />
                   <Divider section />
                 </div>
               ))}

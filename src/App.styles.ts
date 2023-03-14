@@ -1,16 +1,17 @@
 import styled from "styled-components";
 
-export const Button = styled.div({
+export const Button = styled.button({
   background: "#98475b",
   color: "white",
   fontWeight: "100",
+  fontFamily: "Montserrat",
   cursor: "pointer",
   display: "inline-block",
   minHeight: "1em",
   outline: "0",
   border: "none",
   verticalAlign: "baseline",
-  margin: "auto 0.25em 0 0",
+  margin: "auto 0 0 0",
   padding: "0.78571429em 1.5em 0.78571429em",
   textTransform: "none",
   textShadow: "none",

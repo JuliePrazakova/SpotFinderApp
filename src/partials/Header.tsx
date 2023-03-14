@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import messages from "../Messages";
 import { useIntl } from "react-intl";
@@ -8,9 +8,19 @@ import MiniSearch from "../pages/landing-page/search-bar/mini-search-bar";
 // Styles
 import { Logo, Navigation, RightSection } from "./header.styles";
 import { HeaderType } from "../pages/landing-page/landing-section";
+import Modal from "../pages/cart-page/cart-page";
 
 const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const intl = useIntl();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <Navigation>
@@ -39,10 +49,17 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
             {intl.formatMessage(messages.signIn)}
           </Link>
         </div>
-        <i className="cart plus large icon"></i>
+        <button onClick={handleOpenModal}>
+          <i className="cart plus large icon"></i>
+        </button>
         <i className="facebook f large icon"></i>
         <i className="instagram large icon"></i>
       </RightSection>
+      <Modal
+        title="Shopping cart"
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </Navigation>
   );
 };
