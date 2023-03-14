@@ -10,7 +10,7 @@ export const Button = styled.div({
   outline: "0",
   border: "none",
   verticalAlign: "baseline",
-  margin: "auto 0.25em 0 0",
+  margin: "auto 0 0 0",
   padding: "0.78571429em 1.5em 0.78571429em",
   textTransform: "none",
   textShadow: "none",

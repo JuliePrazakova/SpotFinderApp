@@ -5,7 +5,7 @@ export type OrderItem = {
   tour: TourItem;
   quantity: number;
 };
-type CartState = {
+export type CartState = {
   itemsList: Array<OrderItem>;
   totalQuantity: number;
   totalPrice: number;
