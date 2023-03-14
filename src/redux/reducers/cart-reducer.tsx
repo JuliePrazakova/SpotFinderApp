@@ -4,6 +4,8 @@ import { TourItem } from "../../pages/adventures-page/tour/tour";
 export type OrderItem = {
   tour: TourItem;
   quantity: number;
+  time: number;
+  date: number;
 };
 export type CartState = {
   itemsList: Array<OrderItem>;
@@ -27,6 +29,7 @@ export const cartSlice = createSlice({
       const existingOrder = state.itemsList.find(
         (order) => order.tour.id === newOrder.tour.id
       );
+      console.log("tadyyyyyy je redux", newOrder);
       if (existingOrder) {
         existingOrder.quantity += newOrder.quantity;
         state.totalPrice += newOrder.tour.ticketPrice * newOrder.quantity;
@@ -34,6 +37,8 @@ export const cartSlice = createSlice({
         state.itemsList.push({
           tour: newOrder.tour,
           quantity: newOrder.quantity,
+          time: newOrder.time,
+          date: newOrder.date,
         });
         state.totalQuantity = 1;
         state.totalPrice = newOrder.tour.ticketPrice * newOrder.quantity;

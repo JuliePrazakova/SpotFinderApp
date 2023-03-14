@@ -3,7 +3,7 @@ import Footer from "../../partials/footer";
 import { useIntl } from "react-intl";
 import { useParams } from "react-router-dom";
 import messages from "../../Messages";
-import * as React from "react";
+import React, { useState } from "react";
 import Tour from "./tour/tour";
 import Data from "../../data/tours.json";
 import Companies from "../../data/companies.json";
@@ -11,14 +11,12 @@ import Companies from "../../data/companies.json";
 // Styles
 import { Wrapper } from "../landing-page/landing-section.styles";
 import { Box } from "./adventures-page.styles";
-import { Button } from "../../App.styles";
 import {
   Title,
   Address,
   ShortDescription,
   LongDescription,
   TopSection,
-  OrderForm,
   MiddleSection,
   Subtitle,
   LeftBox,
@@ -29,7 +27,8 @@ import {
   MainImg,
   SideImgs,
 } from "./adventure.styles";
-import { Form, Icon } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
+import AddToCartForm from "./add-to-cart-form";
 
 export type TourItem = {
   id: string;
@@ -58,6 +57,13 @@ const Adventure: React.FunctionComponent = () => {
   const intl = useIntl();
   const { companyId } = useParams<RouteParams>();
   const company = companies.find((com) => com.id === companyId);
+  const [tour, setTour] = useState("");
+  const [id, setId] = useState("");
+
+  const handleData = (data: { name: string; id: string }) => {
+    setTour(data.name);
+    setId(data.id);
+  };
 
   return (
     <>
@@ -93,7 +99,7 @@ const Adventure: React.FunctionComponent = () => {
                 {tours?.map((tours) => (
                   <div key={tours.id}>
                     {tours.companyId === company?.id ? (
-                      <Tour tour={tours} btn={false} />
+                      <Tour tour={tours} btn={false} onData={handleData} />
                     ) : (
                       ""
                     )}
@@ -101,25 +107,11 @@ const Adventure: React.FunctionComponent = () => {
                 ))}
               </Grid>
             </LeftBox>
-            <OrderForm>
-              <Form>
-                <Form.Group>
-                  <Form.Input
-                    label="Tour"
-                    placeholder="Long ride"
-                    id="form-input-first-name"
-                  />
-                  <Form.Input label="People" placeholder="1" />
-                </Form.Group>
-                <Form.Group>
-                  <Form.Input label="Date" placeholder="03. 03. 2023" />
-                  <Form.Input label="Time" placeholder="1" />
-                </Form.Group>
-
-                <Form.Field></Form.Field>
-                <Button>Add to cart</Button>
-              </Form>
-            </OrderForm>
+            {tour ? (
+              <AddToCartForm name={tour} id={id} />
+            ) : (
+              <AddToCartForm name={""} id={""} />
+            )}
           </MiddleSection>
         </Box>
       </Wrapper>

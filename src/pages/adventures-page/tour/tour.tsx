@@ -27,17 +27,27 @@ export type TourItem = {
   duration: string;
 };
 
-export type CategoryListProps = {
+export type TourProps = {
   tour: TourItem;
   btn: boolean;
+  onData: (data: { name: string; id: string }) => void;
 };
 
-const CategoryList: React.FunctionComponent<CategoryListProps> = ({
+const CategoryList: React.FunctionComponent<TourProps> = ({
   tour,
   btn,
+  onData,
 }) => {
   const intl = useIntl();
   const price = tour.ticketPrice;
+
+  const sendDataToParent = () => {
+    const data = {
+      name: tour.name,
+      id: tour.id,
+    };
+    onData(data);
+  };
 
   return (
     <Tour>
@@ -72,19 +82,22 @@ const CategoryList: React.FunctionComponent<CategoryListProps> = ({
           <p>{intl.formatMessage(messages.pricePerPerson, { price })}</p>
         </TextBox>
       </TourBox>
-
-      <Button>
-        <Link
-          to={paths["adventure-detail"].path.replace(
-            ":companyId",
-            tour.companyId
-          )}
-        >
-          {btn
-            ? intl.formatMessage(messages.learnMore)
-            : intl.formatMessage(messages.select)}
-        </Link>
-      </Button>
+      {btn ? (
+        <Button>
+          <Link
+            to={paths["adventure-detail"].path.replace(
+              ":companyId",
+              tour.companyId
+            )}
+          >
+            {intl.formatMessage(messages.learnMore)}
+          </Link>
+        </Button>
+      ) : (
+        <Button onClick={sendDataToParent}>
+          {intl.formatMessage(messages.select)}
+        </Button>
+      )}{" "}
     </Tour>
   );
 };

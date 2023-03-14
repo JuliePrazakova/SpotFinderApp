@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
-export const Button = styled.div({
+export const Button = styled.button({
   background: "#98475b",
   color: "white",
   fontWeight: "100",
+  fontFamily: "Montserrat",
   cursor: "pointer",
   display: "inline-block",
   minHeight: "1em",

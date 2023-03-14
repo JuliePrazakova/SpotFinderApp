@@ -34,6 +34,12 @@ export const RightSection = styled.div({
       color: "#98475b",
     },
   },
+  [`> button`]: {
+    background: "none",
+    border: "none",
+    width: "fit-content",
+    height: "fit-content",
+  },
 });
 
 export const Logo = styled.a({

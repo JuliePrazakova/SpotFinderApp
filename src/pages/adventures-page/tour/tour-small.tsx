@@ -24,11 +24,11 @@ export type TourItem = {
   duration: string;
 };
 
-export type CategoryListProps = {
+export type SmallTourProps = {
   tour: TourItem;
 };
 
-const CategoryList: React.FunctionComponent<CategoryListProps> = ({ tour }) => {
+const CategoryList: React.FunctionComponent<SmallTourProps> = ({ tour }) => {
   const intl = useIntl();
 
   return (
