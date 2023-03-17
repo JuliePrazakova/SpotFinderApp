@@ -7,6 +7,7 @@ import React, { useState } from "react";
 import Tour from "./tour/tour";
 import Data from "../../data/tours.json";
 import Companies from "../../data/companies.json";
+import AddToCartForm from "./add-to-cart-form";
 
 // Styles
 import { Wrapper } from "../landing-page/landing-section.styles";
@@ -21,14 +22,12 @@ import {
   Subtitle,
   LeftBox,
   Grid,
-  TopBar,
   LeftSide,
   RightSide,
   MainImg,
   SideImgs,
 } from "./adventure.styles";
 import { Icon } from "semantic-ui-react";
-import AddToCartForm from "./add-to-cart-form";
 
 export type TourItem = {
   id: string;
@@ -70,7 +69,6 @@ const Adventure: React.FunctionComponent = () => {
       <Header visible={true} />
       <Wrapper>
         <Box>
-          <TopBar></TopBar>
           <TopSection>
             <LeftSide>
               <Title>{company?.name}</Title>
@@ -95,6 +93,7 @@ const Adventure: React.FunctionComponent = () => {
           <MiddleSection>
             <LeftBox>
               <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
+
               <Grid>
                 {tours?.map((tours) => (
                   <div key={tours.id}>
@@ -107,6 +106,7 @@ const Adventure: React.FunctionComponent = () => {
                 ))}
               </Grid>
             </LeftBox>
+
             {tour ? (
               <AddToCartForm name={tour} id={id} />
             ) : (

@@ -1,13 +1,13 @@
 import { useIntl } from "react-intl";
 import messages from "../../Messages";
-import * as React from "react";
+import React from "react";
 import MiniTour from "../adventures-page/tour/tour-small";
 import Data from "../../data/tours.json";
 import Companies from "../../data/companies.json";
 import paths from "../../utilities/pathnames";
+import { Link } from "react-router-dom";
 
 // Styles
-//import { Button } from "../../App.styles";
 import { Wrapper } from "./map-page.styles";
 import {
   Title,
@@ -21,10 +21,7 @@ import {
   ButtonSection,
 } from "./map-page.styles";
 import { Icon } from "semantic-ui-react";
-import { Link } from "react-router-dom";
 import { Button } from "../../App.styles";
-// import { MapSearchType } from "./map-page";
-// import { useSelector } from "react-redux";
 
 export type TourItem = {
   id: string;
@@ -43,10 +40,12 @@ export type TourItem = {
 };
 
 const tours = Data.tours;
+
 const companies = Companies.companies;
 
 const Company: React.FunctionComponent = () => {
   const intl = useIntl();
+  // fetching data from DB
   // const mapSearch = useSelector((state: { map: MapSearchType }) => state.map);
 
   const company = companies.find((com) => com.id === "1");
@@ -58,6 +57,7 @@ const Company: React.FunctionComponent = () => {
           <MainImg>
             <img src={company?.image1} alt={company?.name} />
           </MainImg>
+
           <TopSection>
             <Title>{company?.name}</Title>
             <Address>
@@ -81,6 +81,7 @@ const Company: React.FunctionComponent = () => {
               ))}
             </Grid>
           </LowerSection>
+
           <ButtonSection>
             <Button>
               <Link

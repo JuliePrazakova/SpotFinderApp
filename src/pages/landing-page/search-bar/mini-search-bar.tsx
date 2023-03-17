@@ -1,5 +1,4 @@
 import React from "react";
-
 import { SearchItemType } from "./search-bar";
 import { useSelector } from "react-redux";
 
@@ -60,7 +59,9 @@ const OneWayBar: React.FC<SearchItemProps> = ({ filter }) => {
   return (
     <OneWayBarSectionMini>
       <div>{filter?.where}</div>
+
       <LineMini></LineMini>
+
       <div>{filter?.radius}</div>
     </OneWayBarSectionMini>
   );

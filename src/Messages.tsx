@@ -129,4 +129,60 @@ export default defineMessages({
     id: "select",
     defaultMessage: "Select",
   },
+  when: {
+    id: "when",
+    defaultMessage: "When",
+  },
+  people: {
+    id: "people",
+    defaultMessage: "People",
+  },
+  total: {
+    id: "total",
+    defaultMessage: "Total",
+  },
+  login: {
+    id: "login",
+    defaultMessage: "Log in",
+  },
+  logout: {
+    id: "logout",
+    defaultMessage: "Logout",
+  },
+  or: {
+    id: "or",
+    defaultMessage: "OR",
+  },
+  fillIn: {
+    id: "fillIn",
+    defaultMessage: "Fill in",
+  },
+  order: {
+    id: "order",
+    defaultMessage: "Order",
+  },
+  profile: {
+    id: "profile",
+    defaultMessage: "Profile",
+  },
+  ticketPrice: {
+    id: "ticketPrice",
+    defaultMessage: "Ticket price",
+  },
+  myOrders: {
+    id: "myOrders",
+    defaultMessage: "My orders",
+  },
+  roadtrips: {
+    id: "roadtrips",
+    defaultMessage: "Roadtrips",
+  },
+  loading: {
+    id: "loading",
+    defaultMessage: "Loading...",
+  },
+  contactTitle: {
+    id: "contactTitle",
+    defaultMessage: "Need help with planning your trip? Let us know!",
+  },
 });

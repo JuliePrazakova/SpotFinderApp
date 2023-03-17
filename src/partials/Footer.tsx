@@ -22,7 +22,9 @@ const Footer: React.FunctionComponent = () => {
           <span>{intl.formatMessage(messages.copywrite)}</span>
           <div>{intl.formatMessage(messages.privacyPolicy)}</div>
         </LeftPart>
+
         <Line></Line>
+
         <MiddlePart>
           <span>{intl.formatMessage(messages.contactUs)}</span>
           <div>
@@ -34,7 +36,9 @@ const Footer: React.FunctionComponent = () => {
             <div>{intl.formatMessage(messages.email)}</div>
           </div>
         </MiddlePart>
+
         <Line></Line>
+
         <Icons>
           <i className="facebook f large icon"></i>
           <i className="instagram large icon"></i>

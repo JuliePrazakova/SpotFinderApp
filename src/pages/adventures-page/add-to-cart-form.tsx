@@ -1,10 +1,12 @@
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/reducers/cart-reducer";
+import Data from "../../data/tours.json";
+
+// Styles
 import { Button } from "../../App.styles";
 import { OrderForm } from "./adventure.styles";
 import React, { useState, useEffect } from "react";
 import { Form } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/reducers/cart-reducer";
-import Data from "../../data/tours.json";
 
 export type TourName = {
   name: string;
@@ -78,7 +80,7 @@ const AddToCartForm: React.FunctionComponent<TourName> = ({ name, id }) => {
         </Form.Group>
         <Form.Group>
           <Form.Input
-            type="number"
+            type="time"
             name="time"
             value={formData.time}
             onChange={handleChange}
@@ -86,7 +88,7 @@ const AddToCartForm: React.FunctionComponent<TourName> = ({ name, id }) => {
             placeholder="03. 03. 2023"
           />
           <Form.Input
-            type="number"
+            type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}

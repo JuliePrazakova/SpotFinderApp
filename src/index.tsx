@@ -6,17 +6,24 @@ import { IntlProvider } from "react-intl";
 import { Provider } from "react-redux";
 import store from "./store";
 import messages from "./locales/data.json";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 export const locale = "en";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Auth0Provider
+    domain="dev-03qlmfn2jnvrnr2e.eu.auth0.com"
+    clientId="fbkjQtHzYtjd62nVsHDGRbLn3o7eADQi"
+    authorizationParams={{
+      redirect_uri: window.location.origin,
+    }}
+  >
     <Provider store={store}>
       <IntlProvider locale={locale} messages={messages[locale]}>
         <App />
       </IntlProvider>
     </Provider>
-  </React.StrictMode>,
+  </Auth0Provider>,
   document.getElementById("root")
 );
 

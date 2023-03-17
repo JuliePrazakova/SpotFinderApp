@@ -6,6 +6,7 @@ import Adventure from "./pages/adventures-page/adventure";
 import MapPage from "./pages/map-page/map-page";
 import "semantic-ui-css/semantic.min.css";
 import paths from "./utilities/pathnames";
+import Profile from "./pages/login-components/profile-page";
 
 const Application: React.FunctionComponent = () => {
   return (
@@ -15,6 +16,7 @@ const Application: React.FunctionComponent = () => {
         <Route path={paths.adventures.path} element={<AdventuresPage />} />
         <Route path={paths["adventure-detail"].path} element={<Adventure />} />
         <Route path={paths.search.path} element={<MapPage />} />
+        <Route path={paths.profile.path} element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

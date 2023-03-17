@@ -11,13 +11,9 @@ const pathnames = {
     path: "/adventures/detail/:companyId",
     title: "Adventure",
   },
-  contact: {
-    path: "/contact-us",
-    title: "Contact us",
-  },
-  signIn: {
-    path: "/sign-in",
-    title: "Sign in",
+  profile: {
+    path: "/profile",
+    title: "Profile",
   },
   search: {
     path: "/search",

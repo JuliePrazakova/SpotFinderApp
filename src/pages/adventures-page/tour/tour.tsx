@@ -4,8 +4,6 @@ import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 import paths from "../../../utilities/pathnames";
 
-// Types
-
 // Styles
 import { Tour, TourBox, TextBox } from "../adventures-page.styles";
 import { Button } from "../../../App.styles";
@@ -30,7 +28,7 @@ export type TourItem = {
 export type TourProps = {
   tour: TourItem;
   btn: boolean;
-  onData: (data: { name: string; id: string }) => void;
+  onData?: (data: { name: string; id: string }) => void;
 };
 
 const CategoryList: React.FunctionComponent<TourProps> = ({
@@ -46,7 +44,9 @@ const CategoryList: React.FunctionComponent<TourProps> = ({
       name: tour.name,
       id: tour.id,
     };
-    onData(data);
+    if (onData) {
+      onData(data);
+    }
   };
 
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
+import paths from "../../../utilities/pathnames";
 
 // Types
 import { CategoryItemType } from "../landing-section";
@@ -9,7 +10,6 @@ import { CategoryItemType } from "../landing-section";
 // Styles
 import { CategorySection, Text } from "./categories.styles";
 import { Button } from "../../../App.styles";
-import paths from "../../../utilities/pathnames";
 
 export type CategoryItemProps = {
   category: CategoryItemType;

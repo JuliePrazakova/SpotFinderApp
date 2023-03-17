@@ -1,25 +1,41 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import messages from "../Messages";
 import { useIntl } from "react-intl";
 import paths from "../utilities/pathnames";
 import MiniSearch from "../pages/landing-page/search-bar/mini-search-bar";
+import LoginButton from "../pages/login-components/login-button";
+import LogoutButton from "../pages/login-components/logout-button";
+import ModalCart from "../pages/cart-page/cart-page";
+import ModalContactForm from "../pages/landing-page/contact-us/contact-modal";
 
 // Styles
 import { Logo, Navigation, RightSection } from "./header.styles";
 import { HeaderType } from "../pages/landing-page/landing-section";
-import Modal from "../pages/cart-page/cart-page";
 
 const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const intl = useIntl();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isAuthenticated } = useAuth0();
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+
+  const handleCloseContactForm = () => {
+    setIsContactFormOpen(false);
   };
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+
+  const handleOpenContactForm = () => {
+    setIsContactFormOpen(true);
+  };
+
+  const handleCloseCart = () => {
+    setIsCartOpen(false);
+  };
+
+  const handleOpenCart = () => {
+    setIsCartOpen(true);
   };
 
   return (
@@ -40,25 +56,43 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
           </Link>
         </div>
         <div>
-          <Link to={paths.contact.path}>
+          <button onClick={handleOpenContactForm}>
             {intl.formatMessage(messages.contactUs)}
-          </Link>
+          </button>
         </div>
-        <div>
-          <Link to={paths.signIn.path}>
-            {intl.formatMessage(messages.signIn)}
-          </Link>
-        </div>
-        <button onClick={handleOpenModal}>
+
+        <div> {!isAuthenticated && <LoginButton />}</div>
+
+        {isAuthenticated && (
+          <>
+            <div>
+              <Link to={paths.profile.path}>
+                {intl.formatMessage(messages.profile)}
+              </Link>
+            </div>
+            <div>
+              <LogoutButton />
+            </div>
+          </>
+        )}
+
+        <button onClick={handleOpenCart}>
           <i className="cart plus large icon"></i>
         </button>
         <i className="facebook f large icon"></i>
         <i className="instagram large icon"></i>
       </RightSection>
-      <Modal
+
+      <ModalContactForm
+        title="Contact us"
+        isOpen={isContactFormOpen}
+        onClose={handleCloseContactForm}
+      />
+
+      <ModalCart
         title="Shopping cart"
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        isOpen={isCartOpen}
+        onClose={handleCloseCart}
       />
     </Navigation>
   );

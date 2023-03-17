@@ -1,28 +1,12 @@
 import React from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
+import { TourItem } from "./tour";
 
-// Types
 // Styles
 import { TextBox } from "../adventures-page.styles";
 import { MiniTour, TourTitle } from "../../map-page/map-page.styles";
 import { List } from "semantic-ui-react";
-
-export type TourItem = {
-  id: string;
-  company: string;
-  companyId: string;
-  name: string;
-  country: string;
-  city: string;
-  street: string;
-  zip: string;
-  descShort: string;
-  descLong: string;
-  ticketPrice: number;
-  image: string;
-  duration: string;
-};
 
 export type SmallTourProps = {
   tour: TourItem;

@@ -1,23 +1,70 @@
+import messages from "../../Messages";
+import { useIntl } from "react-intl";
+import React from "react";
+
 // Types
 import { OrderItem } from "../../redux/reducers/cart-reducer";
+
 // Styles
-import React from "react";
+import { List } from "semantic-ui-react";
+import {
+  MiniTour,
+  Image,
+  TextBox,
+  TourName,
+  PriceBox,
+  CompanyTitle,
+} from "./cart-page.styles";
 
 export type ItemProps = {
   item: OrderItem;
 };
 
-const CartItem: React.FunctionComponent<ItemProps> = ({ item }) => (
-  <div>
-    <div>
-      <h3>{item.tour.name}</h3>
-      <div className="information">
-        <p>Price: ${item.tour.ticketPrice}</p>
-        <p>Total: ${(item.quantity * item.tour.ticketPrice).toFixed(2)}</p>
-      </div>
-    </div>
-    <img src={item.tour.image} alt={item.tour.name} />
-  </div>
-);
+const CartItem: React.FunctionComponent<ItemProps> = ({ item }) => {
+  const intl = useIntl();
+
+  return (
+    <MiniTour>
+      <Image>
+        <img src={item.tour.image} alt={item.tour.name} />
+      </Image>
+      <TextBox>
+        <CompanyTitle>
+          <p>{item.tour.company}</p>
+        </CompanyTitle>
+        <TourName>
+          <p>{item.tour.name}</p>
+        </TourName>
+
+        <List>
+          <List.Item>
+            <List.Icon name="user outline" />
+            <List.Content>
+              {intl.formatMessage(messages.people)}: {item.quantity}
+            </List.Content>
+          </List.Item>
+
+          <List.Item>
+            <List.Icon name="clock outline" />
+            <List.Content>
+              {intl.formatMessage(messages.when)}: {item.date} {item.time}
+            </List.Content>
+          </List.Item>
+
+          <List.Item>
+            <List.Icon name="euro" />
+            <List.Content>
+              {intl.formatMessage(messages.ticketPrice)}: €
+              {item.tour.ticketPrice}
+            </List.Content>
+          </List.Item>
+        </List>
+      </TextBox>
+      <PriceBox>
+        {item.quantity} x €{item.tour.ticketPrice}
+      </PriceBox>
+    </MiniTour>
+  );
+};
 
 export default CartItem;

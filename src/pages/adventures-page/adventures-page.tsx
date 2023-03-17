@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import messages from "../../Messages";
 import React from "react";
 import Data from "../../data/tours.json";
+import Tour from "./tour/tour";
 
 // Styles
 import { Wrapper } from "../landing-page/landing-section.styles";
@@ -54,6 +55,7 @@ const Instruction = () => {
     </InstructionSection>
   );
 };
+
 const AdventuresPage: React.FunctionComponent = () => {
   const intl = useIntl();
 
@@ -83,6 +85,7 @@ const AdventuresPage: React.FunctionComponent = () => {
             <Grid>
               {tours?.map((tours) => (
                 <div key={tours.id}>
+                  <Tour tour={tours} btn={true} />
                   <Divider section />
                 </div>
               ))}

@@ -80,6 +80,7 @@ export const MiniTour = styled.div({
   },
   margin: "auto",
 });
+
 export const TourTitle = styled.div({
   display: "flex",
   justifyContent: "space-between",

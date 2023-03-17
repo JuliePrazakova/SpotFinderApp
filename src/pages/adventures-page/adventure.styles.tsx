@@ -68,14 +68,6 @@ export const TopSection = styled.div({
   borderBottom: "1px solid black",
 });
 
-export const TopBar = styled.div({
-  background: "red",
-  justifyContent: "center",
-  [` > div`]: {
-    margin: "auto",
-  },
-});
-
 export const LeftBox = styled.div({
   margin: "auto",
   display: "block",
