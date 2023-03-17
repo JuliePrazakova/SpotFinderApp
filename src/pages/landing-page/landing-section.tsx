@@ -6,6 +6,7 @@ import Search from "./search-bar/search-bar";
 import Header from "../../partials/header";
 import Footer from "../../partials/footer";
 import Categories from "./categories/categories";
+import Contact from "./contact-us/contact-section";
 
 // Styles
 import {
@@ -15,7 +16,6 @@ import {
   Title,
   MiddleSection,
 } from "./landing-section.styles";
-import Contact from "./contact-us/contact-section";
 
 export type CategoryItemType = {
   id: number;

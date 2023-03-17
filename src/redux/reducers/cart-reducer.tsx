@@ -7,12 +7,14 @@ export type OrderItem = {
   time: number;
   date: number;
 };
+
 export type CartState = {
   itemsList: Array<OrderItem>;
   totalQuantity: number;
   totalPrice: number;
   showCart: boolean;
 };
+
 const initialState: CartState = {
   itemsList: [],
   totalQuantity: 0,

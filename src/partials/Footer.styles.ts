@@ -21,6 +21,7 @@ export const Line = styled.span({
   height: "35px",
   margin: "auto",
 });
+
 export const MiddlePart = styled.span({
   textAlign: "center",
   [`> div`]: {
@@ -34,6 +35,7 @@ export const MiddlePart = styled.span({
     fontWeight: "700",
   },
 });
+
 export const LeftPart = styled.span({
   display: "block",
   float: "left",
@@ -45,6 +47,7 @@ export const LeftPart = styled.span({
     color: "lightgray",
   },
 });
+
 export const Icons = styled.span({
   marginTop: "20px",
   width: "120px",

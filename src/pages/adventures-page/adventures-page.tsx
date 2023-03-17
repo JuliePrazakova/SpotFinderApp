@@ -4,6 +4,7 @@ import { useIntl } from "react-intl";
 import messages from "../../Messages";
 import React from "react";
 import Data from "../../data/tours.json";
+import Tour from "./tour/tour";
 
 // Styles
 import { Wrapper } from "../landing-page/landing-section.styles";
@@ -20,7 +21,6 @@ import {
   InstructionBox,
 } from "./adventures-page.styles";
 import { Search, Divider } from "semantic-ui-react";
-import Tour from "./tour/tour";
 
 const tours = Data.tours;
 
@@ -55,6 +55,7 @@ const Instruction = () => {
     </InstructionSection>
   );
 };
+
 const AdventuresPage: React.FunctionComponent = () => {
   const intl = useIntl();
 

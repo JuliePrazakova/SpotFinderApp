@@ -1,10 +1,12 @@
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/reducers/cart-reducer";
+import Data from "../../data/tours.json";
+
+// Styles
 import { Button } from "../../App.styles";
 import { OrderForm } from "./adventure.styles";
 import React, { useState, useEffect } from "react";
 import { Form } from "semantic-ui-react";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../redux/reducers/cart-reducer";
-import Data from "../../data/tours.json";
 
 export type TourName = {
   name: string;

@@ -4,8 +4,8 @@ import React from "react";
 
 // Types
 import { OrderItem } from "../../redux/reducers/cart-reducer";
-// Styles
 
+// Styles
 import { List } from "semantic-ui-react";
 import {
   MiniTour,
@@ -15,6 +15,7 @@ import {
   PriceBox,
   CompanyTitle,
 } from "./cart-page.styles";
+
 export type ItemProps = {
   item: OrderItem;
 };
@@ -53,7 +54,6 @@ const CartItem: React.FunctionComponent<ItemProps> = ({ item }) => {
           <List.Item>
             <List.Icon name="euro" />
             <List.Content>
-              {"  "}
               {intl.formatMessage(messages.ticketPrice)}: €
               {item.tour.ticketPrice}
             </List.Content>

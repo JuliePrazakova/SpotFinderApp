@@ -1,12 +1,13 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Divider } from "semantic-ui-react";
-import { Button } from "../../App.styles";
 import messages from "../../Messages";
 import { useIntl } from "react-intl";
-
 import { CartState } from "../../redux/reducers/cart-reducer";
 import CartItem from "./cart-item";
+
+// Styles
+import { Divider } from "semantic-ui-react";
+import { Button } from "../../App.styles";
 import {
   ModalBody,
   ModalCloseButton,
@@ -34,7 +35,9 @@ const OrderingForm: React.FC = () => {
   return (
     <Order>
       <Button>{intl.formatMessage(messages.login)}</Button>
+
       <Divider horizontal>{intl.formatMessage(messages.or)}</Divider>
+
       <SubTitle>{intl.formatMessage(messages.fillIn)}</SubTitle>
       <form>
         <Group>
@@ -98,7 +101,9 @@ const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
               <CartItem item={item} />
             </div>
           ))}
+
           <Divider />
+
           <TotalPrice>
             <p>{intl.formatMessage(messages.total)}:</p>
             <p>${cart.totalPrice}</p>

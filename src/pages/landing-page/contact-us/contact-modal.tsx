@@ -23,6 +23,7 @@ const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
       onClose();
     }
   };
+
   const handleEscapeKey = (event: KeyboardEvent) => {
     if (event.key === "Escape") {
       onClose();

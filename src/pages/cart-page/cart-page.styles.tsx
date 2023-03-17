@@ -101,6 +101,7 @@ export const ModalHeader = styled.div({
   justifyContent: "space-between",
   marginBottom: "20px",
 });
+
 export const ModalCloseButton = styled.button({
   border: "none",
   background: "none",

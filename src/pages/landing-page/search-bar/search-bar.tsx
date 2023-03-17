@@ -37,6 +37,7 @@ const Search: React.FunctionComponent = () => {
     setRoadTrip(false);
     setToggleClass(true);
   }
+
   function changeRoadTrip() {
     setOneWay(false);
     setRoadTrip(true);
@@ -51,6 +52,7 @@ const Search: React.FunctionComponent = () => {
             {intl.formatMessage(messages.onePlace)}
           </button>
         </TypeButton>
+
         <TypeButton className={toggleClass ? "" : "active"}>
           <button onClick={changeRoadTrip}>
             {intl.formatMessage(messages.roadTrip)}
@@ -91,6 +93,7 @@ const OneWayBar = () => {
       [event.target.name]: event.target.value,
     });
   };
+
   return (
     <OneWayBarSection onSubmit={handleSubmit}>
       <Label>
@@ -102,7 +105,9 @@ const OneWayBar = () => {
           onChange={handleChange}
         />
       </Label>
+
       <Line></Line>
+
       <Label>
         {intl.formatMessage(messages.radius)}:
         <input
@@ -112,6 +117,7 @@ const OneWayBar = () => {
           onChange={handleChange}
         />
       </Label>
+
       <SearchButton>
         <div>
           <button type="submit">{intl.formatMessage(messages.search)}</button>
@@ -146,6 +152,7 @@ const RoadTripBar = () => {
       [event.target.name]: event.target.value,
     });
   };
+
   return (
     <RoadTripBarSection onSubmit={handleSubmit}>
       <Label>
@@ -157,7 +164,9 @@ const RoadTripBar = () => {
           onChange={handleChange}
         />
       </Label>
+
       <Line></Line>
+
       <Label>
         {intl.formatMessage(messages.to)}:
         <input
@@ -167,7 +176,9 @@ const RoadTripBar = () => {
           onChange={handleChange}
         />
       </Label>
+
       <Line></Line>
+
       <Label>
         {intl.formatMessage(messages.radius)}:
         <input
@@ -177,6 +188,7 @@ const RoadTripBar = () => {
           onChange={handleChange}
         />
       </Label>
+
       <SearchButton>
         <div>
           <button type="submit">{intl.formatMessage(messages.search)}</button>

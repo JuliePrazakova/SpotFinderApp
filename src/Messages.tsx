@@ -145,6 +145,10 @@ export default defineMessages({
     id: "login",
     defaultMessage: "Log in",
   },
+  logout: {
+    id: "logout",
+    defaultMessage: "Logout",
+  },
   or: {
     id: "or",
     defaultMessage: "OR",
@@ -157,8 +161,28 @@ export default defineMessages({
     id: "order",
     defaultMessage: "Order",
   },
+  profile: {
+    id: "profile",
+    defaultMessage: "Profile",
+  },
   ticketPrice: {
     id: "ticketPrice",
     defaultMessage: "Ticket price",
+  },
+  myOrders: {
+    id: "myOrders",
+    defaultMessage: "My orders",
+  },
+  roadtrips: {
+    id: "roadtrips",
+    defaultMessage: "Roadtrips",
+  },
+  loading: {
+    id: "loading",
+    defaultMessage: "Loading...",
+  },
+  contactTitle: {
+    id: "contactTitle",
+    defaultMessage: "Need help with planning your trip? Let us know!",
   },
 });

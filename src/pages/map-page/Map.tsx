@@ -9,6 +9,7 @@ import paths from "../../utilities/pathnames";
 
 const Map = () => {
   const navigate = useNavigate();
+
   const search = useSelector(
     (state: { search: SearchItemType }) => state.search
   );
@@ -23,6 +24,7 @@ const Map = () => {
     to: search.to,
     radius: search.radius,
   };
+
   const cityMarker = new L.Icon({
     iconUrl: "./images/marker-icon.png",
     iconSize: [30, 31],
@@ -35,8 +37,10 @@ const Map = () => {
   const [cityCoordinates, setCityCoordinates] = useState<
     [number, number] | undefined
   >();
+
   const [cityA, setCityA] = useState<[number, number] | undefined>();
   const [cityB, setCityB] = useState<[number, number] | undefined>();
+
   // const [routeCoordinates, setRouteCoordinates] =
   //   useState<[number, number][]>();
 
@@ -122,7 +126,9 @@ const Map = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
+
           <Marker position={cityCoordinates} icon={cityMarker} />
+
           <Circle
             center={cityCoordinates}
             radius={filter.radius * 1000}
@@ -145,6 +151,7 @@ const Map = () => {
             />
             {cityA && <Marker position={cityA} icon={cityMarker} />}
             {cityB && <Marker position={cityB} icon={cityMarker} />}
+
             <SetBounds />
           </MapContainer>
         )

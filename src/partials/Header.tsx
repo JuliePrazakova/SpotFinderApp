@@ -1,18 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 import messages from "../Messages";
 import { useIntl } from "react-intl";
 import paths from "../utilities/pathnames";
 import MiniSearch from "../pages/landing-page/search-bar/mini-search-bar";
 import LoginButton from "../pages/login-components/login-button";
 import LogoutButton from "../pages/login-components/logout-button";
-import { useAuth0 } from "@auth0/auth0-react";
+import ModalCart from "../pages/cart-page/cart-page";
+import ModalContactForm from "../pages/landing-page/contact-us/contact-modal";
 
 // Styles
 import { Logo, Navigation, RightSection } from "./header.styles";
 import { HeaderType } from "../pages/landing-page/landing-section";
-import ModalCart from "../pages/cart-page/cart-page";
-import ModalContactForm from "../pages/landing-page/contact-us/contact-modal";
 
 const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const intl = useIntl();
@@ -25,6 +25,7 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const handleCloseContactForm = () => {
     setIsContactFormOpen(false);
   };
+
   const handleOpenContactForm = () => {
     setIsContactFormOpen(true);
   };
@@ -32,6 +33,7 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const handleCloseCart = () => {
     setIsCartOpen(false);
   };
+
   const handleOpenCart = () => {
     setIsCartOpen(true);
   };
@@ -64,13 +66,16 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
         {isAuthenticated && (
           <>
             <div>
-              <Link to={paths.profile.path}>Profile</Link>
+              <Link to={paths.profile.path}>
+                {intl.formatMessage(messages.profile)}
+              </Link>
             </div>
             <div>
               <LogoutButton />
             </div>
           </>
         )}
+
         <button onClick={handleOpenCart}>
           <i className="cart plus large icon"></i>
         </button>

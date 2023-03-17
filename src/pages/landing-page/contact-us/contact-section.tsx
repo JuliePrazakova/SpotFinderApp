@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useIntl } from "react-intl";
-import { Box, ContactButton, ContactSection } from "./contact-section.styles";
 import messages from "../../../Messages";
 import Modal from "./contact-modal";
+
+// Styles
+import { Box, ContactButton, ContactSection } from "./contact-section.styles";
 
 const Contact = () => {
   const intl = useIntl();
@@ -11,6 +13,7 @@ const Contact = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -18,7 +21,7 @@ const Contact = () => {
   return (
     <ContactSection>
       <Box>
-        <div>Need help with planning your trip? Let us know!</div>
+        <div>{intl.formatMessage(messages.contactTitle)}</div>
         <ContactButton>
           <button onClick={handleOpenModal}>
             {intl.formatMessage(messages.contactUs)}

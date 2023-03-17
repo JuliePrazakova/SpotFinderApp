@@ -4,8 +4,6 @@ import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 import paths from "../../../utilities/pathnames";
 
-// Types
-
 // Styles
 import { Tour, TourBox, TextBox } from "../adventures-page.styles";
 import { Button } from "../../../App.styles";

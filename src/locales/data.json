@@ -36,9 +36,15 @@
       "people": "People",
       "total": "Total",
       "login": "Log in",
+      "logout": "Log out",
       "or": "OR",
       "fillIn": "Fill in",
       "order": "Order",
-      "ticketPrice": "Ticket price"
+      "ticketPrice": "Ticket price",
+      "profile": "Profile",
+      "orders": "My orders",
+      "loading": "Loading...",
+      "roadtrips": "Roadtrips",
+      "contactTitle": "Need help with planning your trip? Let us know!"
      }
 }  

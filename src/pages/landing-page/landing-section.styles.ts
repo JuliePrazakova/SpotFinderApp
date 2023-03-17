@@ -7,6 +7,7 @@ export const BackgroundCover = styled.div({
   margin: "0",
   color: "white",
 });
+
 export const Title = styled.div({
   width: "fit-content",
   margin: "0 0 30px 15%",
@@ -29,6 +30,7 @@ export const MiddleSection = styled.div({
     fontWeight: "600",
   },
 });
+
 export const Wrapper = styled.div({
   display: "flex",
   flexDirection: "column",
