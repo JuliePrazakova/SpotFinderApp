@@ -30,8 +30,10 @@ export const RightSection = styled.div({
     margin: "23px 10px 0 10px",
     cursor: "pointer",
     textDecoration: "none",
-    [`> a`]: {
+    [`> a, button`]: {
       color: "#98475b",
+      border: "none",
+      background: "none",
     },
   },
   [`> button`]: {

@@ -11,10 +11,6 @@ const pathnames = {
     path: "/adventures/detail/:companyId",
     title: "Adventure",
   },
-  contact: {
-    path: "/contact-us",
-    title: "Contact us",
-  },
   profile: {
     path: "/profile",
     title: "Profile",

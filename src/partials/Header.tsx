@@ -11,20 +11,29 @@ import { useAuth0 } from "@auth0/auth0-react";
 // Styles
 import { Logo, Navigation, RightSection } from "./header.styles";
 import { HeaderType } from "../pages/landing-page/landing-section";
-import Modal from "../pages/cart-page/cart-page";
+import ModalCart from "../pages/cart-page/cart-page";
+import ModalContactForm from "../pages/landing-page/contact-us/contact-modal";
 
 const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const intl = useIntl();
 
   const { isAuthenticated } = useAuth0();
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+  const handleCloseContactForm = () => {
+    setIsContactFormOpen(false);
   };
-  const handleOpenModal = () => {
-    setIsModalOpen(true);
+  const handleOpenContactForm = () => {
+    setIsContactFormOpen(true);
+  };
+
+  const handleCloseCart = () => {
+    setIsCartOpen(false);
+  };
+  const handleOpenCart = () => {
+    setIsCartOpen(true);
   };
 
   return (
@@ -45,9 +54,9 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
           </Link>
         </div>
         <div>
-          <Link to={paths.contact.path}>
+          <button onClick={handleOpenContactForm}>
             {intl.formatMessage(messages.contactUs)}
-          </Link>
+          </button>
         </div>
 
         <div> {!isAuthenticated && <LoginButton />}</div>
@@ -62,17 +71,23 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
             </div>
           </>
         )}
-        <button onClick={handleOpenModal}>
+        <button onClick={handleOpenCart}>
           <i className="cart plus large icon"></i>
         </button>
         <i className="facebook f large icon"></i>
         <i className="instagram large icon"></i>
       </RightSection>
 
-      <Modal
+      <ModalContactForm
+        title="Contact us"
+        isOpen={isContactFormOpen}
+        onClose={handleCloseContactForm}
+      />
+
+      <ModalCart
         title="Shopping cart"
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
+        isOpen={isCartOpen}
+        onClose={handleCloseCart}
       />
     </Navigation>
   );

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import messages from "../../Messages";
 import { useIntl } from "react-intl";
 import Data from "../../data/categories.json";
@@ -6,20 +6,16 @@ import Search from "./search-bar/search-bar";
 import Header from "../../partials/header";
 import Footer from "../../partials/footer";
 import Categories from "./categories/categories";
-import paths from "../../utilities/pathnames";
-import { Link } from "react-router-dom";
 
 // Styles
 import {
   Wrapper,
   Grid,
-  ContactSection,
   BackgroundCover,
   Title,
   MiddleSection,
-  Box,
-  ContactButton,
 } from "./landing-section.styles";
+import Contact from "./contact-us/contact-section";
 
 export type CategoryItemType = {
   id: number;
@@ -32,23 +28,6 @@ export type HeaderType = {
 };
 
 const categories = Data.categories;
-
-const Contact = () => {
-  const intl = useIntl();
-
-  return (
-    <ContactSection>
-      <Box>
-        <div>Need help with planning your trip? Let us know!</div>
-        <ContactButton>
-          <Link to={paths.contact.path}>
-            {intl.formatMessage(messages.contactUs)}
-          </Link>
-        </ContactButton>
-      </Box>
-    </ContactSection>
-  );
-};
 
 const LandingSection: React.FunctionComponent = () => {
   const intl = useIntl();
