@@ -15,9 +15,9 @@ const pathnames = {
     path: "/contact-us",
     title: "Contact us",
   },
-  signIn: {
-    path: "/sign-in",
-    title: "Sign in",
+  profile: {
+    path: "/profile",
+    title: "Profile",
   },
   search: {
     path: "/search",
