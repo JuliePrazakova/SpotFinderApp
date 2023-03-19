@@ -31,7 +31,7 @@ export type TourProps = {
   onData?: (data: { name: string; id: string }) => void;
 };
 
-const CategoryList: React.FunctionComponent<TourProps> = ({
+const TourComponent: React.FunctionComponent<TourProps> = ({
   tour,
   btn,
   onData,
@@ -102,4 +102,4 @@ const CategoryList: React.FunctionComponent<TourProps> = ({
   );
 };
 
-export default CategoryList;
+export default TourComponent;
