@@ -81,20 +81,6 @@ export const Input = styled.input({
   },
 });
 
-export const Textarea = styled.textarea({
-  width: "100%",
-  margin: "8px",
-  height: "80px",
-  border: "1px solid gray",
-  padding: "10px",
-  fontWeight: "200",
-  fontSize: "12px",
-  fontFamily: "Montserrat",
-  ":active": {
-    borderColor: "gray !important",
-  },
-});
-
 export const ModalHeader = styled.div({
   display: "flex",
   width: "100%",

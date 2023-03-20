@@ -28,7 +28,7 @@ export type TourItem = {
 export type TourProps = {
   tour: TourItem;
   btn: boolean;
-  onData?: (data: { name: string; id: string }) => void;
+  onData?: (data: { tour: TourItem }) => void;
 };
 
 const TourComponent: React.FunctionComponent<TourProps> = ({
@@ -41,8 +41,7 @@ const TourComponent: React.FunctionComponent<TourProps> = ({
 
   const sendDataToParent = () => {
     const data = {
-      name: tour.name,
-      id: tour.id,
+      tour: tour,
     };
     if (onData) {
       onData(data);

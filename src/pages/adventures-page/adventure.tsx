@@ -71,8 +71,7 @@ const Adventure: React.FunctionComponent = () => {
   const intl = useIntl();
   const { companyId } = useParams<RouteParams>();
 
-  const [tour, setTour] = useState("");
-  const [id, setId] = useState("");
+  const [tour, setTour] = useState<TourItem>();
 
   const [tours, setTours] = useState<TourItem[]>([]);
   const [company, setCompany] = useState<CompanyType>();
@@ -126,9 +125,8 @@ const Adventure: React.FunctionComponent = () => {
       });
   }, []);
 
-  const handleData = (data: { name: string; id: string }) => {
-    setTour(data.name);
-    setId(data.id);
+  const handleData = (data: { tour: TourItem }) => {
+    setTour(data.tour);
   };
 
   return (
@@ -176,9 +174,9 @@ const Adventure: React.FunctionComponent = () => {
             </LeftBox>
 
             {tour ? (
-              <AddToCartForm name={tour} id={id} />
+              <AddToCartForm tour={tour} />
             ) : (
-              <AddToCartForm name={""} id={""} />
+              <AddToCartForm tour={undefined} />
             )}
           </MiddleSection>
         </Box>
