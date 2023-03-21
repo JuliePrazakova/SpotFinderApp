@@ -6,6 +6,8 @@ import { CartState } from "../../redux/reducers/cart-reducer";
 import CartItem from "./cart-item";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
+import paths from "../../utilities/pathnames";
+import ModalConfirm from "./alert";
 
 // Styles
 import { Divider } from "semantic-ui-react";
@@ -23,6 +25,7 @@ import {
   SubTitle,
   TotalPrice,
 } from "./cart-page.styles";
+import { useNavigate } from "react-router-dom";
 
 type ModalProps = {
   title: string;
@@ -36,8 +39,11 @@ export type CartPacked = {
 
 const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
   const intl = useIntl();
+  const [isConfirmOpen, setConfirmOpen] = useState(false);
   const { isAuthenticated } = useAuth0();
   const { loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     cart: cart,
     firstname: "",
@@ -46,9 +52,12 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
     phone: "",
   });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // postovani do databaze
+
+    console.log("pred modalem");
+    setConfirmOpen(true);
+
     axios
       .post("http://localhost:5001/orders", {
         cart: formData.cart,
@@ -63,6 +72,11 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
       .catch((err) => {
         console.log(err);
       });
+  };
+
+  const handleCloseConfirm = () => {
+    setConfirmOpen(false);
+    navigate(paths.home.path);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -121,11 +135,16 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
           <Button type="submit">{intl.formatMessage(messages.order)}</Button>
         </Group>
       </form>
+      <ModalConfirm
+        title="Order placed"
+        isOpen={isConfirmOpen}
+        onClose={handleCloseConfirm}
+      />
     </Order>
   );
 };
 
-const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
+const ModalComponent: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
   const intl = useIntl();
 
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -182,4 +201,4 @@ const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
   );
 };
 
-export default Modal;
+export default ModalComponent;
