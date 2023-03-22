@@ -2,8 +2,6 @@ import { useIntl } from "react-intl";
 import messages from "../../Messages";
 import React from "react";
 import MiniTour from "../adventures-page/tour/tour-small";
-import Data from "../../data/tours.json";
-import Companies from "../../data/companies.json";
 import paths from "../../utilities/pathnames";
 import { Link } from "react-router-dom";
 
@@ -22,6 +20,7 @@ import {
 } from "./map-page.styles";
 import { Icon } from "semantic-ui-react";
 import { Button } from "../../App.styles";
+import { SearchData } from "./map-page";
 
 export type TourItem = {
   id: string;
@@ -39,16 +38,12 @@ export type TourItem = {
   duration: string;
 };
 
-const tours = Data.tours;
-
-const companies = Companies.companies;
-
-const Company: React.FunctionComponent = () => {
+const Company: React.FunctionComponent<SearchData> = ({ companies, tours }) => {
   const intl = useIntl();
-  // fetching data from DB
-  // const mapSearch = useSelector((state: { map: MapSearchType }) => state.map);
 
-  const company = companies.find((com) => com.id === "1");
+  const company = companies?.find(
+    (com) => com.id === "641997c56c71417609ab1f96"
+  );
 
   return (
     <>
