@@ -1,16 +1,12 @@
 import React from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
-import { TourItem } from "./tour";
 
 // Styles
 import { TextBox } from "../adventures-page.styles";
 import { MiniTour, TourTitle } from "../../map-page/map-page.styles";
 import { List } from "semantic-ui-react";
-
-export type SmallTourProps = {
-  tour: TourItem;
-};
+import { SmallTourProps } from "../../../utilities/types";
 
 const CategoryList: React.FunctionComponent<SmallTourProps> = ({ tour }) => {
   const intl = useIntl();

@@ -16,16 +16,7 @@ import {
   Title,
   MiddleSection,
 } from "./landing-section.styles";
-
-export type CategoryItemType = {
-  id: number;
-  name: string;
-  description: string;
-};
-
-export type HeaderType = {
-  visible: boolean;
-};
+import { CategoryItemType } from "../../utilities/types";
 
 const LandingSection: React.FunctionComponent = () => {
   const intl = useIntl();

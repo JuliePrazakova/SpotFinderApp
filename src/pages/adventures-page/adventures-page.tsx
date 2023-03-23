@@ -4,7 +4,6 @@ import { useIntl } from "react-intl";
 import messages from "../../Messages";
 import React, { useState, useEffect } from "react";
 import TourComponent from "./tour/tour";
-import { TourItem } from "./tour/tour";
 
 // Styles
 import { Wrapper } from "../landing-page/landing-section.styles";
@@ -22,6 +21,7 @@ import {
 } from "./adventures-page.styles";
 import { Search, Divider } from "semantic-ui-react";
 import axios from "axios";
+import { TourItem } from "../../utilities/types";
 
 const Instruction = () => {
   const intl = useIntl();

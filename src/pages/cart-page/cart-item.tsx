@@ -3,7 +3,7 @@ import { useIntl } from "react-intl";
 import React from "react";
 
 // Types
-import { OrderItem } from "../../redux/reducers/cart-reducer";
+import { ItemProps } from "../../utilities/types";
 
 // Styles
 import { List } from "semantic-ui-react";
@@ -15,10 +15,6 @@ import {
   PriceBox,
   CompanyTitle,
 } from "./cart-page.styles";
-
-export type ItemProps = {
-  item: OrderItem;
-};
 
 const CartItem: React.FunctionComponent<ItemProps> = ({ item }) => {
   const intl = useIntl();

@@ -1,15 +1,7 @@
 import "leaflet/dist/leaflet.css";
 import { MapContainer, Marker, TileLayer, useMap, Circle } from "react-leaflet";
 import L from "leaflet";
-import { CompanyType } from "../adventures-page/adventure";
-
-export type MapProps = {
-  cityCoordinates: [number, number] | undefined;
-  cityA: [number, number] | undefined;
-  cityB: [number, number] | undefined;
-  radius: number;
-  companies: CompanyType[] | undefined;
-};
+import { MapProps } from "../../utilities/types";
 
 const Map: React.FunctionComponent<MapProps> = ({
   cityCoordinates,

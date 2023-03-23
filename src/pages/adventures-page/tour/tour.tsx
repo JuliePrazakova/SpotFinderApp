@@ -8,28 +8,7 @@ import paths from "../../../utilities/pathnames";
 import { Tour, TourBox, TextBox } from "../adventures-page.styles";
 import { Button } from "../../../App.styles";
 import { List } from "semantic-ui-react";
-
-export type TourItem = {
-  id: string;
-  company: string;
-  companyId: string;
-  name: string;
-  country: string;
-  city: string;
-  street: string;
-  zip: string;
-  descShort: string;
-  descLong: string;
-  ticketPrice: number;
-  image: string;
-  duration: string;
-};
-
-export type TourProps = {
-  tour: TourItem;
-  btn: boolean;
-  onData?: (data: { tour: TourItem }) => void;
-};
+import { TourProps } from "../../../utilities/types";
 
 const TourComponent: React.FunctionComponent<TourProps> = ({
   tour,

@@ -4,16 +4,12 @@ import { useIntl } from "react-intl";
 import { Link } from "react-router-dom";
 import paths from "../../../utilities/pathnames";
 
-// Types
-import { CategoryItemType } from "../landing-section";
-
 // Styles
 import { CategorySection, Text } from "./categories.styles";
 import { Button } from "../../../App.styles";
 
-export type CategoryItemProps = {
-  category: CategoryItemType;
-};
+// Types
+import { CategoryItemProps } from "../../../utilities/types";
 
 const CartItem: React.FunctionComponent<CategoryItemProps> = ({ category }) => {
   const intl = useIntl();

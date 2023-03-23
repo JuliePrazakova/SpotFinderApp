@@ -1,19 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TourItem } from "../../pages/adventures-page/tour/tour";
-
-export type OrderItem = {
-  tour: TourItem;
-  quantity: number;
-  time: number;
-  date: number;
-};
-
-export type CartState = {
-  itemsList: Array<OrderItem>;
-  totalQuantity: number;
-  totalPrice: number;
-  showCart: boolean;
-};
+import { CartState } from "../../utilities/types";
 
 const initialState: CartState = {
   itemsList: [],

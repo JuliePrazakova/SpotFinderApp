@@ -20,23 +20,7 @@ import {
 } from "./map-page.styles";
 import { Icon } from "semantic-ui-react";
 import { Button } from "../../App.styles";
-import { SearchData } from "./map-page";
-
-export type TourItem = {
-  id: string;
-  company: string;
-  companyId: string;
-  name: string;
-  country: string;
-  city: string;
-  street: string;
-  zip: string;
-  descShort: string;
-  descLong: string;
-  ticketPrice: number;
-  image: string;
-  duration: string;
-};
+import { SearchData } from "../../utilities/types";
 
 const Company: React.FunctionComponent<SearchData> = ({ companies, tours }) => {
   const intl = useIntl();

@@ -2,23 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Header from "../../partials/header";
-import { SearchItemType } from "../landing-page/search-bar/search-bar";
-import Company, { TourItem } from "./company";
+import Company from "./company";
 import Map from "./map";
 import paths from "../../utilities/pathnames";
 
 // Styles
 import { Section } from "./map-page.styles";
-import { CompanyType } from "../adventures-page/adventure";
 
-export type MapSearchType = {
-  id: string;
-};
-
-export type SearchData = {
-  companies: CompanyType[] | undefined;
-  tours: TourItem[] | undefined;
-};
+// Types
+import { SearchData, SearchItemType } from "../../utilities/types";
 
 const MapPage: React.FunctionComponent = () => {
   const navigate = useNavigate();

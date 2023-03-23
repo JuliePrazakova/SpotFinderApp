@@ -27,45 +27,7 @@ import {
   SideImgs,
 } from "./adventure.styles";
 import { Icon } from "semantic-ui-react";
-
-export type TourItem = {
-  id: string;
-  company: string;
-  companyId: string;
-  name: string;
-  country: string;
-  city: string;
-  street: string;
-  zip: string;
-  descShort: string;
-  descLong: string;
-  ticketPrice: number;
-  image: string;
-  duration: string;
-};
-
-export type CompanyType = {
-  id: string;
-  name: string;
-  country: string;
-  city: string;
-  street: string;
-  zip: string;
-  descShort: string;
-  descLong: string;
-  image1: string;
-  image2: string;
-  image3: string;
-};
-
-export type RouteParams = {
-  companyId: string;
-};
-
-export type AdventurePageType = {
-  company: CompanyType;
-  tours: Array<TourItem>;
-};
+import { CompanyType, RouteParams, TourItem } from "../../utilities/types";
 
 const Adventure: React.FunctionComponent = () => {
   const intl = useIntl();

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import messages from "../../Messages";
 import { useIntl } from "react-intl";
-import { CartState } from "../../redux/reducers/cart-reducer";
 import CartItem from "./cart-item";
 import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
@@ -26,15 +25,12 @@ import {
   TotalPrice,
 } from "./cart-page.styles";
 import { useNavigate } from "react-router-dom";
+import { CartPacked, CartState } from "../../utilities/types";
 
 type ModalProps = {
   title: string;
   isOpen: boolean;
   onClose: () => void;
-};
-
-export type CartPacked = {
-  cart: CartState;
 };
 
 const OrderingForm: React.FC<CartPacked> = ({ cart }) => {

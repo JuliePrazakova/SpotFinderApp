@@ -6,11 +6,7 @@ import { Button } from "../../App.styles";
 import { OrderForm } from "./adventure.styles";
 import React, { useState, useEffect } from "react";
 import { Form } from "semantic-ui-react";
-import { TourItem } from "./tour/tour";
-
-export type TourType = {
-  tour?: TourItem;
-};
+import { TourType } from "../../utilities/types";
 
 const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
   const [formData, setFormData] = useState({
