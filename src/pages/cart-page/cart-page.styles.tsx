@@ -9,7 +9,6 @@ export const ModalOverlay = styled.div({
   position: "fixed",
   top: "0",
   left: "0",
-  zIndex: "9999",
   overflowY: "scroll",
 });
 
@@ -71,20 +70,6 @@ export const SubTitle = styled.div({
 export const Input = styled.input({
   width: "50%",
   margin: "8px",
-  border: "1px solid gray",
-  padding: "10px",
-  fontWeight: "200",
-  fontSize: "12px",
-  fontFamily: "Montserrat",
-  ":active": {
-    borderColor: "gray !important",
-  },
-});
-
-export const Textarea = styled.textarea({
-  width: "100%",
-  margin: "8px",
-  height: "80px",
   border: "1px solid gray",
   padding: "10px",
   fontWeight: "200",
@@ -161,4 +146,13 @@ export const TotalPrice = styled.div({
   justifyContent: "space-between",
   fontWeight: "700",
   margin: "auto",
+});
+
+export const Alert = styled.div({
+  width: "100%",
+  margin: "3% auto 3% auto",
+  background: "rgba(0, 0, 0, 0.5)",
+  borderRadius: "5px",
+  paddingBottom: "20px",
+  color: "white",
 });

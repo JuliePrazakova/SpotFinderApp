@@ -12,7 +12,7 @@ import ModalContactForm from "../pages/landing-page/contact-us/contact-modal";
 
 // Styles
 import { Logo, Navigation, RightSection } from "./header.styles";
-import { HeaderType } from "../pages/landing-page/landing-section";
+import { HeaderType } from "../utilities/types";
 
 const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const intl = useIntl();

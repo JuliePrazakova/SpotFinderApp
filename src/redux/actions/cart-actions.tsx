@@ -1,4 +1,4 @@
-import { TourItem } from "../../pages/adventures-page/tour/tour";
+import { TourItem } from "../../utilities/types";
 import { ADD_ITEM, DELETE_ITEM } from "../action-types";
 
 const addToCart = (order: { tour: TourItem; quantity: number }) => ({

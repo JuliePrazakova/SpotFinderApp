@@ -19,6 +19,10 @@ const pathnames = {
     path: "/search",
     title: "Search page",
   },
+  orders: {
+    path: "/orders",
+    title: "Orders page",
+  },
 };
 
 export default pathnames;

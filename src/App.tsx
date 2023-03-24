@@ -7,6 +7,7 @@ import MapPage from "./pages/map-page/map-page";
 import "semantic-ui-css/semantic.min.css";
 import paths from "./utilities/pathnames";
 import Profile from "./pages/login-components/profile-page";
+import OrdersPage from "./pages/admin-page/orders-page";
 
 const Application: React.FunctionComponent = () => {
   return (
@@ -17,6 +18,7 @@ const Application: React.FunctionComponent = () => {
         <Route path={paths["adventure-detail"].path} element={<Adventure />} />
         <Route path={paths.search.path} element={<MapPage />} />
         <Route path={paths.profile.path} element={<Profile />} />
+        <Route path={paths.orders.path} element={<OrdersPage />} />
       </Routes>
     </BrowserRouter>
   );

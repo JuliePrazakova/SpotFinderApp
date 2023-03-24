@@ -1,26 +1,17 @@
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/reducers/cart-reducer";
-import Data from "../../data/tours.json";
 
 // Styles
 import { Button } from "../../App.styles";
 import { OrderForm } from "./adventure.styles";
 import React, { useState, useEffect } from "react";
 import { Form } from "semantic-ui-react";
+import { TourType } from "../../utilities/types";
 
-export type TourName = {
-  name: string;
-  id: string;
-};
-
-const AddToCartForm: React.FunctionComponent<TourName> = ({ name, id }) => {
-  const tours = Data.tours;
-
-  const tour = tours.find((tours) => tours.id === id);
-
+const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
   const [formData, setFormData] = useState({
     tour: {
-      id: "",
+      _id: "",
       company: "",
       companyId: "",
       name: "",
@@ -41,7 +32,7 @@ const AddToCartForm: React.FunctionComponent<TourName> = ({ name, id }) => {
 
   useEffect(() => {
     setFormData({ tour: tour || formData.tour, quantity: 0, date: 0, time: 0 });
-  }, [name]);
+  }, [tour]);
 
   const dispatch = useDispatch();
 
@@ -64,7 +55,7 @@ const AddToCartForm: React.FunctionComponent<TourName> = ({ name, id }) => {
           <Form.Input
             type="text"
             name="tourName"
-            value={name}
+            value={tour?.name}
             label="Tour"
             placeholder="Long ride"
             id="form-input-first-name"

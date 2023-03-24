@@ -2,9 +2,8 @@ import Header from "../../partials/header";
 import Footer from "../../partials/footer";
 import { useIntl } from "react-intl";
 import messages from "../../Messages";
-import React from "react";
-import Data from "../../data/tours.json";
-import Tour from "./tour/tour";
+import React, { useState, useEffect } from "react";
+import TourComponent from "./tour/tour";
 
 // Styles
 import { Wrapper } from "../landing-page/landing-section.styles";
@@ -21,8 +20,8 @@ import {
   InstructionBox,
 } from "./adventures-page.styles";
 import { Search, Divider } from "semantic-ui-react";
-
-const tours = Data.tours;
+import axios from "axios";
+import { TourItem } from "../../utilities/types";
 
 const Instruction = () => {
   const intl = useIntl();
@@ -59,6 +58,39 @@ const Instruction = () => {
 const AdventuresPage: React.FunctionComponent = () => {
   const intl = useIntl();
 
+  const [tours, setTours] = useState<TourItem[]>([]);
+
+  useEffect(() => {
+    const API_URL = "http://localhost:5001/adventures";
+
+    axios
+      .get(API_URL)
+      .then((response) => {
+        if (Array.isArray(response.data)) {
+          const tourItems: TourItem[] = response.data.map((item: TourItem) => ({
+            _id: item._id.toString(),
+            company: item.company,
+            companyId: item.companyId,
+            name: item.name,
+            country: item.country,
+            city: item.city,
+            street: item.street,
+            zip: item.zip,
+            descShort: item.descShort,
+            descLong: item.descLong,
+            ticketPrice: item.ticketPrice,
+            image: item.image,
+            duration: item.duration,
+          }));
+
+          setTours(tourItems);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
   return (
     <>
       <Header visible={true} />
@@ -83,9 +115,9 @@ const AdventuresPage: React.FunctionComponent = () => {
             </TopBar>
 
             <Grid>
-              {tours?.map((tours) => (
-                <div key={tours.id}>
-                  <Tour tour={tours} btn={true} />
+              {tours?.map((tour) => (
+                <div key={tour._id}>
+                  <TourComponent tour={tour} btn={true} key={tour._id} />
                   <Divider section />
                 </div>
               ))}

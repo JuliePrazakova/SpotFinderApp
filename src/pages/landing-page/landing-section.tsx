@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import messages from "../../Messages";
 import { useIntl } from "react-intl";
-import Data from "../../data/categories.json";
 import Search from "./search-bar/search-bar";
 import Header from "../../partials/header";
 import Footer from "../../partials/footer";
 import Categories from "./categories/categories";
 import Contact from "./contact-us/contact-section";
+import axios from "axios";
 
 // Styles
 import {
@@ -16,21 +16,34 @@ import {
   Title,
   MiddleSection,
 } from "./landing-section.styles";
-
-export type CategoryItemType = {
-  id: number;
-  name: string;
-  description: string;
-};
-
-export type HeaderType = {
-  visible: boolean;
-};
-
-const categories = Data.categories;
+import { CategoryItemType } from "../../utilities/types";
 
 const LandingSection: React.FunctionComponent = () => {
   const intl = useIntl();
+  const [categories, setCategories] = useState<CategoryItemType[]>([]);
+
+  useEffect(() => {
+    const API_URL = "http://localhost:5001";
+
+    axios
+      .get(API_URL)
+      .then((response) => {
+        if (Array.isArray(response.data)) {
+          const categoryItems: CategoryItemType[] = response.data.map(
+            (item: CategoryItemType) => ({
+              _id: item._id.toString(),
+              name: item.name,
+              description: item.description,
+            })
+          );
+
+          setCategories(categoryItems);
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
 
   return (
     <>
@@ -48,8 +61,8 @@ const LandingSection: React.FunctionComponent = () => {
 
           <Grid>
             {categories?.map((category) => (
-              <div key={category.id}>
-                <Categories category={category} />
+              <div key={category._id}>
+                <Categories category={category} key={category._id} />
               </div>
             ))}
           </Grid>

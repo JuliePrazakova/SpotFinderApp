@@ -8,30 +8,9 @@ import paths from "../../../utilities/pathnames";
 import { Tour, TourBox, TextBox } from "../adventures-page.styles";
 import { Button } from "../../../App.styles";
 import { List } from "semantic-ui-react";
+import { TourProps } from "../../../utilities/types";
 
-export type TourItem = {
-  id: string;
-  company: string;
-  companyId: string;
-  name: string;
-  country: string;
-  city: string;
-  street: string;
-  zip: string;
-  descShort: string;
-  descLong: string;
-  ticketPrice: number;
-  image: string;
-  duration: string;
-};
-
-export type TourProps = {
-  tour: TourItem;
-  btn: boolean;
-  onData?: (data: { name: string; id: string }) => void;
-};
-
-const CategoryList: React.FunctionComponent<TourProps> = ({
+const TourComponent: React.FunctionComponent<TourProps> = ({
   tour,
   btn,
   onData,
@@ -41,8 +20,7 @@ const CategoryList: React.FunctionComponent<TourProps> = ({
 
   const sendDataToParent = () => {
     const data = {
-      name: tour.name,
-      id: tour.id,
+      tour: tour,
     };
     if (onData) {
       onData(data);
@@ -102,4 +80,4 @@ const CategoryList: React.FunctionComponent<TourProps> = ({
   );
 };
 
-export default CategoryList;
+export default TourComponent;
