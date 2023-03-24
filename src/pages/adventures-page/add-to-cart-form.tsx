@@ -11,7 +11,7 @@ import { TourType } from "../../utilities/types";
 const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
   const [formData, setFormData] = useState({
     tour: {
-      id: "",
+      _id: "",
       company: "",
       companyId: "",
       name: "",

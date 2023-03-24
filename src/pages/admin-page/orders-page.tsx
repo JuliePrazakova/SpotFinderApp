@@ -27,7 +27,7 @@ const OrdersPage = () => {
         if (Array.isArray(response.data)) {
           const orderList: OrderItemWithId[] = response.data.map(
             (item: OrderItemWithId) => ({
-              id: item.id,
+              _id: item._id.toString(),
               cart: item.cart,
               firstname: item.firstname,
               lastname: item.lastname,
@@ -56,8 +56,8 @@ const OrdersPage = () => {
       <Grid>
         <Grid.Column width={8}>
           {orders?.map((order) => (
-            <div key={order.id}>
-              <Order order={order} key={order.id} />
+            <div key={order._id}>
+              <Order order={order} key={order._id} />
             </div>
           ))}
         </Grid.Column>

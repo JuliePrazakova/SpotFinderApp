@@ -15,7 +15,7 @@ export const cartSlice = createSlice({
     addToCart: (state, action) => {
       const newOrder = action.payload;
       const existingOrder = state.itemsList.find(
-        (order) => order.tour.id === newOrder.tour.id
+        (order) => order.tour._id === newOrder.tour.id
       );
       console.log("tadyyyyyy je redux", newOrder);
       if (existingOrder) {
@@ -36,12 +36,12 @@ export const cartSlice = createSlice({
       const id = action.payload;
 
       const existingOrder = state.itemsList.find(
-        (order) => order.tour.id === id
+        (order) => order.tour._id === id
       );
       if (existingOrder) {
         if (existingOrder.quantity === 1) {
           state.itemsList = state.itemsList.filter(
-            (order) => order.tour.id !== id
+            (order) => order.tour._id !== id
           );
         } else {
           existingOrder.quantity--;

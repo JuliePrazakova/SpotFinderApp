@@ -47,7 +47,7 @@ const Adventure: React.FunctionComponent = () => {
         if (Array.isArray(response.data.tours)) {
           const tourItems: TourItem[] = response.data.tours.map(
             (item: TourItem) => ({
-              id: item.id,
+              _id: item._id.toString(),
               company: item.company,
               companyId: item.companyId,
               name: item.name,
@@ -68,7 +68,7 @@ const Adventure: React.FunctionComponent = () => {
           const company = response.data.company;
 
           setCompany({
-            id: company._id,
+            _id: company._id,
             name: company.name,
             country: company.country,
             city: company.city,
@@ -123,12 +123,12 @@ const Adventure: React.FunctionComponent = () => {
 
               <Grid>
                 {tours?.map((tours) => (
-                  <div key={tours.id}>
+                  <div key={tours._id}>
                     <Tour
                       tour={tours}
                       btn={false}
                       onData={handleData}
-                      key={tours.id}
+                      key={tours._id}
                     />
                   </div>
                 ))}

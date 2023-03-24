@@ -26,7 +26,7 @@ const Company: React.FunctionComponent<SearchData> = ({ companies, tours }) => {
   const intl = useIntl();
 
   const company = companies?.find(
-    (com) => com.id === "641997c56c71417609ab1f96"
+    (com) => com._id === "641997c56c71417609ab1f96"
   );
 
   return (
@@ -50,8 +50,8 @@ const Company: React.FunctionComponent<SearchData> = ({ companies, tours }) => {
             <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
             <Grid>
               {tours?.map((tours) => (
-                <div key={tours.id}>
-                  {tours.companyId === company.id ? (
+                <div key={tours._id}>
+                  {tours.companyId === company._id ? (
                     <MiniTour tour={tours} />
                   ) : (
                     ""
@@ -66,7 +66,7 @@ const Company: React.FunctionComponent<SearchData> = ({ companies, tours }) => {
               <Link
                 to={paths["adventure-detail"].path.replace(
                   ":companyId",
-                  company.id
+                  company._id
                 )}
               >
                 {intl.formatMessage(messages.learnMore)}

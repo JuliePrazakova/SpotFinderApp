@@ -31,7 +31,7 @@ const LandingSection: React.FunctionComponent = () => {
         if (Array.isArray(response.data)) {
           const categoryItems: CategoryItemType[] = response.data.map(
             (item: CategoryItemType) => ({
-              id: item.id,
+              _id: item._id.toString(),
               name: item.name,
               description: item.description,
             })
@@ -61,8 +61,8 @@ const LandingSection: React.FunctionComponent = () => {
 
           <Grid>
             {categories?.map((category) => (
-              <div key={category.id}>
-                <Categories category={category} key={category.id} />
+              <div key={category._id}>
+                <Categories category={category} key={category._id} />
               </div>
             ))}
           </Grid>

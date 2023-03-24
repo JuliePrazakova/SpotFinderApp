@@ -178,7 +178,7 @@ const ModalComponent: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
         </ModalHeader>
         <ModalBody>
           {cart?.itemsList.map((item) => (
-            <div key={item.tour.id}>
+            <div key={item.tour._id}>
               <CartItem item={item} />
             </div>
           ))}

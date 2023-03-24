@@ -1,14 +1,6 @@
-export type OrderItemWithId = {
-  id: number;
-  cart: CartPacked;
-  firstname: string;
-  lastname: string;
-  email: string;
-  phone: string;
-};
-
+// Tour types
 export type TourItem = {
-  id: string;
+  _id: string;
   company: string;
   companyId: string;
   name: string;
@@ -23,8 +15,23 @@ export type TourItem = {
   duration: string;
 };
 
+export type TourType = {
+  tour?: TourItem;
+};
+
+export type TourProps = {
+  tour: TourItem;
+  btn: boolean;
+  onData?: (data: { tour: TourItem }) => void;
+};
+
+export type SmallTourProps = {
+  tour: TourItem;
+};
+
+// Company types
 export type CompanyType = {
-  id: string;
+  _id: string;
   name: string;
   country: string;
   city: string;
@@ -37,16 +44,78 @@ export type CompanyType = {
   image3: string;
 };
 
+// Route parameters types
 export type RouteParams = {
   companyId: string;
 };
 
+// Adventure page types
 export type AdventurePageType = {
   company: CompanyType;
   tours: Array<TourItem>;
 };
-export type TourType = {
-  tour?: TourItem;
+
+// Search types
+export type SearchData = {
+  companies: CompanyType[] | undefined;
+  tours: TourItem[] | undefined;
+};
+
+export type SearchItemType = {
+  where: string;
+  from: string;
+  to: string;
+  radius: number;
+};
+
+export type MapSearchType = {
+  _id: string;
+};
+
+export type MapProps = {
+  cityCoordinates: [number, number] | undefined;
+  cityA: [number, number] | undefined;
+  cityB: [number, number] | undefined;
+  radius: number;
+  companies: CompanyType[] | undefined;
+};
+
+// Category types
+export type CategoryItemType = {
+  _id: string;
+  name: string;
+  description: string;
+};
+
+export type CategoryItemProps = {
+  category: CategoryItemType;
+};
+
+// Header types
+export type HeaderType = {
+  visible: boolean;
+};
+
+// Order types
+export type CartPacked = {
+  cart: CartState;
+};
+
+export type OrderProps = {
+  order: OrderItemWithId;
+};
+
+export type ItemProps = {
+  item: OrderItem;
+};
+
+export type OrderItemWithId = {
+  _id: string;
+  cart: CartPacked;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
 };
 
 export type OrderItem = {
@@ -61,60 +130,4 @@ export type CartState = {
   totalQuantity: number;
   totalPrice: number;
   showCart: boolean;
-};
-
-export type MapProps = {
-  cityCoordinates: [number, number] | undefined;
-  cityA: [number, number] | undefined;
-  cityB: [number, number] | undefined;
-  radius: number;
-  companies: CompanyType[] | undefined;
-};
-
-export type MapSearchType = {
-  id: string;
-};
-
-export type SearchData = {
-  companies: CompanyType[] | undefined;
-  tours: TourItem[] | undefined;
-};
-
-export type SearchItemType = {
-  where: string;
-  from: string;
-  to: string;
-  radius: number;
-};
-
-export type CategoryItemType = {
-  id: number;
-  name: string;
-  description: string;
-};
-
-export type HeaderType = {
-  visible: boolean;
-};
-export type CategoryItemProps = {
-  category: CategoryItemType;
-};
-
-export type TourProps = {
-  tour: TourItem;
-  btn: boolean;
-  onData?: (data: { tour: TourItem }) => void;
-};
-export type ItemProps = {
-  item: OrderItem;
-};
-export type CartPacked = {
-  cart: CartState;
-};
-
-export type OrderProps = {
-  order: OrderItemWithId;
-};
-export type SmallTourProps = {
-  tour: TourItem;
 };
