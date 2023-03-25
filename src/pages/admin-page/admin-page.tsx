@@ -4,18 +4,17 @@ import React, { useEffect, useState } from "react";
 import Header from "../../partials/header";
 import Footer from "../../partials/footer";
 import { BackgroundCover } from "../adventures-page/adventures-page.styles";
-import { Title } from "../login-components/login-components.styles";
-import { Subtitle } from "../adventures-page/adventure.styles";
 import Orders from "./components/a-orders";
 import Order from "./components/a-order";
 import axios from "axios";
-import { OrderItemWithId, TourItem } from "../../utilities/types";
-import { Flex } from "./admin-page.styles";
-import { Menu, MenuItemProps, Segment } from "semantic-ui-react";
+import { CompanyType, OrderItemWithId, TourItem } from "../../utilities/types";
+import { BackgroundTitle, Flex, MiddlePart } from "./admin-page.styles";
+import { Menu, MenuItemProps } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import paths from "../../utilities/pathnames";
 import Tours from "./components/a-tours";
-import TourComponent from "../adventures-page/tour/tour";
+import Companies from "./components/a-companies";
+import CompanyTourPage from "./components/a-company-tour-page";
 
 // Styles
 
@@ -25,6 +24,7 @@ const OrdersPage = () => {
   const navigate = useNavigate();
   const [selectedOrder, setSelectedOrder] = useState<OrderItemWithId>();
   const [selectedTour, setSelectedTour] = useState<TourItem>();
+  const [selectedCompany, setSelectedCompany] = useState<CompanyType>();
 
   // get data from backend
   useEffect(() => {
@@ -57,6 +57,7 @@ const OrdersPage = () => {
     setActiveItem(name as string);
     setSelectedOrder(undefined);
     setSelectedTour(undefined);
+    setSelectedCompany(undefined);
     navigate(`${paths.admin.path}`);
   };
 
@@ -69,26 +70,30 @@ const OrdersPage = () => {
 
   const handleTourClick = (tour: TourItem) => {
     setSelectedTour(tour);
-    navigate(`${paths["company-detail"].path.replace(":companyId", tour._id)}`);
+    navigate(
+      `${paths["company-detail"].path.replace(":companyId", tour.companyId)}`
+    );
+  };
+
+  const handleCompanyClick = (company: CompanyType) => {
+    setSelectedCompany(company);
+    navigate(
+      `${paths["company-detail"].path.replace(":companyId", company._id)}`
+    );
   };
 
   return (
     <>
       <Header visible={false} />
-      <BackgroundCover />
-      <Title>Admin page</Title>
-      <Subtitle>Orders page</Subtitle>
+      <BackgroundCover>
+        <BackgroundTitle>Admin page</BackgroundTitle>
+      </BackgroundCover>
 
-      <Segment.Group horizontal>
+      <MiddlePart>
         <Menu pointing secondary vertical>
           <Menu.Item
             name="orders"
             active={activeItem === "orders"}
-            onClick={handleItemClick}
-          />
-          <Menu.Item
-            name="customers"
-            active={activeItem === "customers"}
             onClick={handleItemClick}
           />
           <Menu.Item
@@ -124,17 +129,27 @@ const OrdersPage = () => {
         ) : activeItem === "tours" ? (
           <>
             {selectedTour ? (
-              <TourComponent tour={selectedTour} btn={false} />
+              <CompanyTourPage />
             ) : (
               <Flex>
                 <Tours onTourClick={handleTourClick} />
               </Flex>
             )}
           </>
+        ) : activeItem === "companies" ? (
+          <>
+            {selectedCompany ? (
+              <CompanyTourPage />
+            ) : (
+              <Flex>
+                <Companies onCompanyClick={handleCompanyClick} />
+              </Flex>
+            )}
+          </>
         ) : (
           <div>jahoda</div>
         )}
-      </Segment.Group>
+      </MiddlePart>
       <Footer />
     </>
   );

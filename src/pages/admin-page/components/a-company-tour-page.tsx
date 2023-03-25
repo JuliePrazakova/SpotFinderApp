@@ -1,16 +1,11 @@
-import Header from "../../partials/header";
-import Footer from "../../partials/footer";
 import { useIntl } from "react-intl";
 import { useParams } from "react-router-dom";
-import messages from "../../Messages";
+import messages from "../../../Messages";
 import React, { useEffect, useState } from "react";
-import Tour from "./tour/tour";
-import AddToCartForm from "./add-to-cart-form";
 import axios from "axios";
 
 // Styles
-import { Wrapper } from "../landing-page/landing-section.styles";
-import { Box } from "./adventures-page.styles";
+import { Box } from "../../adventures-page/adventures-page.styles";
 import {
   Title,
   Address,
@@ -25,16 +20,18 @@ import {
   RightSide,
   MainImg,
   SideImgs,
-} from "./adventure.styles";
+} from "../../adventures-page/adventure.styles";
 import { Icon } from "semantic-ui-react";
-import { CompanyType, RouteParams, TourItem } from "../../utilities/types";
+import { CompanyType, RouteParams, TourItem } from "../../../utilities/types";
+import { Wrapper } from "../../landing-page/landing-section.styles";
+import Tour from "../../adventures-page/tour/tour";
 
-const Adventure: React.FunctionComponent = () => {
+const CompanyTourPage: React.FunctionComponent = () => {
   const intl = useIntl();
   const { companyId } = useParams<RouteParams>();
 
   const [tour, setTour] = useState<TourItem>();
-
+  console.log(tour);
   const [tours, setTours] = useState<TourItem[]>([]);
   const [company, setCompany] = useState<CompanyType>();
 
@@ -95,7 +92,6 @@ const Adventure: React.FunctionComponent = () => {
 
   return (
     <>
-      <Header visible={true} />
       <Wrapper>
         <Box>
           <TopSection>
@@ -136,18 +132,11 @@ const Adventure: React.FunctionComponent = () => {
                 ))}
               </Grid>
             </LeftBox>
-
-            {tour ? (
-              <AddToCartForm tour={tour} />
-            ) : (
-              <AddToCartForm tour={undefined} />
-            )}
           </MiddleSection>
         </Box>
       </Wrapper>
-      <Footer />
     </>
   );
 };
 
-export default Adventure;
+export default CompanyTourPage;

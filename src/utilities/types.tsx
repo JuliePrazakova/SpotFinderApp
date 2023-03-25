@@ -29,9 +29,14 @@ export type SmallTourProps = {
   tour: TourItem;
 };
 
-export type ToursListProps = {
+export type TourListProps = {
   tour?: TourItem;
   onTourClick: (tour: TourItem) => void;
+};
+
+export type CompanyListProps = {
+  company?: CompanyType;
+  onCompanyClick: (company: CompanyType) => void;
 };
 
 // Company types
@@ -47,6 +52,8 @@ export type CompanyType = {
   image1: string;
   image2: string;
   image3: string;
+  email: string;
+  phone: string;
 };
 
 // Route parameters types

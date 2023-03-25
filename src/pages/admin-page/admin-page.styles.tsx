@@ -29,3 +29,20 @@ export const Title = styled.div({
     margin: "0 0 auto auto",
   },
 });
+
+export const BackgroundTitle = styled.div({
+  display: "flex",
+  fontSize: "37px",
+  fontWeight: "300",
+  fontFamily: "Montserrat",
+  margin: "0 auto 80px auto",
+  width: "fit-content",
+  justifyContent: "space-between",
+});
+
+export const MiddlePart = styled.div({
+  display: "flex",
+  margin: "40px auto auto auto",
+  width: "fit-content",
+  justifyContent: "space-between",
+});

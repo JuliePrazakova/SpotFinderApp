@@ -5,11 +5,11 @@ import { useIntl } from "react-intl";
 // Styles
 import { Button } from "../../../App.styles";
 import { Container, Divider, Grid, List, Segment } from "semantic-ui-react";
-import { TourItem, ToursListProps } from "../../../utilities/types";
+import { TourItem, TourListProps } from "../../../utilities/types";
 import axios from "axios";
 import { Title } from "../admin-page.styles";
 
-const TourComponent: React.FunctionComponent<ToursListProps> = ({
+const TourComponent: React.FunctionComponent<TourListProps> = ({
   tour,
   onTourClick,
 }) => {
@@ -20,7 +20,9 @@ const TourComponent: React.FunctionComponent<ToursListProps> = ({
       <Container>
         <Title>
           <p>{tour?.name}</p>
-          <Button onClick={() => tour && onTourClick(tour)}>View</Button>
+          <Button onClick={() => tour && onTourClick(tour)}>
+            View company
+          </Button>
         </Title>
         <b>{tour?.company}</b>
         <br />
@@ -102,7 +104,7 @@ const TourComponent: React.FunctionComponent<ToursListProps> = ({
   );
 };
 
-const Tours: React.FunctionComponent<ToursListProps> = ({ onTourClick }) => {
+const Tours: React.FunctionComponent<TourListProps> = ({ onTourClick }) => {
   const [tours, setTours] = useState<TourItem[]>([]);
 
   useEffect(() => {
