@@ -102,7 +102,12 @@ export type CartPacked = {
 };
 
 export type OrderProps = {
-  order: OrderItemWithId;
+  order?: OrderItemWithId;
+};
+
+export type OrdersListProps = {
+  order?: OrderItemWithId;
+  onOrderClick: (order: OrderItemWithId) => void;
 };
 
 export type ItemProps = {

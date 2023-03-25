@@ -23,6 +23,10 @@ const pathnames = {
     path: "/orders",
     title: "Orders page",
   },
+  "order-detail": {
+    path: "/orders/detail/:orderId",
+    title: "Order",
+  },
 };
 
 export default pathnames;

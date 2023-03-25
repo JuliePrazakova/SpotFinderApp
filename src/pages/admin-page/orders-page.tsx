@@ -6,17 +6,22 @@ import Footer from "../../partials/footer";
 import { BackgroundCover } from "../adventures-page/adventures-page.styles";
 import { Title } from "../login-components/login-components.styles";
 import { Subtitle } from "../adventures-page/adventure.styles";
+import Orders from "./components/orders";
 import Order from "./components/order";
 import axios from "axios";
 import { OrderItemWithId } from "../../utilities/types";
 import { Flex } from "./orders-page.styles";
 import { Menu, MenuItemProps, Segment } from "semantic-ui-react";
+import { useNavigate } from "react-router-dom";
+import paths from "../../utilities/pathnames";
 
 // Styles
 
 const OrdersPage = () => {
   const [activeItem, setActiveItem] = useState<string>("orders");
   const [orders, setOrders] = useState<OrderItemWithId[]>([]);
+  const navigate = useNavigate();
+  const [selectedOrder, setSelectedOrder] = useState<OrderItemWithId>();
 
   // get data from backend
   useEffect(() => {
@@ -47,6 +52,13 @@ const OrdersPage = () => {
 
   const handleItemClick = (e: React.MouseEvent, { name }: MenuItemProps) =>
     setActiveItem(name as string);
+
+  console.log(orders);
+
+  const handleOrderClick = (order: OrderItemWithId) => {
+    setSelectedOrder(order);
+    navigate(`${paths["order-detail"].path.replace(":orderId", order._id)}`);
+  };
 
   return (
     <>
@@ -79,19 +91,27 @@ const OrdersPage = () => {
           />
         </Menu>
 
-        <Flex>
-          {activeItem === "orders" ? (
-            <>
-              {orders?.map((order) => (
-                <div key={order._id}>
-                  <Order order={order} key={order._id} />
-                </div>
-              ))}
-            </>
-          ) : (
-            <div> jahoda</div>
-          )}
-        </Flex>
+        {activeItem === "orders" ? (
+          <>
+            {selectedOrder ? (
+              <Order order={selectedOrder} />
+            ) : (
+              <Flex>
+                {orders?.map((order) => (
+                  <div key={order._id}>
+                    <Orders
+                      order={order}
+                      key={order._id}
+                      onOrderClick={handleOrderClick}
+                    />
+                  </div>
+                ))}
+              </Flex>
+            )}
+          </>
+        ) : (
+          <div> jahoda</div>
+        )}
       </Segment.Group>
       <Footer />
     </>
