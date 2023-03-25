@@ -1,9 +1,9 @@
 import React from "react";
-import { SearchItemType } from "./search-bar";
 import { useSelector } from "react-redux";
 
 // Styles
 import { Icon, Search } from "semantic-ui-react";
+import { SearchItemType } from "../../../utilities/types";
 import {
   SearchBarMini,
   LineMini,

@@ -17,3 +17,15 @@ export const Flex = styled.div({
     },
   },
 });
+
+export const Title = styled.div({
+  display: "flex",
+  fontSize: "17px",
+  fontWeight: "800",
+  width: "100%",
+  justifyContent: "space-between",
+  [`> button`]: {
+    fontSize: "13px",
+    margin: "0 0 auto auto",
+  },
+});

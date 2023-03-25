@@ -47,6 +47,12 @@
       "roadtrips": "Roadtrips",
       "contactTitle": "Need help with planning your trip? Let us know!",
       "orderPrice":"Price",
-      "orderedTours": "Tours"
+      "company": "Company",
+      "country": "Country",
+      "city": "City",
+      "street": "Street",
+      "zip": "Zip",
+      "descShort": "Short description",
+      "descLong": "Long description"
      }
 }  

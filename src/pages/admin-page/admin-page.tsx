@@ -6,14 +6,16 @@ import Footer from "../../partials/footer";
 import { BackgroundCover } from "../adventures-page/adventures-page.styles";
 import { Title } from "../login-components/login-components.styles";
 import { Subtitle } from "../adventures-page/adventure.styles";
-import Orders from "./components/orders";
-import Order from "./components/order";
+import Orders from "./components/a-orders";
+import Order from "./components/a-order";
 import axios from "axios";
-import { OrderItemWithId } from "../../utilities/types";
-import { Flex } from "./orders-page.styles";
+import { OrderItemWithId, TourItem } from "../../utilities/types";
+import { Flex } from "./admin-page.styles";
 import { Menu, MenuItemProps, Segment } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import paths from "../../utilities/pathnames";
+import Tours from "./components/a-tours";
+import TourComponent from "../adventures-page/tour/tour";
 
 // Styles
 
@@ -22,6 +24,7 @@ const OrdersPage = () => {
   const [orders, setOrders] = useState<OrderItemWithId[]>([]);
   const navigate = useNavigate();
   const [selectedOrder, setSelectedOrder] = useState<OrderItemWithId>();
+  const [selectedTour, setSelectedTour] = useState<TourItem>();
 
   // get data from backend
   useEffect(() => {
@@ -50,14 +53,23 @@ const OrdersPage = () => {
       });
   }, []);
 
-  const handleItemClick = (e: React.MouseEvent, { name }: MenuItemProps) =>
+  const handleItemClick = (e: React.MouseEvent, { name }: MenuItemProps) => {
     setActiveItem(name as string);
+    setSelectedOrder(undefined);
+    setSelectedTour(undefined);
+    navigate(`${paths.admin.path}`);
+  };
 
   console.log(orders);
 
   const handleOrderClick = (order: OrderItemWithId) => {
     setSelectedOrder(order);
     navigate(`${paths["order-detail"].path.replace(":orderId", order._id)}`);
+  };
+
+  const handleTourClick = (tour: TourItem) => {
+    setSelectedTour(tour);
+    navigate(`${paths["company-detail"].path.replace(":companyId", tour._id)}`);
   };
 
   return (
@@ -109,8 +121,18 @@ const OrdersPage = () => {
               </Flex>
             )}
           </>
+        ) : activeItem === "tours" ? (
+          <>
+            {selectedTour ? (
+              <TourComponent tour={selectedTour} btn={false} />
+            ) : (
+              <Flex>
+                <Tours onTourClick={handleTourClick} />
+              </Flex>
+            )}
+          </>
         ) : (
-          <div> jahoda</div>
+          <div>jahoda</div>
         )}
       </Segment.Group>
       <Footer />

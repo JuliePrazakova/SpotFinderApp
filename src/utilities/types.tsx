@@ -29,6 +29,11 @@ export type SmallTourProps = {
   tour: TourItem;
 };
 
+export type ToursListProps = {
+  tour?: TourItem;
+  onTourClick: (tour: TourItem) => void;
+};
+
 // Company types
 export type CompanyType = {
   _id: string;
