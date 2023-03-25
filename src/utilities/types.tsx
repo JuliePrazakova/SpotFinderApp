@@ -102,7 +102,12 @@ export type CartPacked = {
 };
 
 export type OrderProps = {
-  order: OrderItemWithId;
+  order?: OrderItemWithId;
+};
+
+export type OrdersListProps = {
+  order?: OrderItemWithId;
+  onOrderClick: (order: OrderItemWithId) => void;
 };
 
 export type ItemProps = {
@@ -111,7 +116,7 @@ export type ItemProps = {
 
 export type OrderItemWithId = {
   _id: string;
-  cart: CartPacked;
+  cart: CartState;
   firstname: string;
   lastname: string;
   email: string;
@@ -130,4 +135,9 @@ export type CartState = {
   totalQuantity: number;
   totalPrice: number;
   showCart: boolean;
+};
+
+export type SendDataToParent = {
+  activeItem: string;
+  onData?: (data: { activeItem: string }) => void;
 };

@@ -5,10 +5,13 @@ import { useIntl } from "react-intl";
 // Styles
 import { Container, Grid, List, Segment } from "semantic-ui-react";
 import { CompanyTitle, PriceBox } from "../../cart-page/cart-page.styles";
-import { OrderProps } from "../../../utilities/types";
-import CartItem from "../../cart-page/cart-item";
+import { OrdersListProps } from "../../../utilities/types";
+import { Button } from "../../../App.styles";
 
-const OrderComponent: React.FunctionComponent<OrderProps> = ({ order }) => {
+const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
+  order,
+  onOrderClick,
+}) => {
   const intl = useIntl();
 
   return (
@@ -42,28 +45,24 @@ const OrderComponent: React.FunctionComponent<OrderProps> = ({ order }) => {
               <List>
                 <List.Item>
                   <List.Content>
-                    {intl.formatMessage(messages.total)}: €
+                    {intl.formatMessage(messages.orderPrice)}: €
                     {order?.cart.totalPrice}
                   </List.Content>
                 </List.Item>
 
                 <List.Item>
                   <List.Content>
-                    {intl.formatMessage(messages.total)}:{" "}
+                    {intl.formatMessage(messages.orderedTours)}:{" "}
                     {order?.cart.totalQuantity}
                   </List.Content>
                 </List.Item>
               </List>
             </PriceBox>
           </Grid.Column>
-        </Grid.Row>
-        <Grid.Row>
           <Grid.Column>
-            {order?.cart.itemsList.map((orderedTour) => (
-              <div key={orderedTour.tour._id}>
-                <CartItem item={orderedTour} key={orderedTour.tour._id} />
-              </div>
-            ))}
+            <Button onClick={() => order && onOrderClick(order)}>
+              View more
+            </Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

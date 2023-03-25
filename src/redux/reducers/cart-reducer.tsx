@@ -17,7 +17,11 @@ export const cartSlice = createSlice({
       const existingOrder = state.itemsList.find(
         (order) => order.tour._id === newOrder.tour.id
       );
-      console.log("tadyyyyyy je redux", newOrder);
+      if (state.itemsList.length > 0) {
+        state.totalQuantity += 1;
+      } else {
+        state.totalQuantity = 1;
+      }
       if (existingOrder) {
         existingOrder.quantity += newOrder.quantity;
         state.totalPrice += newOrder.tour.ticketPrice * newOrder.quantity;
@@ -28,7 +32,6 @@ export const cartSlice = createSlice({
           time: newOrder.time,
           date: newOrder.date,
         });
-        state.totalQuantity = 1;
         state.totalPrice = newOrder.tour.ticketPrice * newOrder.quantity;
       }
     },

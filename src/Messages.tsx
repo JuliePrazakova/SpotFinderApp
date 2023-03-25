@@ -185,4 +185,12 @@ export default defineMessages({
     id: "contactTitle",
     defaultMessage: "Need help with planning your trip? Let us know!",
   },
+  orderPrice: {
+    id: "orderPrice",
+    defaultMessage: "Order price",
+  },
+  orderedTours: {
+    id: "orderedTours",
+    defaultMessage: "Ordered tours",
+  },
 });

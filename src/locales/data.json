@@ -45,6 +45,8 @@
       "orders": "My orders",
       "loading": "Loading...",
       "roadtrips": "Roadtrips",
-      "contactTitle": "Need help with planning your trip? Let us know!"
+      "contactTitle": "Need help with planning your trip? Let us know!",
+      "orderPrice":"Price",
+      "orderedTours": "Tours"
      }
 }  

@@ -19,6 +19,7 @@ const Application: React.FunctionComponent = () => {
         <Route path={paths.search.path} element={<MapPage />} />
         <Route path={paths.profile.path} element={<Profile />} />
         <Route path={paths.orders.path} element={<OrdersPage />} />
+        <Route path={paths["order-detail"].path} element={<OrdersPage />} />
       </Routes>
     </BrowserRouter>
   );
