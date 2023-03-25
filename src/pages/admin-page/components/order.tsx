@@ -3,53 +3,65 @@ import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 
 // Styles
-import { List } from "semantic-ui-react";
-import {
-  CompanyTitle,
-  MiniTour,
-  PriceBox,
-  TourName,
-  TextBox,
-} from "../../cart-page/cart-page.styles";
+import { Container, Grid, List, Segment } from "semantic-ui-react";
+import { CompanyTitle, PriceBox } from "../../cart-page/cart-page.styles";
 import { OrderProps } from "../../../utilities/types";
+import { Button } from "../../../App.styles";
 
 const OrderComponent: React.FunctionComponent<OrderProps> = ({ order }) => {
   const intl = useIntl();
 
   return (
-    <MiniTour>
-      <TextBox>
+    <Segment>
+      <Container>
         <CompanyTitle>
           <p>
             {order.firstname} {order.lastname}
           </p>
+          <br />
         </CompanyTitle>
-        <TourName>
-          <p>{order.email}</p>
-        </TourName>
+      </Container>
 
-        <List>
-          <List.Item>
-            <List.Icon name="user outline" />
-            <List.Content>
-              {intl.formatMessage(messages.email)}: {order.email}
-            </List.Content>
-          </List.Item>
+      <Grid columns={3}>
+        <Grid.Row>
+          <Grid.Column>
+            <List>
+              <List.Item>
+                <List.Icon name="mail" />
+                <List.Content>{order.email}</List.Content>
+              </List.Item>
 
-          <List.Item>
-            <List.Icon name="clock outline" />
-            <List.Content>
-              {intl.formatMessage(messages.phoneNumber)}: {order.email}
-            </List.Content>
-          </List.Item>
-        </List>
-      </TextBox>
+              <List.Item>
+                <List.Icon name="phone" />
+                <List.Content>{order.phone}</List.Content>
+              </List.Item>
+            </List>
+          </Grid.Column>
+          <Grid.Column>
+            <PriceBox>
+              <List>
+                <List.Item>
+                  <List.Content>
+                    {intl.formatMessage(messages.total)}: €
+                    {order.cart.totalPrice}
+                  </List.Content>
+                </List.Item>
 
-      <PriceBox>
-        {intl.formatMessage(messages.total)}: €{order.cart.cart.totalPrice}
-        {intl.formatMessage(messages.total)}:{order.cart.cart.totalQuantity}
-      </PriceBox>
-    </MiniTour>
+                <List.Item>
+                  <List.Content>
+                    {intl.formatMessage(messages.total)}:{" "}
+                    {order.cart.totalQuantity}
+                  </List.Content>
+                </List.Item>
+              </List>
+            </PriceBox>
+          </Grid.Column>
+          <Grid.Column>
+            <Button>View more</Button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Segment>
   );
 };
 
