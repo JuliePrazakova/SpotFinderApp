@@ -105,7 +105,7 @@ const AddCompanyModal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
           <Form onSubmit={handleSubmit}>
             <Form.Group>
               <Form.Input
-                type="text"
+                type="string"
                 name="name"
                 label="Name"
                 onChange={handleChange}
