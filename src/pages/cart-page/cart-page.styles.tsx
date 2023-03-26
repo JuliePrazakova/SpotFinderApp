@@ -9,6 +9,7 @@ export const ModalOverlay = styled.div({
   position: "fixed",
   top: "0",
   left: "0",
+  zIndex: "9999",
   overflowY: "scroll",
 });
 

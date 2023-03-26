@@ -1,8 +1,9 @@
 import { useIntl } from "react-intl";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import messages from "../../../Messages";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import paths from "../../../utilities/pathnames";
 
 // Styles
 import { Box } from "../../adventures-page/adventures-page.styles";
@@ -25,10 +26,14 @@ import { Icon } from "semantic-ui-react";
 import { CompanyType, RouteParams, TourItem } from "../../../utilities/types";
 import { Wrapper } from "../../landing-page/landing-section.styles";
 import Tour from "../../adventures-page/tour/tour";
+import AddTourModal from "./add-tour-modal";
+import { Button } from "../../../App.styles";
 
 const CompanyTourPage: React.FunctionComponent = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
   const { companyId } = useParams<RouteParams>();
+  const [isTourOpen, setTourOpen] = useState(false);
 
   const [tour, setTour] = useState<TourItem>();
   console.log(tour);
@@ -90,6 +95,15 @@ const CompanyTourPage: React.FunctionComponent = () => {
     setTour(data.tour);
   };
 
+  const handleTourOpen = () => {
+    setTourOpen(true);
+  };
+
+  const handleCloseTour = () => {
+    setTourOpen(false);
+    navigate(paths.admin.path);
+  };
+
   return (
     <>
       <Wrapper>
@@ -118,7 +132,12 @@ const CompanyTourPage: React.FunctionComponent = () => {
           <MiddleSection>
             <LeftBox>
               <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
-
+              <Button onClick={handleTourOpen}>Add new tour</Button>
+              <AddTourModal
+                title="Add new tour"
+                isOpen={isTourOpen}
+                onClose={handleCloseTour}
+              />
               <Grid>
                 {tours?.map((tours) => (
                   <div key={tours._id}>

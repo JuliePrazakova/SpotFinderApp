@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 // import messages from "../../Messages";
 // import { useIntl } from "react-intl";
 import Header from "../../partials/header";
@@ -6,52 +6,28 @@ import Footer from "../../partials/footer";
 import { BackgroundCover } from "../adventures-page/adventures-page.styles";
 import Orders from "./components/a-orders";
 import Order from "./components/a-order";
-import axios from "axios";
 import { CompanyType, OrderItemWithId, TourItem } from "../../utilities/types";
-import { BackgroundTitle, Flex, MiddlePart } from "./admin-page.styles";
+import { BackgroundTitle, Block, Flex, MiddlePart } from "./admin-page.styles";
 import { Menu, MenuItemProps } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import paths from "../../utilities/pathnames";
 import Tours from "./components/a-tours";
 import Companies from "./components/a-companies";
 import CompanyTourPage from "./components/a-company-tour-page";
+import { Button } from "../../App.styles";
+import AddCompanyModal from "./components/add-company-modal";
+import AddTourModal from "./components/add-tour-modal";
 
 // Styles
 
 const OrdersPage = () => {
   const [activeItem, setActiveItem] = useState<string>("orders");
-  const [orders, setOrders] = useState<OrderItemWithId[]>([]);
   const navigate = useNavigate();
   const [selectedOrder, setSelectedOrder] = useState<OrderItemWithId>();
   const [selectedTour, setSelectedTour] = useState<TourItem>();
   const [selectedCompany, setSelectedCompany] = useState<CompanyType>();
-
-  // get data from backend
-  useEffect(() => {
-    const API_URL = "http://localhost:5001/orders";
-
-    axios
-      .get(API_URL)
-      .then((response) => {
-        if (Array.isArray(response.data)) {
-          const orderList: OrderItemWithId[] = response.data.map(
-            (item: OrderItemWithId) => ({
-              _id: item._id.toString(),
-              cart: item.cart,
-              firstname: item.firstname,
-              lastname: item.lastname,
-              email: item.email,
-              phone: item.phone,
-            })
-          );
-
-          setOrders(orderList);
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  }, []);
+  const [isCompanyOpen, setCompanyOpen] = useState(false);
+  const [isTourOpen, setTourOpen] = useState(false);
 
   const handleItemClick = (e: React.MouseEvent, { name }: MenuItemProps) => {
     setActiveItem(name as string);
@@ -60,8 +36,6 @@ const OrdersPage = () => {
     setSelectedCompany(undefined);
     navigate(`${paths.admin.path}`);
   };
-
-  console.log(orders);
 
   const handleOrderClick = (order: OrderItemWithId) => {
     setSelectedOrder(order);
@@ -80,6 +54,24 @@ const OrdersPage = () => {
     navigate(
       `${paths["company-detail"].path.replace(":companyId", company._id)}`
     );
+  };
+
+  const handleCompanyOpen = () => {
+    setCompanyOpen(true);
+  };
+
+  const handleCloseCompany = () => {
+    setCompanyOpen(false);
+    navigate(paths.admin.path);
+  };
+
+  const handleTourOpen = () => {
+    setTourOpen(true);
+  };
+
+  const handleCloseTour = () => {
+    setTourOpen(false);
+    navigate(paths.admin.path);
   };
 
   return (
@@ -113,17 +105,11 @@ const OrdersPage = () => {
             {selectedOrder ? (
               <Order order={selectedOrder} />
             ) : (
-              <Flex>
-                {orders?.map((order) => (
-                  <div key={order._id}>
-                    <Orders
-                      order={order}
-                      key={order._id}
-                      onOrderClick={handleOrderClick}
-                    />
-                  </div>
-                ))}
-              </Flex>
+              <Block>
+                <Flex>
+                  <Orders onOrderClick={handleOrderClick} />
+                </Flex>
+              </Block>
             )}
           </>
         ) : activeItem === "tours" ? (
@@ -131,9 +117,17 @@ const OrdersPage = () => {
             {selectedTour ? (
               <CompanyTourPage />
             ) : (
-              <Flex>
-                <Tours onTourClick={handleTourClick} />
-              </Flex>
+              <Block>
+                <Button onClick={handleTourOpen}>Add new tour</Button>
+                <AddTourModal
+                  title="Add new tour"
+                  isOpen={isTourOpen}
+                  onClose={handleCloseTour}
+                />
+                <Flex>
+                  <Tours onTourClick={handleTourClick} />
+                </Flex>
+              </Block>
             )}
           </>
         ) : activeItem === "companies" ? (
@@ -141,9 +135,17 @@ const OrdersPage = () => {
             {selectedCompany ? (
               <CompanyTourPage />
             ) : (
-              <Flex>
-                <Companies onCompanyClick={handleCompanyClick} />
-              </Flex>
+              <Block>
+                <Button onClick={handleCompanyOpen}>Add new company</Button>
+                <AddCompanyModal
+                  title="Add new company"
+                  isOpen={isCompanyOpen}
+                  onClose={handleCloseCompany}
+                />
+                <Flex>
+                  <Companies onCompanyClick={handleCompanyClick} />
+                </Flex>
+              </Block>
             )}
           </>
         ) : (

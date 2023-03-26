@@ -4,7 +4,6 @@ import styled from "styled-components";
 export const Flex = styled.div({
   display: "flex",
   flexWrap: "wrap",
-  width: "80%",
   justifyContent: "space-around",
 
   [`> div`]: {
@@ -43,6 +42,15 @@ export const BackgroundTitle = styled.div({
 export const MiddlePart = styled.div({
   display: "flex",
   margin: "40px auto auto auto",
-  width: "fit-content",
+  width: "100%",
   justifyContent: "space-between",
+});
+
+export const Block = styled.div({
+  display: "block",
+  width: "80%",
+  [`> button`]: {
+    marginLeft: "5%",
+    marginBottom: "30px",
+  },
 });
