@@ -52,3 +52,18 @@ export const Logo = styled.a({
     height: "auto",
   },
 });
+
+export const OnClick = styled.button({
+  border: "none",
+  textDecoration: "none",
+  background: "none",
+});
+
+export const Container = styled.div({
+  margin: "30px auto 30px -50px",
+  display: "flex",
+  width: "550px",
+  [`> div`]: {
+    marginLeft: "0",
+  },
+});

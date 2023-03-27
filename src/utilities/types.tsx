@@ -77,7 +77,7 @@ export type SearchItemType = {
   where: string;
   from: string;
   to: string;
-  radius: number;
+  radius?: number;
 };
 
 export type MapSearchType = {

@@ -11,8 +11,16 @@ import ModalCart from "../pages/cart-page/cart-page";
 import ModalContactForm from "../pages/landing-page/contact-us/contact-modal";
 
 // Styles
-import { Logo, Navigation, RightSection } from "./header.styles";
+import {
+  Container,
+  Logo,
+  Navigation,
+  OnClick,
+  RightSection,
+} from "./header.styles";
 import { HeaderType } from "../utilities/types";
+import Searchbar from "../pages/landing-page/search-bar/search-bar";
+import { Icon } from "semantic-ui-react";
 
 const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
   const intl = useIntl();
@@ -21,7 +29,7 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
 
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
-
+  const [isSearchbarOpen, setSearchbarOpen] = useState(false);
   const handleCloseContactForm = () => {
     setIsContactFormOpen(false);
   };
@@ -38,15 +46,39 @@ const Header: React.FunctionComponent<HeaderType> = ({ visible }) => {
     setIsCartOpen(true);
   };
 
+  const handleOpenSearchbar = () => {
+    setSearchbarOpen(true);
+  };
+  const handleCloseSearchbar = () => {
+    setSearchbarOpen(false);
+  };
+
   return (
     <Navigation>
       <Logo href={paths.home.path}>
         <img className="img" src="/images/logo.png" alt="Logo" />
       </Logo>
 
-      {visible && <MiniSearch />}
+      {visible && (
+        <>
+          {isSearchbarOpen ? (
+            <>
+              <Container>
+                <Searchbar />
+              </Container>
+            </>
+          ) : (
+            <OnClick onClick={handleOpenSearchbar}>
+              <MiniSearch />
+            </OnClick>
+          )}
+        </>
+      )}
 
       <RightSection>
+        {isSearchbarOpen && (
+          <Icon name="close" onClick={handleCloseSearchbar} />
+        )}
         <div>
           <Link to={paths.home.path}>{intl.formatMessage(messages.home)}</Link>
         </div>

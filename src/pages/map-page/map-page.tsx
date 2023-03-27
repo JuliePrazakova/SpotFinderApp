@@ -57,7 +57,7 @@ const MapPage: React.FunctionComponent = () => {
   // getting companies from database
   // must be here because companies needed in both Company & Map component
   useEffect(() => {
-    if (cityCoordinates) {
+    if (cityCoordinates && search.radius) {
       fetchCompaniesAndTours(cityCoordinates, search.radius);
     }
   }, [cityCoordinates, search.radius]);
@@ -85,13 +85,15 @@ const MapPage: React.FunctionComponent = () => {
       <Header visible={true} />
       <Section>
         <Company companies={data?.companies} tours={data?.tours} />
-        <Map
-          cityCoordinates={cityCoordinates}
-          cityA={cityA}
-          cityB={cityB}
-          radius={search.radius}
-          companies={data?.companies}
-        />
+        {search.radius && (
+          <Map
+            cityCoordinates={cityCoordinates}
+            cityA={cityA}
+            cityB={cityB}
+            radius={search.radius}
+            companies={data?.companies}
+          />
+        )}
       </Section>
     </div>
   );

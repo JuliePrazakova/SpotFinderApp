@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import paths from "../../../utilities/pathnames";
 import { setFilter } from "../../../redux/actions/search-actions";
 
@@ -17,15 +17,9 @@ import {
   OneWayBarSection,
   SearchBar,
 } from "./search-bar.styles";
+import { SearchItemType } from "../../../utilities/types";
 
-export type SearchItemType = {
-  where: string;
-  from: string;
-  to: string;
-  radius: number;
-};
-
-const Search: React.FunctionComponent = () => {
+const Searchbar: React.FunctionComponent = () => {
   const intl = useIntl();
 
   const [oneWay, setOneWay] = useState(true);
@@ -71,11 +65,19 @@ const OneWayBar = () => {
   const intl = useIntl();
   const navigate = useNavigate();
 
+  const search = useSelector(
+    (state: { search: SearchItemType }) => state.search
+  );
+
+  if (!search) {
+    return null;
+  }
+
   const [formData, setFormData] = useState({
-    where: "",
-    from: "",
-    to: "",
-    radius: 0,
+    where: search.where,
+    from: search.from,
+    to: search.to,
+    radius: search.radius || undefined,
   });
 
   const dispatch = useDispatch();
@@ -131,11 +133,19 @@ const RoadTripBar = () => {
   const intl = useIntl();
   const navigate = useNavigate();
 
+  const search = useSelector(
+    (state: { search: SearchItemType }) => state.search
+  );
+
+  if (!search) {
+    return null;
+  }
+
   const [formData, setFormData] = useState({
-    where: "",
-    from: "",
-    to: "",
-    radius: 0,
+    where: search.where,
+    from: search.from,
+    to: search.to,
+    radius: search.radius,
   });
 
   const dispatch = useDispatch();
@@ -198,4 +208,4 @@ const RoadTripBar = () => {
   );
 };
 
-export default Search;
+export default Searchbar;
