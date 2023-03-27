@@ -1,16 +1,12 @@
-import Header from "../../partials/header";
-import Footer from "../../partials/footer";
 import { useIntl } from "react-intl";
-import { useParams } from "react-router-dom";
-import messages from "../../Messages";
+import { useNavigate, useParams } from "react-router-dom";
+import messages from "../../../Messages";
 import React, { useEffect, useState } from "react";
-import Tour from "./tour/tour";
-import AddToCartForm from "./add-to-cart-form";
 import axios from "axios";
+import paths from "../../../utilities/pathnames";
 
 // Styles
-import { Wrapper } from "../landing-page/landing-section.styles";
-import { Box } from "./adventures-page.styles";
+import { Box } from "../../adventures-page/adventures-page.styles";
 import {
   Title,
   Address,
@@ -25,16 +21,22 @@ import {
   RightSide,
   MainImg,
   SideImgs,
-} from "./adventure.styles";
+} from "../../adventures-page/adventure.styles";
 import { Icon } from "semantic-ui-react";
-import { CompanyType, RouteParams, TourItem } from "../../utilities/types";
+import { CompanyType, RouteParams, TourItem } from "../../../utilities/types";
+import { Wrapper } from "../../landing-page/landing-section.styles";
+import Tour from "../../adventures-page/tour/tour";
+import AddTourModal from "./add-tour-modal";
+import { Button } from "../../../App.styles";
 
-const Adventure: React.FunctionComponent = () => {
+const CompanyTourPage: React.FunctionComponent = () => {
   const intl = useIntl();
+  const navigate = useNavigate();
   const { companyId } = useParams<RouteParams>();
+  const [isTourOpen, setTourOpen] = useState(false);
 
   const [tour, setTour] = useState<TourItem>();
-
+  console.log(tour);
   const [tours, setTours] = useState<TourItem[]>([]);
   const [company, setCompany] = useState<CompanyType>();
 
@@ -93,9 +95,17 @@ const Adventure: React.FunctionComponent = () => {
     setTour(data.tour);
   };
 
+  const handleTourOpen = () => {
+    setTourOpen(true);
+  };
+
+  const handleCloseTour = () => {
+    setTourOpen(false);
+    navigate(paths.admin.path);
+  };
+
   return (
     <>
-      <Header visible={true} />
       <Wrapper>
         <Box>
           <TopSection>
@@ -122,7 +132,12 @@ const Adventure: React.FunctionComponent = () => {
           <MiddleSection>
             <LeftBox>
               <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
-
+              <Button onClick={handleTourOpen}>Add new tour</Button>
+              <AddTourModal
+                title="Add new tour"
+                isOpen={isTourOpen}
+                onClose={handleCloseTour}
+              />
               <Grid>
                 {tours?.map((tours) => (
                   <div key={tours._id}>
@@ -136,18 +151,11 @@ const Adventure: React.FunctionComponent = () => {
                 ))}
               </Grid>
             </LeftBox>
-
-            {tour ? (
-              <AddToCartForm tour={tour} />
-            ) : (
-              <AddToCartForm tour={undefined} />
-            )}
           </MiddleSection>
         </Box>
       </Wrapper>
-      <Footer />
     </>
   );
 };
 
-export default Adventure;
+export default CompanyTourPage;

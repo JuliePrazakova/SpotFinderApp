@@ -193,4 +193,32 @@ export default defineMessages({
     id: "orderedTours",
     defaultMessage: "Ordered tours",
   },
+  company: {
+    id: "company",
+    defaultMessage: "Company",
+  },
+  country: {
+    id: "country",
+    defaultMessage: "Country",
+  },
+  city: {
+    id: "city",
+    defaultMessage: "City",
+  },
+  street: {
+    id: "street",
+    defaultMessage: "Street",
+  },
+  zip: {
+    id: "zip",
+    defaultMessage: "Zip",
+  },
+  descShort: {
+    id: "descShort",
+    defaultMessage: "Short description",
+  },
+  descLong: {
+    id: "descLong",
+    defaultMessage: "Long description",
+  },
 });

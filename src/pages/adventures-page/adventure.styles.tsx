@@ -78,7 +78,6 @@ export const MainImg = styled.div({
   margin: "auto",
   width: "100%",
   height: "100%",
-  background: "red",
   [` > img`]: {
     backgroundSize: "cover",
     backgroundPosition: "center",

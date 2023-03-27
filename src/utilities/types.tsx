@@ -29,6 +29,16 @@ export type SmallTourProps = {
   tour: TourItem;
 };
 
+export type TourListProps = {
+  tour?: TourItem;
+  onTourClick: (tour: TourItem) => void;
+};
+
+export type CompanyListProps = {
+  company?: CompanyType;
+  onCompanyClick: (company: CompanyType) => void;
+};
+
 // Company types
 export type CompanyType = {
   _id: string;
@@ -42,6 +52,8 @@ export type CompanyType = {
   image1: string;
   image2: string;
   image3: string;
+  email: string;
+  phone: string;
 };
 
 // Route parameters types
@@ -65,7 +77,7 @@ export type SearchItemType = {
   where: string;
   from: string;
   to: string;
-  radius: number;
+  radius?: number;
 };
 
 export type MapSearchType = {

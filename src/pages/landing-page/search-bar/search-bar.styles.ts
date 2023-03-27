@@ -23,7 +23,7 @@ export const TypeButton = styled.div({
 
 export const SearchBar = styled.div({
   display: "flex",
-  width: "50%",
+  width: "650px",
   marginLeft: "15%",
   color: "black",
   background: "white",
@@ -89,21 +89,27 @@ export const Label = styled.div({
     fontWeight: "normal",
     border: "none",
     color: "gray",
+    background: "none",
   },
   [`> input:focus`]: {
     outline: "0",
+    background: "none",
   },
   [`> input:hover`]: {
     cursor: "pointer",
+    background: "none",
   },
 });
 
 export const RoadTripBarSection = styled.form({
   display: "flex",
-  width: "100%",
+  width: "90%",
   [`> div:first-of-type`]: {
     borderRadius: "80px 0 0 80px",
     marginLeft: "15px",
+  },
+  [`> div`]: {
+    width: "30%",
   },
 });
 
