@@ -3,11 +3,11 @@ import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 
 // Styles
-import { Container, Grid, List, Segment } from "semantic-ui-react";
-import { CompanyTitle, PriceBox } from "../../cart-page/cart-page.styles";
+import { Button, Container, Grid, List, Segment } from "semantic-ui-react";
+import { PriceBox } from "../../cart-page/cart-page.styles";
 import { OrderItemWithId, OrdersListProps } from "../../../utilities/types";
-import { Button } from "../../../App.styles";
 import axios from "axios";
+import { Title } from "../admin-page.styles";
 
 const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
   order,
@@ -18,15 +18,24 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
   return (
     <Segment>
       <Container>
-        <CompanyTitle>
+        <Title>
           <p>
             {order?.firstname} {order?.lastname}
           </p>
+          <div>
+            <Button
+              basic
+              circular
+              onClick={() => order && onOrderClick(order)}
+              icon="edit"
+            />
+          </div>
+
           <br />
-        </CompanyTitle>
+        </Title>
       </Container>
 
-      <Grid columns={3}>
+      <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
             <List>
@@ -59,11 +68,6 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
                 </List.Item>
               </List>
             </PriceBox>
-          </Grid.Column>
-          <Grid.Column>
-            <Button onClick={() => order && onOrderClick(order)}>
-              View more
-            </Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>

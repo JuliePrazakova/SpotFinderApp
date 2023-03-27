@@ -3,11 +3,18 @@ import messages from "../../../Messages";
 
 // Styles
 import { Title } from "../admin-page.styles";
-import { Container, Divider, Grid, List, Segment } from "semantic-ui-react";
-import { Button } from "../../../App.styles";
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  List,
+  Segment,
+} from "semantic-ui-react";
 import { CompanyListProps, CompanyType } from "../../../utilities/types";
 import axios from "axios";
 import { useIntl } from "react-intl";
+import DeleteModal from "./delete-modal";
 
 const CompanyComponent: React.FunctionComponent<CompanyListProps> = ({
   company,
@@ -15,14 +22,35 @@ const CompanyComponent: React.FunctionComponent<CompanyListProps> = ({
 }) => {
   const intl = useIntl();
 
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const handleOpenDeleteConfirm = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteConfirm = () => {
+    setDeleteModalOpen(false);
+  };
+
   return (
     <Segment>
       <Container>
         <Title>
           <p>{company?.name}</p>
-          <Button onClick={() => company && onCompanyClick(company)}>
-            View activities
-          </Button>
+          <div>
+            <Button
+              basic
+              circular
+              onClick={() => company && onCompanyClick(company)}
+              icon="edit"
+            />
+            <Button
+              basic
+              circular
+              onClick={handleOpenDeleteConfirm}
+              icon="trash"
+            />
+          </div>
         </Title>
       </Container>
       <Divider />
@@ -77,6 +105,13 @@ const CompanyComponent: React.FunctionComponent<CompanyListProps> = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <DeleteModal
+        title="Are you sure you want to delete this company?"
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteConfirm}
+        _id={company?._id.toString()}
+        url="deleteCompany"
+      />
     </Segment>
   );
 };

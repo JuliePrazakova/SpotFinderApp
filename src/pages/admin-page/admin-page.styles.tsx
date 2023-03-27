@@ -23,8 +23,11 @@ export const Title = styled.div({
   fontWeight: "800",
   width: "100%",
   justifyContent: "space-between",
-  [`> button`]: {
+  [` > button`]: {
     fontSize: "13px",
+    margin: "0 0 auto auto",
+  },
+  [`> div`]: {
     margin: "0 0 auto auto",
   },
 });
@@ -53,4 +56,10 @@ export const Block = styled.div({
     marginLeft: "5%",
     marginBottom: "30px",
   },
+});
+
+export const OrderBox = styled.div({
+  display: "block",
+  width: "100%",
+  padding: "30px",
 });
