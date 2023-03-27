@@ -22,7 +22,7 @@ const DeleteModal: React.FC<ModalProps> = ({
   }
   const handleDelete = async () => {
     axios
-      .post(`http://localhost:5001/adventures/${url}`, {
+      .post(`http://localhost:5001/${url}`, {
         _id: _id,
       })
       .then((res) => {

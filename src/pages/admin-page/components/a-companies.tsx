@@ -110,7 +110,7 @@ const CompanyComponent: React.FunctionComponent<CompanyListProps> = ({
         isOpen={isDeleteModalOpen}
         onClose={handleCloseDeleteConfirm}
         _id={company?._id.toString()}
-        url="deleteCompany"
+        url="adventures/deleteCompany"
       />
     </Segment>
   );

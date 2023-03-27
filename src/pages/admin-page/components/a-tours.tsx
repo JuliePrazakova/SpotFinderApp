@@ -133,7 +133,7 @@ const TourComponent: React.FunctionComponent<TourListProps> = ({
         isOpen={isDeleteModalOpen}
         onClose={handleCloseDeleteConfirm}
         _id={tour?._id.toString()}
-        url="deleteTour"
+        url="adventures/deleteTour"
       />
     </Segment>
   );

@@ -8,12 +8,23 @@ import { PriceBox } from "../../cart-page/cart-page.styles";
 import { OrderItemWithId, OrdersListProps } from "../../../utilities/types";
 import axios from "axios";
 import { Title } from "../admin-page.styles";
+import DeleteModal from "./delete-modal";
 
 const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
   order,
   onOrderClick,
 }) => {
   const intl = useIntl();
+
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const handleOpenDeleteConfirm = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteConfirm = () => {
+    setDeleteModalOpen(false);
+  };
 
   return (
     <Segment>
@@ -28,6 +39,12 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
               circular
               onClick={() => order && onOrderClick(order)}
               icon="edit"
+            />
+            <Button
+              basic
+              circular
+              onClick={handleOpenDeleteConfirm}
+              icon="trash"
             />
           </div>
 
@@ -71,6 +88,13 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <DeleteModal
+        title="Are you sure you want to delete this order?"
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteConfirm}
+        _id={order?._id.toString()}
+        url="orders/deleteOrder"
+      />
     </Segment>
   );
 };
