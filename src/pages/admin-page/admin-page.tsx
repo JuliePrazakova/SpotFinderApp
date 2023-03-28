@@ -149,7 +149,7 @@ const OrdersPage = () => {
             )}
           </>
         ) : (
-          <div>jahoda</div>
+          <div>Not found</div>
         )}
       </MiddlePart>
       <Footer />
