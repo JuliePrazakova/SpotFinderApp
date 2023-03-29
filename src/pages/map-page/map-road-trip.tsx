@@ -4,14 +4,13 @@ import { useSelector } from "react-redux";
 import { SearchData, SearchItemType } from "../../utilities/types";
 import { useNavigate } from "react-router-dom";
 import paths from "../../utilities/pathnames";
-import axios from "axios";
 import turf from "turf";
 
 const RoadTripMap: React.FC = () => {
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
   const [cityA, setCityA] = useState<[number, number] | undefined>();
   const [cityB, setCityB] = useState<[number, number] | undefined>();
-  const [companies, setCompanies] = useState<SearchData>();
+  const [companies] = useState<SearchData>();
 
   const navigate = useNavigate();
 
@@ -143,52 +142,29 @@ const RoadTripMap: React.FC = () => {
               },
               []
             );
-            // const intersections = data.routes[0].legs.reduce(
-            //   (
-            //     acc: [number, number][],
-            //     leg: {
-            //       steps: { intersections: { location: [number, number] }[] }[];
-            //     }
-            //   ) => {
-            //     acc.push(
-            //       ...leg.steps
-            //         .map((step) =>
-            //           step.intersections.map(
-            //             (intersection) => intersection.location
-            //           )
-            //         )
-            //         .flat()
-            //     );
-            //     return acc;
-            //   },
-            //   []
-            // );
-
-            // Construct a GeoJSON LineString object representing the actual roads that the cars would be driving on
-            // const roadCoordinates = intersections.map(
-            //   (coord: [number, number]) => ({
-            //     type: "Point",
-            //     coordinates: coord,
-            //   })
-            // );
             const radius = search.radius;
             if (radius) {
               // Add buffer to the route
               addBufferToRoute(newMap, routeCoordinates, radius);
             }
 
-            axios
-              .post("/api/companies", {
-                routeCoordinates,
-                radius,
-              })
-              .then((response) => {
-                const companies = response.data;
-                setCompanies(companies);
-              })
-              .catch((error) => {
-                console.error(error);
-              });
+            async function fetchCompaniesAndTours(
+              cityCoordinates: [number, number],
+              radius: number
+            ) {
+              try {
+                const [lng, lat] = cityCoordinates;
+
+                const response = await fetch(
+                  `http://localhost:5001/search/road?lat=${lat}&lng=${lng}&radius=${radius}`
+                );
+
+                const data = await response.json();
+                console.log(data);
+              } catch (error) {
+                console.error("Error fetching data:", error);
+              }
+            }
 
             newMap.addSource("route", {
               type: "geojson",
@@ -215,6 +191,10 @@ const RoadTripMap: React.FC = () => {
                 "line-width": 2,
               },
             });
+
+            if (cityA && cityB && search.radius) {
+              fetchCompaniesAndTours(routeCoordinates, search.radius);
+            }
           });
       }
     };
@@ -248,7 +228,7 @@ const RoadTripMap: React.FC = () => {
     }
   }, [map]);
 
-  return <div id="map" style={{ width: "100vw", height: "100vh" }} />;
+  return <div id="map" style={{ width: "100vw", height: "93vh" }} />;
 };
 
 export default RoadTripMap;

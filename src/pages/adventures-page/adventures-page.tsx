@@ -18,8 +18,9 @@ import {
   Number,
   Line,
   InstructionBox,
+  Search,
 } from "./adventures-page.styles";
-import { Search, Divider } from "semantic-ui-react";
+import { Divider, Icon } from "semantic-ui-react";
 import axios from "axios";
 import { TourItem } from "../../utilities/types";
 
@@ -57,8 +58,24 @@ const Instruction = () => {
 
 const AdventuresPage: React.FunctionComponent = () => {
   const intl = useIntl();
-
+  const [searchTerm, setSearchTerm] = useState("");
   const [tours, setTours] = useState<TourItem[]>([]);
+  const [filteredTours, setFilteredTours] = useState<TourItem[]>([]);
+  console.log(tours);
+
+  function handleSearchInputChange(event: React.ChangeEvent<HTMLInputElement>) {
+    const searchTerm = event.target.value;
+    setSearchTerm(searchTerm);
+  }
+
+  useEffect(() => {
+    if (searchTerm && tours) {
+      const filteredTours = tours.filter((tour) =>
+        tour.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      setFilteredTours(filteredTours);
+    }
+  }, [searchTerm, tours]);
 
   useEffect(() => {
     const API_URL = "http://localhost:5001/adventures";
@@ -111,16 +128,34 @@ const AdventuresPage: React.FunctionComponent = () => {
           <MiddleSection>
             <TopBar>
               <p>{intl.formatMessage(messages.ourTours)}</p>
-              <Search placeholder="Search..." />
+
+              <Search>
+                <div>
+                  <input
+                    placeholder="Search..."
+                    onChange={handleSearchInputChange}
+                  />
+                </div>
+                <div>
+                  <Icon name="search" />
+                </div>
+              </Search>
             </TopBar>
 
             <Grid>
-              {tours?.map((tour) => (
-                <div key={tour._id}>
-                  <TourComponent tour={tour} btn={true} key={tour._id} />
-                  <Divider section />
-                </div>
-              ))}
+              {searchTerm
+                ? filteredTours?.map((tour) => (
+                    <div key={tour._id}>
+                      <TourComponent tour={tour} btn={true} key={tour._id} />
+                      <Divider section />
+                    </div>
+                  ))
+                : tours?.map((tour) => (
+                    <div key={tour._id}>
+                      <TourComponent tour={tour} btn={true} key={tour._id} />
+                      <Divider section />
+                    </div>
+                  ))}
             </Grid>
           </MiddleSection>
         </Box>

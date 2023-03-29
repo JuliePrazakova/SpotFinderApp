@@ -113,7 +113,7 @@ const OneWayMap: React.FC = () => {
   return (
     <div
       id="map"
-      style={{ width: "100vw", height: "100vh", aspectRatio: "1 / 1" }}
+      style={{ width: "100vw", height: "95vh", aspectRatio: "1 / 1" }}
     />
   );
 };
