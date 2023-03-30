@@ -8,12 +8,13 @@ const LogoutButton = () => {
   const { logout } = useAuth0();
   const intl = useIntl();
 
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken"); // remove the accessToken from localStorage
+    logout({ logoutParams: { returnTo: window.location.origin } });
+  };
+
   return (
-    <Button
-      onClick={() =>
-        logout({ logoutParams: { returnTo: window.location.origin } })
-      }
-    >
+    <Button onClick={handleLogout}>
       {intl.formatMessage(messages.logout)}
     </Button>
   );

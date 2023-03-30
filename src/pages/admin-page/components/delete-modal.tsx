@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { Button, Header, Icon, Modal } from "semantic-ui-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 type ModalProps = {
   title: string;
@@ -21,17 +22,32 @@ const DeleteModal: React.FC<ModalProps> = ({
     return null;
   }
   const handleDelete = async () => {
-    axios
-      .post(`http://localhost:5001/${url}`, {
-        _id: _id,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    onClose();
+    const { getAccessTokenSilently } = useAuth0();
+
+    try {
+      const accessToken = await getAccessTokenSilently();
+      axios
+        .post(
+          `http://localhost:5001/${url}`,
+          {
+            _id: _id,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        )
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      onClose();
+    } catch (e) {
+      console.error(e);
+    }
   };
 
   return (

@@ -13,7 +13,7 @@ export const locale = "en";
 ReactDOM.render(
   <Auth0Provider
     domain="dev-03qlmfn2jnvrnr2e.eu.auth0.com"
-    clientId="fbkjQtHzYtjd62nVsHDGRbLn3o7eADQi"
+    clientId="kEP88Nlda1NdJgUGN8kekoE3tQ8VDtOw"
     authorizationParams={{
       redirect_uri: window.location.origin,
     }}

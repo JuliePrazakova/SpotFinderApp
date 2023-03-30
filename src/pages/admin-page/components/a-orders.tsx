@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Styles
 import { Button, Container, Grid, List, Segment } from "semantic-ui-react";
@@ -101,33 +102,30 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
 
 const Orders: React.FunctionComponent<OrdersListProps> = ({ onOrderClick }) => {
   const [orders, setOrders] = useState<OrderItemWithId[]>([]);
+  const { getAccessTokenSilently } = useAuth0();
 
   // get data from backend
   useEffect(() => {
-    const API_URL = "http://localhost:5001/orders";
+    //const API_URL = "http://localhost:5001/admin/orders";
 
-    axios
-      .get(API_URL)
-      .then((response) => {
-        if (Array.isArray(response.data)) {
-          const orderList: OrderItemWithId[] = response.data.map(
-            (item: OrderItemWithId) => ({
-              _id: item._id.toString(),
-              cart: item.cart,
-              firstname: item.firstname,
-              lastname: item.lastname,
-              email: item.email,
-              phone: item.phone,
-            })
-          );
+    const fetchData = async () => {
+      try {
+        const accessToken = await getAccessTokenSilently();
 
-          setOrders(orderList);
-        }
-      })
-      .catch((error) => {
+        const response = await axios.get("http://localhost:5001/admin/orders", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        setOrders(response.data);
+      } catch (error) {
         console.error(error);
-      });
-  }, []);
+      }
+    };
+
+    fetchData();
+  }, [getAccessTokenSilently]);
 
   return (
     <>

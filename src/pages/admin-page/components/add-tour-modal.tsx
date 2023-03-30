@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Form } from "semantic-ui-react";
 import paths from "../../../utilities/pathnames";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Styles
 import {
@@ -64,22 +65,33 @@ const AddTourModal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const { getAccessTokenSilently } = useAuth0();
+    const accessToken = await getAccessTokenSilently();
+
     axios
-      .post("http://localhost:5001/adventures/tour", {
-        _id: formData._id,
-        company: formData.company,
-        companyId: formData.companyId,
-        name: formData.name,
-        country: formData.country,
-        city: formData.city,
-        street: formData.street,
-        zip: formData.zip,
-        descShort: formData.descShort,
-        descLong: formData.descLong,
-        ticketPrice: formData.ticketPrice,
-        image: formData.image,
-        duration: formData.duration,
-      })
+      .post(
+        "http://localhost:5001/admin/addTour",
+        {
+          _id: formData._id,
+          company: formData.company,
+          companyId: formData.companyId,
+          name: formData.name,
+          country: formData.country,
+          city: formData.city,
+          street: formData.street,
+          zip: formData.zip,
+          descShort: formData.descShort,
+          descLong: formData.descLong,
+          ticketPrice: formData.ticketPrice,
+          image: formData.image,
+          duration: formData.duration,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
       })
