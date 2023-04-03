@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from "react";
-import mapboxgl, { Marker, NavigationControl } from "mapbox-gl";
 import { useSelector } from "react-redux";
-import { SearchItemType } from "../../utilities/types";
+import mapboxgl, { FillLayer, Marker, NavigationControl } from "mapbox-gl";
+import turf from "turf";
+import circle from "@turf/circle";
+
+import {
+  CompanyTypeWithLoc,
+  GetDataFromDB,
+  SearchItemType,
+} from "../../utilities/types";
 import { useNavigate } from "react-router-dom";
 import paths from "../../utilities/pathnames";
-import turf from "turf";
+import Company from "./company";
 
 const OneWayMap: React.FC = () => {
   const [map, setMap] = useState<mapboxgl.Map | null>(null);
+  const [data, setData] = useState<GetDataFromDB>();
+  const [isCompany, setCompany] = useState<CompanyTypeWithLoc>();
+
   const search = useSelector(
     (state: { search: SearchItemType }) => state.search
   );
@@ -41,80 +51,103 @@ const OneWayMap: React.FC = () => {
     }
   }, [search]);
 
-  const addBufferToCity = (
-    map: mapboxgl.Map,
+  // getting companies from database
+  // must be here because companies needed in both Company & Map component
+  useEffect(() => {
+    if (cityCoordinates && search.radius) {
+      fetchCompaniesAndTours(cityCoordinates, search.radius);
+    }
+  }, [cityCoordinates, search.radius]);
+
+  async function fetchCompaniesAndTours(
     cityCoordinates: [number, number],
     radius: number
-  ) => {
-    let point;
-    if (cityCoordinates) {
-      point = turf.point(cityCoordinates);
-
-      const buffer = turf.buffer(
-        {
-          type: "FeatureCollection",
-          features: [point],
-        },
-        radius,
-        "kilometers"
+  ) {
+    try {
+      const [lng, lat] = cityCoordinates;
+      const response = await fetch(
+        `http://localhost:5001/search/city?lat=${lat}&lng=${lng}&radius=${radius}`
       );
 
-      map.addLayer({
-        id: "route-buffer",
-        type: "fill",
-        source: {
-          type: "geojson",
-          data: buffer,
-        },
-        paint: {
-          "fill-color": "darkgray",
-          "fill-opacity": 0.5,
-        },
-      });
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
-  };
+  }
 
   useEffect(() => {
+    if (!data) return;
+
     mapboxgl.accessToken = accessToken;
 
-    const initializeMap = () => {
-      if (cityCoordinates) {
-        const newMap = new mapboxgl.Map({
-          container: "map",
-          style: "mapbox://styles/mapbox/streets-v11",
-          center: cityCoordinates,
-          zoom: 8,
-          preserveDrawingBuffer: true,
+    async function initializeMap() {
+      const newMap = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: cityCoordinates,
+        zoom: 8,
+        preserveDrawingBuffer: true,
+      });
+
+      const nav = new NavigationControl();
+      newMap.addControl(nav, "top-right");
+
+      new Marker({ color: "#000000", scale: 1.2 })
+        .setLngLat(cityCoordinates)
+        .addTo(newMap);
+
+      newMap.on("style.load", () => {
+        // Add the circle layer
+        if (cityCoordinates) {
+          const point = turf.point(cityCoordinates);
+          const data = circle(point, search.radius, 64, "kilometers");
+
+          const layer: FillLayer = {
+            id: "route-buffer",
+            type: "fill",
+            source: {
+              type: "geojson",
+              data: data,
+            },
+            paint: {
+              "fill-color": "darkgray",
+              "fill-opacity": 0.5,
+            },
+          };
+          newMap.addLayer(layer);
+        }
+
+        data.companies.forEach((company) => {
+          const marker = new Marker({ color: "red", scale: 0.7 })
+            .setLngLat([
+              company.location.coordinates[1],
+              company.location.coordinates[0],
+            ])
+            .addTo(newMap);
+
+          marker.getElement().addEventListener("click", () => {
+            setCompany(company);
+          });
         });
 
-        const nav = new NavigationControl();
-        newMap.addControl(nav, "top-right");
-        newMap.on("load", () => {
-          if (search.radius) {
-            // Add buffer to the route
-            addBufferToCity(newMap, cityCoordinates, search.radius);
-          }
-        });
-
-        new Marker({ color: "#000000", scale: 1.2 })
-          .setLngLat(cityCoordinates)
-          .addTo(newMap);
         setMap(newMap);
-
-        setMap(newMap);
-      }
-    };
+      });
+    }
 
     if (!map) {
       initializeMap();
     }
-  }, [map, cityCoordinates]);
+  }, [data, cityCoordinates, search.radius]);
 
   return (
-    <div
-      id="map"
-      style={{ width: "100vw", height: "95vh", aspectRatio: "1 / 1" }}
-    />
+    <>
+      {isCompany && <Company company={isCompany} tours={data.tours} />}
+      <div
+        id="map"
+        style={{ width: "100vw", height: "93vh", aspectRatio: "1 / 1" }}
+      />
+    </>
   );
 };
 

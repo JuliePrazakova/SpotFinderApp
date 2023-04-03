@@ -6,6 +6,7 @@ import { SearchItemType } from "../../utilities/types";
 import OneWayMap from "./map-one-way";
 import paths from "../../utilities/pathnames";
 import RoadTripMap from "./map-road-trip";
+import { Flex } from "./map-page.styles";
 
 const MapPage: React.FC = () => {
   const navigate = useNavigate();
@@ -23,9 +24,13 @@ const MapPage: React.FC = () => {
       <Header visible={true} />
       <>
         {search.where ? (
-          <OneWayMap />
+          <Flex>
+            <OneWayMap />
+          </Flex>
         ) : search.from ? (
-          <RoadTripMap />
+          <Flex>
+            <RoadTripMap />
+          </Flex>
         ) : (
           navigate(paths.home.path)
         )}

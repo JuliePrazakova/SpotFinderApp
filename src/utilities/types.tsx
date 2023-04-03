@@ -56,6 +56,27 @@ export type CompanyType = {
   phone: string;
 };
 
+// Company types
+export type CompanyTypeWithLoc = {
+  _id: string;
+  name: string;
+  country: string;
+  city: string;
+  street: string;
+  zip: string;
+  descShort: string;
+  descLong: string;
+  image1: string;
+  image2: string;
+  image3: string;
+  location: {
+    type: string;
+    coordinates: number[];
+  };
+  email: string;
+  phone: string;
+};
+
 // Route parameters types
 export type RouteParams = {
   companyId: string;
@@ -70,6 +91,11 @@ export type AdventurePageType = {
 // Search types
 export type SearchData = {
   companies: CompanyType[] | undefined;
+  tours: TourItem[] | undefined;
+};
+
+export type GetDataFromDB = {
+  companies: CompanyTypeWithLoc[] | undefined;
   tours: TourItem[] | undefined;
 };
 

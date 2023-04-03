@@ -20,14 +20,15 @@ import {
 } from "./map-page.styles";
 import { Icon } from "semantic-ui-react";
 import { Button } from "../../App.styles";
-import { SearchData } from "../../utilities/types";
+import { AdventurePageType } from "../../utilities/types";
 
-const Company: React.FunctionComponent<SearchData> = ({ companies, tours }) => {
+const Company: React.FunctionComponent<AdventurePageType> = ({
+  company,
+  tours,
+}) => {
   const intl = useIntl();
 
-  const company = companies?.find(
-    (com) => com._id === "641997c56c71417609ab1f96"
-  );
+  const companyTours = tours?.filter((tour) => tour.companyId === company._id);
 
   return (
     <>
@@ -49,7 +50,7 @@ const Company: React.FunctionComponent<SearchData> = ({ companies, tours }) => {
           <LowerSection>
             <Subtitle> {intl.formatMessage(messages.ourTours)}</Subtitle>
             <Grid>
-              {tours?.map((tours) => (
+              {companyTours?.map((tours) => (
                 <div key={tours._id}>
                   {tours.companyId === company._id ? (
                     <MiniTour tour={tours} />

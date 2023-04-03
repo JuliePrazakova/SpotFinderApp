@@ -16,6 +16,10 @@ export const Wrapper = styled.div({
   width: "33%",
 });
 
+export const Flex = styled.div({
+  display: "flex",
+});
+
 export const Subtitle = styled.div({
   fontSize: "18px",
   margin: "auto",
