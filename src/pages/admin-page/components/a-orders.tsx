@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import messages from "../../../Messages";
 import { useIntl } from "react-intl";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Styles
-import { Container, Grid, List, Segment } from "semantic-ui-react";
-import { CompanyTitle, PriceBox } from "../../cart-page/cart-page.styles";
+import { Button, Container, Grid, List, Segment } from "semantic-ui-react";
+import { PriceBox } from "../../cart-page/cart-page.styles";
 import { OrderItemWithId, OrdersListProps } from "../../../utilities/types";
-import { Button } from "../../../App.styles";
 import axios from "axios";
+import { Title } from "../admin-page.styles";
+import DeleteModal from "./delete-modal";
 
 const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
   order,
@@ -15,18 +17,43 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
 }) => {
   const intl = useIntl();
 
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const handleOpenDeleteConfirm = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteConfirm = () => {
+    setDeleteModalOpen(false);
+  };
+
   return (
     <Segment>
       <Container>
-        <CompanyTitle>
+        <Title>
           <p>
             {order?.firstname} {order?.lastname}
           </p>
+          <div>
+            <Button
+              basic
+              circular
+              onClick={() => order && onOrderClick(order)}
+              icon="edit"
+            />
+            <Button
+              basic
+              circular
+              onClick={handleOpenDeleteConfirm}
+              icon="trash"
+            />
+          </div>
+
           <br />
-        </CompanyTitle>
+        </Title>
       </Container>
 
-      <Grid columns={3}>
+      <Grid columns={2}>
         <Grid.Row>
           <Grid.Column>
             <List>
@@ -60,46 +87,45 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
               </List>
             </PriceBox>
           </Grid.Column>
-          <Grid.Column>
-            <Button onClick={() => order && onOrderClick(order)}>
-              View more
-            </Button>
-          </Grid.Column>
         </Grid.Row>
       </Grid>
+      <DeleteModal
+        title="Are you sure you want to delete this order?"
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteConfirm}
+        _id={order?._id.toString()}
+        url="orders/deleteOrder"
+      />
     </Segment>
   );
 };
 
 const Orders: React.FunctionComponent<OrdersListProps> = ({ onOrderClick }) => {
   const [orders, setOrders] = useState<OrderItemWithId[]>([]);
+  const { getAccessTokenSilently } = useAuth0();
 
   // get data from backend
   useEffect(() => {
-    const API_URL = "http://localhost:5001/orders";
+    //const API_URL = "http://localhost:5001/admin/orders";
 
-    axios
-      .get(API_URL)
-      .then((response) => {
-        if (Array.isArray(response.data)) {
-          const orderList: OrderItemWithId[] = response.data.map(
-            (item: OrderItemWithId) => ({
-              _id: item._id.toString(),
-              cart: item.cart,
-              firstname: item.firstname,
-              lastname: item.lastname,
-              email: item.email,
-              phone: item.phone,
-            })
-          );
+    const fetchData = async () => {
+      try {
+        const accessToken = await getAccessTokenSilently();
 
-          setOrders(orderList);
-        }
-      })
-      .catch((error) => {
+        const response = await axios.get("http://localhost:5001/admin/orders", {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        setOrders(response.data);
+      } catch (error) {
         console.error(error);
-      });
-  }, []);
+      }
+    };
+
+    fetchData();
+  }, [getAccessTokenSilently]);
 
   return (
     <>

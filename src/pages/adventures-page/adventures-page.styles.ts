@@ -132,3 +132,37 @@ export const TextBox = styled.div({
     fontWeight: "600",
   },
 });
+
+export const Search = styled.div({
+  display: "flex",
+  background: "white",
+  color: "gray",
+  pagging: "100px",
+  height: "30px",
+  width: "200px",
+  justifyContent: "space-between",
+  marginRight: "0",
+  border: "1px solid lightgray",
+  borderRadius: "15px",
+  [`> div `]: {
+    margin: "auto",
+    [`> input`]: {
+      border: "none",
+      borderRadius: "15px",
+      height: "28px",
+      width: "100%",
+    },
+    [`> input:active`]: {
+      outline: "0",
+      border: "none",
+    },
+    [`> input:focus`]: {
+      outline: "0",
+      border: "none",
+    },
+    [`> input:hover`]: {
+      outline: "0",
+      border: "none",
+    },
+  },
+});

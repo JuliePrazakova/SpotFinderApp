@@ -3,11 +3,18 @@ import messages from "../../../Messages";
 import { useIntl } from "react-intl";
 
 // Styles
-import { Button } from "../../../App.styles";
-import { Container, Divider, Grid, List, Segment } from "semantic-ui-react";
+import {
+  Button,
+  Container,
+  Divider,
+  Grid,
+  List,
+  Segment,
+} from "semantic-ui-react";
 import { TourItem, TourListProps } from "../../../utilities/types";
 import axios from "axios";
 import { Title } from "../admin-page.styles";
+import DeleteModal from "./delete-modal";
 
 const TourComponent: React.FunctionComponent<TourListProps> = ({
   tour,
@@ -15,14 +22,35 @@ const TourComponent: React.FunctionComponent<TourListProps> = ({
 }) => {
   const intl = useIntl();
 
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+
+  const handleOpenDeleteConfirm = () => {
+    setDeleteModalOpen(true);
+  };
+
+  const handleCloseDeleteConfirm = () => {
+    setDeleteModalOpen(false);
+  };
+
   return (
     <Segment>
       <Container>
         <Title>
-          <p>{tour?.name}</p>
-          <Button onClick={() => tour && onTourClick(tour)}>
-            View company
-          </Button>
+          {tour?.name}
+          <div>
+            <Button
+              basic
+              circular
+              onClick={() => tour && onTourClick(tour)}
+              icon="edit"
+            />
+            <Button
+              basic
+              circular
+              onClick={handleOpenDeleteConfirm}
+              icon="trash"
+            />
+          </div>
         </Title>
         <b>{tour?.company}</b>
         <br />
@@ -100,6 +128,13 @@ const TourComponent: React.FunctionComponent<TourListProps> = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
+      <DeleteModal
+        title="Are you sure you want to delete this tour?"
+        isOpen={isDeleteModalOpen}
+        onClose={handleCloseDeleteConfirm}
+        _id={tour?._id.toString()}
+        url="adventures/deleteTour"
+      />
     </Segment>
   );
 };

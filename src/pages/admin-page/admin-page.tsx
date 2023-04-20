@@ -3,24 +3,27 @@ import React, { useState } from "react";
 // import { useIntl } from "react-intl";
 import Header from "../../partials/header";
 import Footer from "../../partials/footer";
-import { BackgroundCover } from "../adventures-page/adventures-page.styles";
 import Orders from "./components/a-orders";
 import Order from "./components/a-order";
-import { CompanyType, OrderItemWithId, TourItem } from "../../utilities/types";
-import { BackgroundTitle, Block, Flex, MiddlePart } from "./admin-page.styles";
 import { Menu, MenuItemProps } from "semantic-ui-react";
 import { useNavigate } from "react-router-dom";
 import paths from "../../utilities/pathnames";
 import Tours from "./components/a-tours";
 import Companies from "./components/a-companies";
 import CompanyTourPage from "./components/a-company-tour-page";
-import { Button } from "../../App.styles";
 import AddCompanyModal from "./components/add-company-modal";
 import AddTourModal from "./components/add-tour-modal";
 
-// Styles
+// Types
+import { CompanyType, OrderItemWithId, TourItem } from "../../utilities/types";
 
-const OrdersPage = () => {
+// Styles
+import { Button } from "../../App.styles";
+import { BackgroundTitle, Block, Flex, MiddlePart } from "./admin-page.styles";
+import { BackgroundCover } from "../adventures-page/adventures-page.styles";
+import withProtectedRoute from "./protectedRoute";
+
+const AdminPage = () => {
   const [activeItem, setActiveItem] = useState<string>("orders");
   const navigate = useNavigate();
   const [selectedOrder, setSelectedOrder] = useState<OrderItemWithId>();
@@ -149,7 +152,7 @@ const OrdersPage = () => {
             )}
           </>
         ) : (
-          <div>jahoda</div>
+          <div>Not found</div>
         )}
       </MiddlePart>
       <Footer />
@@ -157,4 +160,4 @@ const OrdersPage = () => {
   );
 };
 
-export default OrdersPage;
+export default withProtectedRoute(AdminPage);

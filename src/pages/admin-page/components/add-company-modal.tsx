@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "semantic-ui-react";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Styles
 import {
@@ -61,22 +62,33 @@ const AddCompanyModal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
+    const { getAccessTokenSilently } = useAuth0();
+    const accessToken = await getAccessTokenSilently();
+
     axios
-      .post("http://localhost:5001/adventures/company", {
-        _id: formData._id,
-        name: formData.name,
-        country: formData.country,
-        city: formData.city,
-        street: formData.street,
-        zip: formData.zip,
-        descShort: formData.descShort,
-        descLong: formData.descLong,
-        image1: formData.image1,
-        image2: formData.image2,
-        image3: formData.image3,
-        email: formData.email,
-        phone: formData.phone,
-      })
+      .post(
+        "http://localhost:5001/admin/addCompany",
+        {
+          _id: formData._id,
+          name: formData.name,
+          country: formData.country,
+          city: formData.city,
+          street: formData.street,
+          zip: formData.zip,
+          descShort: formData.descShort,
+          descLong: formData.descLong,
+          image1: formData.image1,
+          image2: formData.image2,
+          image3: formData.image3,
+          email: formData.email,
+          phone: formData.phone,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res);
       })
