@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-// import messages from "../../Messages";
-// import { useIntl } from "react-intl";
 import Header from "../../partials/header";
 import Footer from "../../partials/footer";
 import Orders from "./components/a-orders";

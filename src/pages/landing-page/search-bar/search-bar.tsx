@@ -18,6 +18,7 @@ import {
   SearchBar,
 } from "./search-bar.styles";
 import { SearchItemType } from "../../../utilities/types";
+import { Message } from "semantic-ui-react";
 
 const Searchbar: React.FunctionComponent = () => {
   const intl = useIntl();
@@ -64,6 +65,7 @@ const Searchbar: React.FunctionComponent = () => {
 const OneWayBar = () => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const [showError, setShowError] = useState(true);
 
   const search = useSelector(
     (state: { search: SearchItemType }) => state.search
@@ -81,12 +83,23 @@ const OneWayBar = () => {
   });
 
   const dispatch = useDispatch();
+  const accessToken =
+    "pk.eyJ1IjoianVsaWVwcmF6YWtvdmEiLCJhIjoiY2xmcXZyZGlmMDJocDN1cGI0NTh2bjk2ZCJ9.-l8ij9IJ1HYsKRKa5qrsog";
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(formData);
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(setFilter(formData));
-    navigate(paths.search.path);
+
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formData.where}.json?access_token=${accessToken}`;
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data.features.length);
+    if (data.features.length != 0 && formData.radius > 0) {
+      dispatch(setFilter(formData));
+      navigate(paths.search.path);
+    } else {
+      setShowError(true);
+      console.log("invalid city");
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -97,41 +110,52 @@ const OneWayBar = () => {
   };
 
   return (
-    <OneWayBarSection onSubmit={handleSubmit}>
-      <Label>
-        {intl.formatMessage(messages.where)}:
-        <input
-          type="text"
-          name="where"
-          value={formData.where}
-          onChange={handleChange}
+    <>
+      <OneWayBarSection onSubmit={handleSubmit}>
+        <Label>
+          {intl.formatMessage(messages.where)}:
+          <input
+            type="text"
+            name="where"
+            value={formData.where}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <Line></Line>
+
+        <Label>
+          {intl.formatMessage(messages.radius)}:
+          <input
+            type="text"
+            name="radius"
+            value={formData.radius}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <SearchButton>
+          <div>
+            <button type="submit">{intl.formatMessage(messages.search)}</button>
+          </div>
+        </SearchButton>
+      </OneWayBarSection>
+      {showError && (
+        <Message
+          error
+          content="Please fill real cities and radius."
+          floating
+          style={{ position: "absolute", top: 590, left: "20%", zIndex: 9999 }}
         />
-      </Label>
-
-      <Line></Line>
-
-      <Label>
-        {intl.formatMessage(messages.radius)}:
-        <input
-          type="text"
-          name="radius"
-          value={formData.radius}
-          onChange={handleChange}
-        />
-      </Label>
-
-      <SearchButton>
-        <div>
-          <button type="submit">{intl.formatMessage(messages.search)}</button>
-        </div>
-      </SearchButton>
-    </OneWayBarSection>
+      )}
+    </>
   );
 };
 
 const RoadTripBar = () => {
   const intl = useIntl();
   const navigate = useNavigate();
+  const [showError, setShowError] = useState(false);
 
   const search = useSelector(
     (state: { search: SearchItemType }) => state.search
@@ -149,11 +173,33 @@ const RoadTripBar = () => {
   });
 
   const dispatch = useDispatch();
+  const accessToken =
+    "pk.eyJ1IjoianVsaWVwcmF6YWtvdmEiLCJhIjoiY2xmcXZyZGlmMDJocDN1cGI0NTh2bjk2ZCJ9.-l8ij9IJ1HYsKRKa5qrsog";
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(setFilter(formData));
-    navigate(paths.search.path);
+
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formData.from}.json?access_token=${accessToken}`;
+    const url2 = `https://api.mapbox.com/geocoding/v5/mapbox.places/${formData.to}.json?access_token=${accessToken}`;
+
+    const response = await fetch(url);
+    const response2 = await fetch(url2);
+
+    const data = await response.json();
+    const data2 = await response2.json();
+
+    console.log(data.features.length);
+    if (
+      data.features.length != 0 &&
+      data2.features.length != 0 &&
+      formData.radius > 0
+    ) {
+      dispatch(setFilter(formData));
+      navigate(paths.search.path);
+    } else {
+      setShowError(true);
+      console.log("invalid city");
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -164,47 +210,57 @@ const RoadTripBar = () => {
   };
 
   return (
-    <RoadTripBarSection onSubmit={handleSubmit}>
-      <Label>
-        {intl.formatMessage(messages.from)}:
-        <input
-          type="text"
-          name="from"
-          value={formData.from}
-          onChange={handleChange}
+    <>
+      <RoadTripBarSection onSubmit={handleSubmit}>
+        <Label>
+          {intl.formatMessage(messages.from)}:
+          <input
+            type="text"
+            name="from"
+            value={formData.from}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <Line></Line>
+
+        <Label>
+          {intl.formatMessage(messages.to)}:
+          <input
+            type="text"
+            name="to"
+            value={formData.to}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <Line></Line>
+
+        <Label>
+          {intl.formatMessage(messages.radius)}:
+          <input
+            type="text"
+            name="radius"
+            value={formData.radius}
+            onChange={handleChange}
+          />
+        </Label>
+
+        <SearchButton>
+          <div>
+            <button type="submit">{intl.formatMessage(messages.search)}</button>
+          </div>
+        </SearchButton>
+      </RoadTripBarSection>
+      {showError && (
+        <Message
+          error
+          content="Please fill real cities and radius."
+          floating
+          style={{ position: "absolute", top: 590, left: "20%", zIndex: 9999 }}
         />
-      </Label>
-
-      <Line></Line>
-
-      <Label>
-        {intl.formatMessage(messages.to)}:
-        <input
-          type="text"
-          name="to"
-          value={formData.to}
-          onChange={handleChange}
-        />
-      </Label>
-
-      <Line></Line>
-
-      <Label>
-        {intl.formatMessage(messages.radius)}:
-        <input
-          type="text"
-          name="radius"
-          value={formData.radius}
-          onChange={handleChange}
-        />
-      </Label>
-
-      <SearchButton>
-        <div>
-          <button type="submit">{intl.formatMessage(messages.search)}</button>
-        </div>
-      </SearchButton>
-    </RoadTripBarSection>
+      )}
+    </>
   );
 };
 
