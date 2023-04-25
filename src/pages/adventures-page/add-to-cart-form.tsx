@@ -5,7 +5,7 @@ import { addToCart } from "../../redux/reducers/cart-reducer";
 import { Button } from "../../App.styles";
 import { OrderForm } from "./adventure.styles";
 import React, { useState, useEffect } from "react";
-import { Form } from "semantic-ui-react";
+import { Form, Message } from "semantic-ui-react";
 import { TourType } from "../../utilities/types";
 
 const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
@@ -30,6 +30,9 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
     time: 0,
   });
 
+  const [showError, setShowError] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
   useEffect(() => {
     setFormData({ tour: tour || formData.tour, quantity: 0, date: 0, time: 0 });
   }, [tour]);
@@ -38,7 +41,23 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    dispatch(addToCart(formData));
+
+    const today = new Date();
+    const selectedDate = new Date(formData.date);
+
+    if (
+      formData.quantity >= 1 &&
+      selectedDate > today &&
+      formData.time &&
+      formData.tour
+    ) {
+      setShowError(false);
+      setShowSuccess(true);
+      dispatch(addToCart(formData));
+    } else {
+      setShowSuccess(false);
+      setShowError(true);
+    }
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +69,7 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
 
   return (
     <OrderForm>
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} error={showError} success={showSuccess}>
         <Form.Group>
           <Form.Input
             type="text"
@@ -58,7 +77,7 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
             value={tour?.name}
             label="Tour"
             placeholder="Long ride"
-            id="form-input-first-name"
+            readOnly
           />
           <Form.Input
             type="number"
@@ -89,6 +108,18 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
         </Form.Group>
 
         <Form.Field></Form.Field>
+        <Message
+          error
+          header="Please fill all fields"
+          content="You can only add order to the basket if you fill all needed information."
+        />
+
+        <Message
+          success
+          header="Added to cart"
+          content="You can find your order in cart."
+        />
+
         <Button type="submit">Add to cart</Button>
       </Form>
     </OrderForm>
