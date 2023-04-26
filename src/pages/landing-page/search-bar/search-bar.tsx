@@ -65,7 +65,7 @@ const Searchbar: React.FunctionComponent = () => {
 const OneWayBar = () => {
   const intl = useIntl();
   const navigate = useNavigate();
-  const [showError, setShowError] = useState(true);
+  const [showError, setShowError] = useState(false);
 
   const search = useSelector(
     (state: { search: SearchItemType }) => state.search

@@ -18,14 +18,6 @@ export const OrderForm = styled.div({
   },
 });
 
-export const Field = styled.div({
-  width: "50%",
-  border: "1px solid lightgray",
-  borderRadius: "5px",
-  height: "40px",
-  marginTop: "22px",
-});
-
 export const Subtitle = styled.div({
   fontSize: "25px",
   padding: "25px",

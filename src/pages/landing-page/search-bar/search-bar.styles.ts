@@ -116,15 +116,10 @@ export const RoadTripBarSection = styled.form({
 export const OneWayBarSection = styled.form({
   display: "flex",
   width: "100%",
-  height: "60px",
   [`> div:first-of-type`]: {
     borderRadius: "80px 0 0 80px",
     marginLeft: "15px",
   },
-});
-
-export const Block = styled.form({
-  display: "block",
 });
 
 export const SearchIcon = styled.form({
