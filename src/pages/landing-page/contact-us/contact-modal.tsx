@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 // Styles
 import {
@@ -10,6 +10,7 @@ import {
   ModalTitle,
 } from "../../cart-page/cart-page.styles";
 import { Form } from "semantic-ui-react";
+import axios from "axios";
 
 type ModalProps = {
   title: string;
@@ -41,6 +42,38 @@ const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
     return null;
   }
 
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    axios
+      .post("http://localhost:5001/users/question", {
+        fname: formData.fname,
+        lname: formData.lname,
+        email: formData.email,
+        message: formData.message,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   return (
     <ModalOverlay onClick={handleOverlayClick}>
       <ModalContainer>
@@ -51,16 +84,34 @@ const Modal: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
           </ModalCloseButton>
         </ModalHeader>
         <ModalBody>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             <Form.Group widths="equal">
-              <Form.Input fluid label="First name" placeholder="First name" />
-              <Form.Input fluid label="Last name" placeholder="Last name" />
-              <Form.Input fluid label="Email" placeholder="Email" />
+              <Form.Input
+                fluid
+                label="First name"
+                placeholder="First name"
+                name="fname"
+                onChange={handleChange}
+              />
+              <Form.Input
+                fluid
+                label="Last name"
+                placeholder="Last name"
+                name="lname"
+                onChange={handleChange}
+              />
+              <Form.Input
+                fluid
+                label="Email"
+                placeholder="Email"
+                name="email"
+                onChange={handleChange}
+              />
             </Form.Group>
             <Form.TextArea
               label="Message"
-              name="text"
               placeholder="Don't hesitate to contact us!"
+              name="message"
             />
             <Form.Button>Submit</Form.Button>
           </Form>
