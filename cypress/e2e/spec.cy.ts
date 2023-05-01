@@ -1,0 +1,52 @@
+describe("One way test", () => {
+  it("Searchs one way destination", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.get('[data-cy="where"]').type("Rovaniemi");
+    cy.get('[data-cy="radius"]').type("20");
+
+    cy.contains("Search").click();
+  });
+});
+
+describe("Road trip test", () => {
+  it("Visits the SpotFinder", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.contains("Road trip").click();
+
+    cy.get('[data-cy="from"]').type("Rovaniemi");
+    cy.get('[data-cy="to"]').type("Helsinki");
+    cy.get('[data-cy="radius"]').type("20");
+
+    cy.contains("Search").click();
+  });
+});
+
+describe("Adventure page test", () => {
+  it("Goes from adventures page to one adventure", () => {
+    cy.visit("http://localhost:3000/adventures");
+
+    cy.contains("Learn more").click();
+
+    cy.url().should("include", "/adventures/");
+  });
+});
+
+describe("All routes test", () => {
+  it("Visits all routes", () => {
+    cy.visit("http://localhost:3000/");
+
+    cy.contains("Adventures").click();
+    cy.url().should("include", "/adventures");
+
+    cy.contains("Home").click();
+    cy.url().should("include", "/");
+
+    cy.contains("Learn more").click();
+    cy.url().should("include", "/adventures");
+
+    cy.get(".img").click();
+    cy.url().should("include", "/");
+  });
+});

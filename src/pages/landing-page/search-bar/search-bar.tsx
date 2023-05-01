@@ -119,6 +119,7 @@ const OneWayBar = () => {
             name="where"
             value={formData.where}
             onChange={handleChange}
+            data-cy="where"
           />
         </Label>
 
@@ -131,6 +132,7 @@ const OneWayBar = () => {
             name="radius"
             value={formData.radius}
             onChange={handleChange}
+            data-cy="radius"
           />
         </Label>
 
@@ -219,6 +221,7 @@ const RoadTripBar = () => {
             name="from"
             value={formData.from}
             onChange={handleChange}
+            data-cy="from"
           />
         </Label>
 
@@ -231,6 +234,7 @@ const RoadTripBar = () => {
             name="to"
             value={formData.to}
             onChange={handleChange}
+            data-cy="to"
           />
         </Label>
 
@@ -243,6 +247,7 @@ const RoadTripBar = () => {
             name="radius"
             value={formData.radius}
             onChange={handleChange}
+            data-cy="radius"
           />
         </Label>
 

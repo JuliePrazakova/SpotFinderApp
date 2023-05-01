@@ -43,7 +43,8 @@
     "lint-and-fix": "eslint . --ext .ts --fix",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cypress:open": "cypress open"
   },
   "eslintConfig": {
     "extends": [
@@ -72,6 +73,7 @@
     "@types/turf": "^3.5.32",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
     "@typescript-eslint/parser": "^5.52.0",
+    "cypress": "^12.11.0",
     "eslint": "^8.34.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
