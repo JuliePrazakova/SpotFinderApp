@@ -16,6 +16,25 @@ export const OrderForm = styled.div({
     width: "100%",
     marginTop: "20px",
   },
+  [`> input:focus`]: {
+    outline: "none !important",
+    boxShadow: "none !important",
+  },
+  [`> input:focus::-moz-focus-inner`]: {
+    border: "0",
+  },
+});
+
+export const DisabledInput = styled.input({
+  border: "none",
+  outline: "none !important",
+  [`> input:focus`]: {
+    outline: "none !important",
+    boxShadow: "none !important",
+  },
+  [`> input:focus::-moz-focus-inner`]: {
+    border: "0",
+  },
 });
 
 export const Subtitle = styled.div({

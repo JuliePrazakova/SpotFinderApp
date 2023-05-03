@@ -3,7 +3,7 @@ import { addToCart } from "../../redux/reducers/cart-reducer";
 
 // Styles
 import { Button } from "../../App.styles";
-import { OrderForm } from "./adventure.styles";
+import { OrderForm, DisabledInput } from "./adventure.styles";
 import React, { useState, useEffect } from "react";
 import { Form, Message } from "semantic-ui-react";
 import { TourType } from "../../utilities/types";
@@ -71,14 +71,16 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
     <OrderForm>
       <Form onSubmit={handleSubmit} error={showError} success={showSuccess}>
         <Form.Group>
-          <Form.Input
-            type="text"
-            name="tourName"
-            value={tour?.name}
-            label="Tour"
-            placeholder="Long ride"
-            readOnly
-          />
+          <Form.Field>
+            <label>Tour</label>
+            <DisabledInput
+              type="text"
+              name="tourName"
+              value={tour?.name}
+              placeholder="Long ride"
+              data-cy="tourName"
+            />
+          </Form.Field>
           <Form.Input
             type="number"
             name="quantity"
@@ -86,6 +88,7 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
             onChange={handleChange}
             label="People"
             placeholder="1"
+            data-cy="quantity"
           />
         </Form.Group>
         <Form.Group>
@@ -94,20 +97,21 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
             name="time"
             value={formData.time}
             onChange={handleChange}
-            label="Date"
+            label="Time"
             placeholder="03. 03. 2023"
+            data-cy="time"
           />
           <Form.Input
             type="date"
             name="date"
             value={formData.date}
             onChange={handleChange}
-            label="Time"
+            label="Date"
             placeholder="1"
+            data-cy="date"
           />
         </Form.Group>
 
-        <Form.Field></Form.Field>
         <Message
           error
           header="Please fill all fields"

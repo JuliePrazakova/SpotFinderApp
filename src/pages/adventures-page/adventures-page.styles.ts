@@ -60,7 +60,7 @@ export const TopBar = styled.div({
 
 export const InstructionSection = styled.div({
   width: "100%",
-  background: "#f5f5f5",
+  background: "#e6e6e6",
   padding: "80px 0 20px 0",
   verticalAlign: "center",
 });
@@ -116,11 +116,6 @@ export const Tour = styled.div({
 
 export const TourBox = styled.div({
   display: "flex",
-  [`> img`]: {
-    width: "300px",
-    height: "200px",
-    objectFit: "cover",
-  },
 });
 
 export const TextBox = styled.div({
@@ -164,5 +159,15 @@ export const Search = styled.div({
       outline: "0",
       border: "none",
     },
+  },
+});
+
+export const Img = styled.div({
+  width: "300px",
+  height: "100%",
+  [`> img `]: {
+    width: "300px",
+    height: "200px",
+    objectFit: "cover",
   },
 });

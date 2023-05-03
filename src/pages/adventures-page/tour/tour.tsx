@@ -5,7 +5,7 @@ import { useIntl } from "react-intl";
 import paths from "../../../utilities/pathnames";
 
 // Styles
-import { Tour, TourBox, TextBox } from "../adventures-page.styles";
+import { Tour, TourBox, TextBox, Img } from "../adventures-page.styles";
 import { Button } from "../../../App.styles";
 import { List } from "semantic-ui-react";
 import { TourProps } from "../../../utilities/types";
@@ -30,7 +30,9 @@ const TourComponent: React.FunctionComponent<TourProps> = ({
   return (
     <Tour>
       <TourBox>
-        <img src={tour.image} alt={tour.name} />
+        <Img>
+          <img src={tour.image} alt={tour.name} />
+        </Img>
 
         <TextBox>
           <h3>{tour.company}</h3>

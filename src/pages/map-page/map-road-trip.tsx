@@ -200,7 +200,6 @@ const RoadTripMap: React.FC = () => {
           addBufferToRoute(newMap, routeCoordinates, search.radius);
 
           // creates the buffer around the route
-
           newMap.addSource("route", {
             type: "geojson",
             data: {

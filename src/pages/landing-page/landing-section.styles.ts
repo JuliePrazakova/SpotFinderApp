@@ -36,6 +36,7 @@ export const Wrapper = styled.div({
   flexDirection: "column",
   margin: "auto",
   fontFamily: "Montserrat, serif",
+  background: "#F6F6F6",
 });
 
 export const Grid = styled.div({
