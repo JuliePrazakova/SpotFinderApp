@@ -21,9 +21,8 @@ const DeleteModal: React.FC<ModalProps> = ({
   if (!isOpen) {
     return null;
   }
+  const { getAccessTokenSilently } = useAuth0();
   const handleDelete = async () => {
-    const { getAccessTokenSilently } = useAuth0();
-
     try {
       const accessToken = await getAccessTokenSilently();
       axios

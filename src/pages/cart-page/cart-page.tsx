@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import paths from "../../utilities/pathnames";
 import ModalConfirm from "./alert";
+import ModalError from "./alertError";
 
 // Styles
 import { Divider } from "semantic-ui-react";
@@ -37,16 +38,16 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
   const intl = useIntl();
   const [isConfirmOpen, setConfirmOpen] = useState(false);
   const [showError, setShowError] = useState(false);
-  const { isAuthenticated } = useAuth0();
   const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth0();
 
   const [formData, setFormData] = useState({
     cart: cart,
-    firstname: "",
-    lastname: "",
-    email: "",
-    phone: "",
+    firstname: user?.given_name || "",
+    lastname: user?.family_name || "",
+    email: user?.email || "",
+    phone: user?.phone_number || "",
   });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -58,7 +59,7 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
       formData.lastname &&
       formData.email &&
       formData.phone &&
-      formData.cart
+      cart.itemsList.length > 0
     ) {
       axios
         .post("http://localhost:5001/orders", {
@@ -156,7 +157,7 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
         onClose={handleCloseConfirm}
       />
 
-      <ModalConfirm
+      <ModalError
         title="Please fill all information"
         isOpen={showError}
         onClose={handleCloseError}

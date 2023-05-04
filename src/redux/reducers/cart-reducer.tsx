@@ -17,14 +17,10 @@ export const cartSlice = createSlice({
       const existingOrder = state.itemsList.find(
         (order) => order.tour._id === newOrder.tour.id
       );
-      if (state.itemsList.length > 0) {
-        state.totalQuantity += 1;
-      } else {
-        state.totalQuantity = 1;
-      }
+      state.totalQuantity += 1;
+      state.totalPrice += newOrder.tour.ticketPrice * newOrder.quantity;
       if (existingOrder) {
         existingOrder.quantity += newOrder.quantity;
-        state.totalPrice += newOrder.tour.ticketPrice * newOrder.quantity;
       } else {
         state.itemsList.push({
           tour: newOrder.tour,
@@ -32,7 +28,6 @@ export const cartSlice = createSlice({
           time: newOrder.time,
           date: newOrder.date,
         });
-        state.totalPrice = newOrder.tour.ticketPrice * newOrder.quantity;
       }
     },
     removeFromCart: (state, action) => {

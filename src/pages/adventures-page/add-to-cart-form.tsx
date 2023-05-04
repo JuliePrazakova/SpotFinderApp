@@ -25,16 +25,21 @@ const AddToCartForm: React.FunctionComponent<TourType> = ({ tour }) => {
       image: "",
       duration: "",
     },
-    quantity: 0,
-    date: 0,
-    time: 0,
+    quantity: null,
+    date: null,
+    time: null,
   });
 
   const [showError, setShowError] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
 
   useEffect(() => {
-    setFormData({ tour: tour || formData.tour, quantity: 0, date: 0, time: 0 });
+    setFormData({
+      tour: tour || formData.tour,
+      quantity: null,
+      date: null,
+      time: null,
+    });
   }, [tour]);
 
   const dispatch = useDispatch();

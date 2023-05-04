@@ -24,7 +24,7 @@ export const ModalContainer = styled.div({
 export const ModalBody = styled.div({
   width: "80%",
   margin: "auto",
-  paddingBottom: "20px",
+  padding: "20px",
 });
 
 export const ModalTitle = styled.div({
@@ -32,6 +32,22 @@ export const ModalTitle = styled.div({
   marginLeft: "10%",
   fontWeight: "400",
   padding: "60px 50px 20px 0",
+});
+
+export const ModalTitleConfirm = styled.div({
+  fontSize: "23px",
+  marginLeft: "10%",
+  fontWeight: "400",
+  padding: "60px 50px 20px 0",
+  color: "green",
+});
+
+export const ModalTitleError = styled.div({
+  fontSize: "23px",
+  marginLeft: "10%",
+  fontWeight: "400",
+  padding: "60px 50px 20px 0",
+  color: "red",
 });
 
 export const Order = styled.div({
@@ -73,11 +89,16 @@ export const Input = styled.input({
   margin: "8px",
   border: "1px solid gray",
   padding: "10px",
-  fontWeight: "200",
+  fontWeight: "600",
+  color: "black",
   fontSize: "12px",
   fontFamily: "Montserrat",
   ":active": {
     borderColor: "gray !important",
+  },
+  "::placeholder": {
+    fontWeight: "200",
+    color: "grey",
   },
 });
 
@@ -85,7 +106,7 @@ export const ModalHeader = styled.div({
   display: "flex",
   width: "100%",
   justifyContent: "space-between",
-  marginBottom: "20px",
+  padding: "20px",
 });
 
 export const ModalCloseButton = styled.button({
@@ -100,22 +121,23 @@ export const MiniTour = styled.div({
   display: "flex",
   margin: "auto",
   justifyContent: "space-around",
+  padding: "5px",
 });
 
 export const Image = styled.div({
   width: "150px",
-  height: "fit-content",
+  height: "150px",
   [` > img`]: {
     backgroundSize: "cover",
     backgroundPosition: "center",
-    width: "170px",
+    width: "250px",
     height: "100%",
   },
 });
 
 export const TextBox = styled.div({
   margin: "auto",
-  marginLeft: "50px",
+  marginLeft: "130px",
   [`> p`]: {
     fontSize: "16px",
   },
@@ -138,8 +160,8 @@ export const TourName = styled.div({
 
 export const CompanyTitle = styled.div({
   display: "flex",
-  fontSize: "17px",
-  fontWeight: "800",
+  fontSize: "16px",
+  fontWeight: "400",
 });
 
 export const TotalPrice = styled.div({
