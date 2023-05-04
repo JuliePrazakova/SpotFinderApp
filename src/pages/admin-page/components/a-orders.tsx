@@ -106,8 +106,6 @@ const Orders: React.FunctionComponent<OrdersListProps> = ({ onOrderClick }) => {
 
   // get data from backend
   useEffect(() => {
-    //const API_URL = "http://localhost:5001/admin/orders";
-
     const fetchData = async () => {
       try {
         const accessToken = await getAccessTokenSilently();

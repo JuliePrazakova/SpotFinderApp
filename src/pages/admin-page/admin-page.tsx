@@ -11,6 +11,7 @@ import Companies from "./components/a-companies";
 import CompanyTourPage from "./components/a-company-tour-page";
 import AddCompanyModal from "./components/add-company-modal";
 import AddTourModal from "./components/add-tour-modal";
+import Questions from "./components/a-qustions";
 
 // Types
 import { CompanyType, OrderItemWithId, TourItem } from "../../utilities/types";
@@ -99,6 +100,11 @@ const AdminPage = () => {
             active={activeItem === "companies"}
             onClick={handleItemClick}
           />
+          <Menu.Item
+            name="qustions"
+            active={activeItem === "questions"}
+            onClick={handleItemClick}
+          />
         </Menu>
 
         {activeItem === "orders" ? (
@@ -149,6 +155,12 @@ const AdminPage = () => {
               </Block>
             )}
           </>
+        ) : activeItem === "qustions" ? (
+          <Block>
+            <Flex>
+              <Questions />
+            </Flex>
+          </Block>
         ) : (
           <div>Not found</div>
         )}
