@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const ContactSection = styled.div({
   width: "100%",
-  background: "#f5f5f5",
+  background: "#D8D8D8",
   padding: "90px 90px",
   verticalAlign: "center",
 });

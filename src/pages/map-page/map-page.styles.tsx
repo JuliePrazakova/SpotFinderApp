@@ -13,7 +13,7 @@ export const Wrapper = styled.div({
   height: "93vh",
   justifyContent: "space-between",
   margin: "0px auto auto auto",
-  width: "33%",
+  width: "25%",
 });
 
 export const Flex = styled.div({
@@ -24,7 +24,7 @@ export const Subtitle = styled.div({
   fontSize: "18px",
   margin: "auto",
   width: "fit-content",
-  padding: "20px",
+  paddingTop: "19px",
   marginTop: "0px",
 });
 
@@ -49,17 +49,15 @@ export const ShortDescription = styled.div({
 
 export const Grid = styled.div({
   width: "100%",
-  margin: "0px auto auto auto",
+  margin: "0px auto auto -15px",
 });
 
 export const MainImg = styled.div({
   marginTop: "0px",
-  width: "100%",
   [` > img`]: {
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    width: "100%",
     height: "100%",
+    width: "100%",
+    objectFit: "cover",
   },
 });
 
@@ -93,7 +91,7 @@ export const TourTitle = styled.div({
 
 export const ButtonSection = styled.div({
   width: "80%",
-  margin: "auto",
+  margin: "auto auto 10px auto",
   [`${Button}`]: {
     width: "100%",
     marginTop: "20px",

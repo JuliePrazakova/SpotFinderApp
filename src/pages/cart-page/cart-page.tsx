@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import axios from "axios";
 import paths from "../../utilities/pathnames";
 import ModalConfirm from "./alert";
+import ModalError from "./alertError";
 
 // Styles
 import { Divider } from "semantic-ui-react";
@@ -36,43 +37,58 @@ type ModalProps = {
 const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
   const intl = useIntl();
   const [isConfirmOpen, setConfirmOpen] = useState(false);
-  const { isAuthenticated } = useAuth0();
+  const [showError, setShowError] = useState(false);
   const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth0();
 
   const [formData, setFormData] = useState({
     cart: cart,
-    firstname: "",
-    lastname: "",
-    email: "",
-    phone: "",
+    firstname: user?.given_name || "",
+    lastname: user?.family_name || "",
+    email: user?.email || "",
+    phone: user?.phone_number || "",
   });
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     console.log("pred modalem");
-    setConfirmOpen(true);
+    if (
+      formData.firstname &&
+      formData.lastname &&
+      formData.email &&
+      formData.phone &&
+      cart.itemsList.length > 0
+    ) {
+      axios
+        .post("http://localhost:5001/orders", {
+          cart: formData.cart,
+          firstname: formData.firstname,
+          lastname: formData.lastname,
+          email: formData.email,
+          phone: formData.phone,
+        })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
 
-    axios
-      .post("http://localhost:5001/orders", {
-        cart: formData.cart,
-        firstname: formData.firstname,
-        lastname: formData.lastname,
-        email: formData.email,
-        phone: formData.phone,
-      })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      setConfirmOpen(true);
+    } else {
+      setShowError(true);
+    }
   };
 
   const handleCloseConfirm = () => {
     setConfirmOpen(false);
     navigate(paths.home.path);
+  };
+
+  const handleCloseError = () => {
+    setShowError(false);
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -102,6 +118,7 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
             name="firstname"
             value={formData.firstname}
             onChange={handleChange}
+            data-cy="fname"
           />
           <Input
             placeholder="Last name"
@@ -109,6 +126,7 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
             name="lastname"
             value={formData.lastname}
             onChange={handleChange}
+            data-cy="lname"
           />
         </Group>
         <Group>
@@ -118,6 +136,7 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
             name="email"
             value={formData.email}
             onChange={handleChange}
+            data-cy="mail"
           />
           <Input
             placeholder="+420 123 234 345"
@@ -125,6 +144,7 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
+            data-cy="phone"
           />
         </Group>
         <Group>
@@ -135,6 +155,12 @@ const OrderingForm: React.FC<CartPacked> = ({ cart }) => {
         title="Order placed"
         isOpen={isConfirmOpen}
         onClose={handleCloseConfirm}
+      />
+
+      <ModalError
+        title="Please fill all information"
+        isOpen={showError}
+        onClose={handleCloseError}
       />
     </Order>
   );

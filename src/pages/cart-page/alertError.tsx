@@ -6,7 +6,7 @@ import {
   ModalContainer,
   ModalHeader,
   ModalOverlay,
-  ModalTitleConfirm,
+  ModalTitleError,
 } from "./cart-page.styles";
 
 type ModalProps = {
@@ -15,7 +15,7 @@ type ModalProps = {
   onClose: () => void;
 };
 
-const ModalConfirm: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
+const ModalError: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
   const handleOverlayClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (event.target === event.currentTarget) {
       onClose();
@@ -43,7 +43,7 @@ const ModalConfirm: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
     <ModalOverlay onClick={handleOverlayClick}>
       <ModalContainer>
         <ModalHeader>
-          <ModalTitleConfirm>{title}</ModalTitleConfirm>
+          <ModalTitleError>{title}</ModalTitleError>
           <ModalCloseButton onClick={onClose}>
             <i className="close icon"></i>
           </ModalCloseButton>
@@ -53,4 +53,4 @@ const ModalConfirm: React.FC<ModalProps> = ({ title, isOpen, onClose }) => {
   );
 };
 
-export default ModalConfirm;
+export default ModalError;

@@ -119,7 +119,10 @@ const OneWayMap: React.FC = () => {
         }
 
         data.companies.forEach((company) => {
-          const marker = new Marker({ color: "red", scale: 0.7 })
+          const marker = new Marker({
+            color: "red",
+            scale: 0.7,
+          })
             .setLngLat([
               company.location.coordinates[1],
               company.location.coordinates[0],

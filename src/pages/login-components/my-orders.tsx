@@ -1,31 +1,17 @@
 import React, { useEffect, useState } from "react";
-import messages from "../../../Messages";
+import messages from "../../Messages";
 import { useIntl } from "react-intl";
 import { useAuth0 } from "@auth0/auth0-react";
 
 // Styles
-import { Button, Container, Grid, List, Segment } from "semantic-ui-react";
-import { PriceBox } from "../../cart-page/cart-page.styles";
-import { OrderItemWithId, OrdersListProps } from "../../../utilities/types";
+import { Container, Grid, List, Segment } from "semantic-ui-react";
+import { PriceBox } from "../cart-page/cart-page.styles";
+import { OrderItemWithId, OrderProps } from "../../utilities/types";
 import axios from "axios";
-import { Title } from "../admin-page.styles";
-import DeleteModal from "./delete-modal";
+import { Title } from "../admin-page/admin-page.styles";
 
-const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
-  order,
-  onOrderClick,
-}) => {
+const OrderComponent: React.FunctionComponent<OrderProps> = ({ order }) => {
   const intl = useIntl();
-
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-
-  const handleOpenDeleteConfirm = () => {
-    setDeleteModalOpen(true);
-  };
-
-  const handleCloseDeleteConfirm = () => {
-    setDeleteModalOpen(false);
-  };
 
   return (
     <Segment>
@@ -34,20 +20,6 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
           <p>
             {order?.firstname} {order?.lastname}
           </p>
-          <div>
-            <Button
-              basic
-              circular
-              onClick={() => order && onOrderClick(order)}
-              icon="edit"
-            />
-            <Button
-              basic
-              circular
-              onClick={handleOpenDeleteConfirm}
-              icon="trash"
-            />
-          </div>
 
           <br />
         </Title>
@@ -89,18 +61,15 @@ const OrderComponent: React.FunctionComponent<OrdersListProps> = ({
           </Grid.Column>
         </Grid.Row>
       </Grid>
-      <DeleteModal
-        title="Are you sure you want to delete this order?"
-        isOpen={isDeleteModalOpen}
-        onClose={handleCloseDeleteConfirm}
-        _id={order?._id.toString()}
-        url="admin/deleteOrder"
-      />
     </Segment>
   );
 };
 
-const Orders: React.FunctionComponent<OrdersListProps> = ({ onOrderClick }) => {
+export type Props = {
+  user: string;
+};
+
+const Orders: React.FunctionComponent<Props> = ({ user }) => {
   const [orders, setOrders] = useState<OrderItemWithId[]>([]);
   const { getAccessTokenSilently } = useAuth0();
 
@@ -110,11 +79,14 @@ const Orders: React.FunctionComponent<OrdersListProps> = ({ onOrderClick }) => {
       try {
         const accessToken = await getAccessTokenSilently();
 
-        const response = await axios.get("http://localhost:5001/admin/orders", {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+        const response = await axios.get(
+          "http://localhost:5001/admin/orders/" + `${user}`,
+          {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
 
         setOrders(response.data);
       } catch (error) {
@@ -129,11 +101,7 @@ const Orders: React.FunctionComponent<OrdersListProps> = ({ onOrderClick }) => {
     <>
       {orders?.map((order) => (
         <div key={order._id}>
-          <OrderComponent
-            order={order}
-            key={order._id}
-            onOrderClick={onOrderClick}
-          />
+          <OrderComponent order={order} key={order._id} />
         </div>
       ))}
     </>

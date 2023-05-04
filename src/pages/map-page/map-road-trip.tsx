@@ -32,6 +32,53 @@ const RoadTripMap: React.FC = () => {
   const accessToken =
     "pk.eyJ1IjoianVsaWVwcmF6YWtvdmEiLCJhIjoiY2xmcXZyZGlmMDJocDN1cGI0NTh2bjk2ZCJ9.-l8ij9IJ1HYsKRKa5qrsog";
 
+  // get coordinates of both cities
+  useEffect(() => {
+    async function fetchCityCoordinates(
+      city: string,
+      setCoordinates: (coords: [number, number]) => void
+    ) {
+      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${accessToken}`;
+      const response = await fetch(url);
+      const data = await response.json();
+      const coordinates: [number, number] = data.features[0].center;
+      setCoordinates(coordinates);
+    }
+
+    fetchCityCoordinates(search.from, setCityA);
+    fetchCityCoordinates(search.to, setCityB);
+
+    if (!search.from && !search.to) {
+      navigate(paths.home.path);
+    }
+  }, [search]);
+
+  useEffect(() => {
+    if (cityA && cityB && search.radius) {
+      fetchCompaniesAndTours(cityA, cityB, search.radius);
+    }
+  }, [cityA, cityB, search.radius]);
+
+  // get companies and tours FROM DATABASE
+  async function fetchCompaniesAndTours(
+    cityA: [number, number],
+    cityB: [number, number],
+    radius: number
+  ) {
+    try {
+      const response = await fetch(
+        `http://localhost:5001/search/route?cityAlat=${cityA[0]}&cityAlng=${cityA[1]}&cityBlat=${cityB[0]}&cityBlng=${cityB[1]}&radius=${radius}`
+      );
+
+      const data = await response.json();
+      setData(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
+
+  // funciton for adding buffer of radius around the route - musime ji pak nekde zavolat
   const addBufferToRoute = (
     map: mapboxgl.Map,
     routeCoordinates: [number, number][],
@@ -61,49 +108,6 @@ const RoadTripMap: React.FC = () => {
     });
   };
 
-  useEffect(() => {
-    async function fetchCityCoordinates(
-      city: string,
-      setCoordinates: (coords: [number, number]) => void
-    ) {
-      const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${city}.json?access_token=${accessToken}`;
-      const response = await fetch(url);
-      const data = await response.json();
-      const coordinates: [number, number] = data.features[0].center;
-      setCoordinates(coordinates);
-    }
-
-    fetchCityCoordinates(search.from, setCityA);
-    fetchCityCoordinates(search.to, setCityB);
-
-    if (!search.from && !search.to) {
-      navigate(paths.home.path);
-    }
-  }, [search]);
-
-  useEffect(() => {
-    if (cityA && cityB && search.radius) {
-      fetchCompaniesAndTours(cityA, cityB, search.radius);
-    }
-  }, [cityA, cityB, search.radius]);
-
-  async function fetchCompaniesAndTours(
-    cityA: [number, number],
-    cityB: [number, number],
-    radius: number
-  ) {
-    try {
-      const response = await fetch(
-        `http://localhost:5001/search/route?cityAlat=${cityA[0]}&cityAlng=${cityA[1]}&cityBlat=${cityB[0]}&cityBlng=${cityB[1]}&radius=${radius}`
-      );
-
-      const data = await response.json();
-      setData(data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  }
-
   const calculateMidpoint = (
     pointA: [number, number],
     pointB: [number, number]
@@ -119,120 +123,118 @@ const RoadTripMap: React.FC = () => {
     return [midpointLon, midpointLat];
   };
 
-  useEffect(() => {
-    // if (!data) return;
+  const addMarkersToMap = async (newMap) => {
+    try {
+      if (data) {
+        for (const company of data.companies) {
+          const marker = new Marker({ color: "red", scale: 0.7 })
+            .setLngLat([
+              company.location.coordinates[1],
+              company.location.coordinates[0],
+            ])
+            .addTo(newMap);
 
-    mapboxgl.accessToken = accessToken;
-    const initializeMap = () => {
-      if (cityA && cityB) {
-        const newMap = new mapboxgl.Map({
-          container: "map",
-          style: "mapbox://styles/mapbox/streets-v11",
-          center: calculateMidpoint(cityA, cityB),
-          zoom: 0,
-        });
-
-        const nav = new NavigationControl();
-        newMap.addControl(nav, "top-right");
-
-        // Calculate the bounds of the area containing both cities
-        const bounds = new mapboxgl.LngLatBounds().extend(cityA).extend(cityB);
-
-        // Set the map's bounds to contain both cities and fit the map to those bounds
-        newMap.fitBounds(bounds, {
-          padding: 100,
-          maxZoom: 10,
-        });
-
-        // Add markers to the two cities
-        new Marker({ color: "#000000", scale: 1.2 })
-          .setLngLat(cityA)
-          .addTo(newMap);
-        new Marker({ color: "#000000", scale: 1.2 })
-          .setLngLat(cityB)
-          .addTo(newMap);
-        setMap(newMap);
-
-        if (data) {
-          data.companies.forEach((company) => {
-            const marker = new Marker({ color: "red", scale: 0.7 })
-              .setLngLat([
-                company.location.coordinates[1],
-                company.location.coordinates[0],
-              ])
-              .addTo(newMap);
-
-            marker.getElement().addEventListener("click", () => {
-              setCompany(company);
-            });
+          marker.getElement().addEventListener("click", () => {
+            setCompany(company);
           });
         }
-
-        // Draw the driving route between the two cities
-        const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${cityA[0]},${cityA[1]};${cityB[0]},${cityB[1]}?geometries=geojson&access_token=${accessToken}&steps=true`;
-        fetch(url)
-          .then((response) => response.json())
-          .then((data) => {
-            const routeCoordinates = data.routes[0].legs.reduce(
-              (
-                acc: [number, number][],
-                leg: {
-                  steps: { geometry: { coordinates: [number, number][] } }[];
-                }
-              ) => {
-                acc.push(
-                  ...leg.steps.map((step) => step.geometry.coordinates).flat()
-                );
-                return acc;
-              },
-              []
-            );
-
-            newMap.on("style.load", () => {
-              if (search.radius) {
-                addBufferToRoute(newMap, routeCoordinates, search.radius);
-              }
-
-              newMap.addSource("route", {
-                type: "geojson",
-                data: {
-                  type: "Feature",
-                  properties: {},
-                  geometry: {
-                    type: "LineString",
-                    coordinates: routeCoordinates,
-                  },
-                },
-              });
-
-              newMap.addLayer({
-                id: "route",
-                type: "line",
-                source: "route",
-                layout: {
-                  "line-join": "round",
-                  "line-cap": "round",
-                },
-                paint: {
-                  "line-color": "#888",
-                  "line-width": 2,
-                },
-              });
-
-              if (cityA && cityB && search.radius) {
-                fetchCompaniesAndTours(cityA, cityB, search.radius);
-              }
-            });
-          });
       }
-    };
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-    if (!map) {
+  const initializeMap = async () => {
+    if (cityA && cityB) {
+      mapboxgl.accessToken = accessToken;
+
+      const newMap = new mapboxgl.Map({
+        container: "map",
+        style: "mapbox://styles/mapbox/streets-v11",
+        center: calculateMidpoint(cityA, cityB),
+        zoom: 0,
+      });
+
+      const nav = new NavigationControl();
+      newMap.addControl(nav, "top-right");
+
+      // Calculate the bounds of the area containing both cities
+      const bounds = new mapboxgl.LngLatBounds().extend(cityA).extend(cityB);
+
+      // Set the map's bounds to contain both cities and fit the map to those bounds
+      newMap.fitBounds(bounds, {
+        padding: 100,
+        maxZoom: 10,
+      });
+
+      // Add markers to the two cities
+      new Marker({ color: "#000000", scale: 1.2 })
+        .setLngLat(cityA)
+        .addTo(newMap);
+      new Marker({ color: "#000000", scale: 1.2 })
+        .setLngLat(cityB)
+        .addTo(newMap);
+      setMap(newMap);
+
+      // Draw the driving route between the two cities
+      const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${cityA[0]},${cityA[1]};${cityB[0]},${cityB[1]}?geometries=geojson&access_token=${accessToken}&steps=true`;
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const routeCoordinates = data.routes[0].legs.reduce(
+            (
+              acc: [number, number][],
+              leg: {
+                steps: { geometry: { coordinates: [number, number][] } }[];
+              }
+            ) => {
+              acc.push(
+                ...leg.steps.map((step) => step.geometry.coordinates).flat()
+              );
+              return acc;
+            },
+            []
+          );
+
+          addMarkersToMap(newMap);
+          addBufferToRoute(newMap, routeCoordinates, search.radius);
+
+          // creates the buffer around the route
+          newMap.addSource("route", {
+            type: "geojson",
+            data: {
+              type: "Feature",
+              properties: {},
+              geometry: {
+                type: "LineString",
+                coordinates: routeCoordinates,
+              },
+            },
+          });
+
+          newMap.addLayer({
+            id: "route",
+            type: "line",
+            source: "route",
+            layout: {
+              "line-join": "round",
+              "line-cap": "round",
+            },
+            paint: {
+              "line-color": "#888",
+              "line-width": 2,
+            },
+          });
+        });
+    }
+  };
+
+  useEffect(() => {
+    if (!map && data && cityA && cityB) {
+      console.log(data);
       initializeMap();
     }
-  }, [map, cityA, cityB]);
-
-  console.log(data);
+  }, [data, cityA, cityB]);
 
   useEffect(() => {
     if (map) {
